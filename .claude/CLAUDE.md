@@ -1,0 +1,71 @@
+# Instruções para Claude Code
+
+## Perfil do usuário
+
+O usuário é **arquiteto de soluções de software**. Foco em decisões de design, qualidade estrutural e escolhas técnicas fundamentadas. Respostas devem ser diretas, técnicas e sem floreios — assuma conhecimento sólido de engenharia de software.
+
+---
+
+## Regras gerais
+
+- Commits são feitos por mim, nunca pelo Claude
+- O diretório de trabalho deve ser sempre um repositório Git
+- Espera-se que as configurações locais do Git quanto a nome e e-mail estejam presentes sempre
+
+---
+
+## O que o Claude NÃO deve fazer
+
+- Instalar pacotes sem perguntar, seja no sistema operacional ou no projeto.
+- Criar arquivos fora da estrutura de pastas definida
+
+---
+
+## Estrutura de diretórios do projeto
+
+- `src` - Todo código do software reside aqui
+- `test` - Todo código de teste do software reside aqui
+- `eng` - Todo programa/script de engenharia reside aqui. Utilitários de CI/CD ou automações de validação etc.
+- `docs` - Toda documentação do projeto reside aqui
+- `samples` - Todo e qualquer exemplo de código reside aqui. Quando é um projeto de biblioteca/framework, os exemplos de uso ficam aqui
+
+### Sobre documentação
+
+A documentação reside no diretório `./docs`, porém ainda assim estão divididos em:
+
+- `./docs/ARCHITECTURE.md` tem a especificação da arquitetura do software e suas regras
+- `./docs/SOLUTION.md` tem a descrição da solução, que por sua vez deve obedecer todas as regras arquiteturais
+- `./docs/BUSINESS.md` tem a especificação negocial para o software em questão
+- `./docs/GUIDELINE.md` são as diretrizes, as regras de aplicação quanto a marca, UI/UX
+
+Quando há necessidade de mais informações sobre esses 4 tipos de documentação, essas são incluídas
+em documentos adicionais, que residem em diretórios correspondentes a seus nomes, a saber: `./docs/architecture/`,
+`./docs/solution/`, `./docs/business/`, e `./docs/guideline/` respectivamente.
+
+Outras documentações também podem estar presentes, como _tutoriais_. Nesse caso espera-se que sempre haja um
+arquivo de categoria (ex: `./docs/TUTORIAIS.md`) e um diretório `./docs/tutoriais/` para os arquivos complementares.
+Essa regra se aplica para toda a documentação.
+
+---
+
+# Especificação arquitetural
+
+@../docs/ARCHITECTURE.md
+
+---
+
+# Especificação da solução de software
+
+@../docs/SOLUTION.md
+
+---
+
+# Especificação negocial
+
+@../docs/BUSINESS.md
+
+---
+
+# Guideline da marca
+
+@../docs/GUIDELINE.md
