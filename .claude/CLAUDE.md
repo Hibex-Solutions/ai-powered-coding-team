@@ -18,6 +18,7 @@ O usuário é **arquiteto de soluções de software**. Foco em decisões de desi
 
 - Instalar pacotes sem perguntar, seja no sistema operacional ou no projeto.
 - Criar arquivos fora da estrutura de pastas definida
+- Fazer commits ou adicionar mudanças Git ao estágio
 
 ---
 
