@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instala dependências
+        run: sudo apt-get install -y --no-install-recommends rsync zip
+
+      - name: Gera pacote de liberação
+        run: bash eng/release.sh
+
+      - name: Localiza pacote gerado
+        id: package
+        run: |
+          ZIP=$(find dist -maxdepth 1 -name "v*.zip" | head -1)
+          echo "path=${ZIP}" >> "$GITHUB_OUTPUT"
+
+      - name: Cria Release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.package.outputs.path }}
+          generate_release_notes: true

@@ -61,7 +61,8 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 ## Pré-requisitos
 
 - [Claude Code](https://www.anthropic.com/claude-code) instalado e configurado
-- Git instalado localmente
+- [Git](https://git-scm.com) instalado localmente
+- [GitVersion](https://gitversion.net) — necessário para geração de pacotes de liberação. Se não estiver disponível no sistema, o script `eng/release.sh` baixa e instala automaticamente o binário em `.GitVersion.Tool/` a partir da última release no GitHub.
 - Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)
 
 ---

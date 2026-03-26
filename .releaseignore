@@ -1,0 +1,7 @@
+# Arquivos e diretórios excluídos do pacote de liberação
+# Segue a mesma sintaxe do .gitignore
+
+.github/
+docs/TODO.md
+README.md
+LICENSE

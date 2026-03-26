@@ -1,3 +1,9 @@
 # Sistema operacional
 .DS_Store
 Thumbs.db
+
+# Pacotes de liberação
+dist/
+
+# GitVersion binário local (baixado automaticamente por eng/release.sh)
+.GitVersion.Tool/
