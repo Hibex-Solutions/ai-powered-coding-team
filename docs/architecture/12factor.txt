@@ -1,4 +1,4 @@
-Última atualização: 2026-03-25T20:46:46Z
+Última atualização: 2026-03-26T23:17:31Z
 Repositório: https://github.com/heroku/12factor
 Commit: 468c7ac0336cf1ab76ed3dad612928e2ef2d8799
 Diretório origem: content/pt_br

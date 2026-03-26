@@ -38,7 +38,6 @@ echo "==> Commit: ${COMMIT_SHA}"
 
 echo "==> Copiando arquivos para ${TARGET_DIR}..."
 mkdir -p "${TARGET_DIR}"
-# Remove conteúdo anterior (exceto .gitkeep)
 find "${TARGET_DIR}" -maxdepth 1 -name "*.md" -delete
 
 cp "${TEMP_DIR}/${CONTENT_PATH}/"*.md "${TARGET_DIR}/"
@@ -51,4 +50,4 @@ Commit: ${COMMIT_SHA}
 Diretório origem: ${CONTENT_PATH}
 EOF
 
-echo "==> Concluído. $(ls "${TARGET_DIR}"/*.md | wc -l) arquivos atualizados."
+echo "==> Concluído. $(find "${TARGET_DIR}" -maxdepth 1 -name "*.md" | wc -l) arquivos atualizados."
