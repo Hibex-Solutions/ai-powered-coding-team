@@ -1,0 +1,159 @@
+<svg width="1280" height="480" viewBox="0 0 1280 480" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080d1a"/>
+      <stop offset="100%" style="stop-color:#0f1729"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4f6ef7"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="glow-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f6ef7;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#4f6ef7;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="glow-right" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c9fff"/>
+      <stop offset="50%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#c084fc"/>
+    </linearGradient>
+    <filter id="blur-glow">
+      <feGaussianBlur stdDeviation="40" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="text-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="canvas">
+      <rect width="1280" height="480"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="480" fill="url(#bg)"/>
+
+  <!-- Glow blobs -->
+  <ellipse cx="200" cy="200" rx="320" ry="220" fill="url(#glow-left)" filter="url(#blur-glow)" clip-path="url(#canvas)"/>
+  <ellipse cx="1100" cy="280" rx="280" ry="200" fill="url(#glow-right)" filter="url(#blur-glow)" clip-path="url(#canvas)"/>
+
+  <!-- Hexagonal grid - top right area -->
+  <g opacity="0.07" stroke="#7c9fff" stroke-width="0.8" fill="none">
+    <!-- Row 1 -->
+    <polygon points="980,20 1010,37 1010,71 980,88 950,71 950,37"/>
+    <polygon points="1040,20 1070,37 1070,71 1040,88 1010,71 1010,37"/>
+    <polygon points="1100,20 1130,37 1130,71 1100,88 1070,71 1070,37"/>
+    <polygon points="1160,20 1190,37 1190,71 1160,88 1130,71 1130,37"/>
+    <polygon points="1220,20 1250,37 1250,71 1220,88 1190,71 1190,37"/>
+    <!-- Row 2 -->
+    <polygon points="1010,71 1040,88 1040,122 1010,139 980,122 980,88"/>
+    <polygon points="1070,71 1100,88 1100,122 1070,139 1040,122 1040,88"/>
+    <polygon points="1130,71 1160,88 1160,122 1130,139 1100,122 1100,88"/>
+    <polygon points="1190,71 1220,88 1220,122 1190,139 1160,122 1160,88"/>
+    <polygon points="1250,71 1280,88 1280,122 1250,139 1220,122 1220,88"/>
+    <!-- Row 3 -->
+    <polygon points="980,122 1010,139 1010,173 980,190 950,173 950,139"/>
+    <polygon points="1040,122 1070,139 1070,173 1040,190 1010,173 1010,139"/>
+    <polygon points="1100,122 1130,139 1130,173 1100,190 1070,173 1070,139"/>
+    <polygon points="1160,122 1190,139 1190,173 1160,190 1130,173 1130,139"/>
+    <polygon points="1220,122 1250,139 1250,173 1220,190 1190,173 1190,139"/>
+    <!-- Row 4 -->
+    <polygon points="1010,173 1040,190 1040,224 1010,241 980,224 980,190"/>
+    <polygon points="1070,173 1100,190 1100,224 1070,241 1040,224 1040,190"/>
+    <polygon points="1130,173 1160,190 1160,224 1130,241 1100,224 1100,190"/>
+    <polygon points="1190,173 1220,190 1220,224 1190,241 1160,224 1160,190"/>
+  </g>
+
+  <!-- Hexagonal grid - bottom left area -->
+  <g opacity="0.07" stroke="#a855f7" stroke-width="0.8" fill="none">
+    <polygon points="20,280 50,297 50,331 20,348 -10,331 -10,297"/>
+    <polygon points="80,280 110,297 110,331 80,348 50,331 50,297"/>
+    <polygon points="140,280 170,297 170,331 140,348 110,331 110,297"/>
+    <polygon points="200,280 230,297 230,331 200,348 170,331 170,297"/>
+    <polygon points="50,331 80,348 80,382 50,399 20,382 20,348"/>
+    <polygon points="110,331 140,348 140,382 110,399 80,382 80,348"/>
+    <polygon points="170,331 200,348 200,382 170,399 140,382 140,348"/>
+    <polygon points="230,331 260,348 260,382 230,399 200,382 200,348"/>
+    <polygon points="20,382 50,399 50,433 20,450 -10,433 -10,399"/>
+    <polygon points="80,382 110,399 110,433 80,450 50,433 50,399"/>
+    <polygon points="140,382 170,399 170,433 140,450 110,433 110,399"/>
+    <polygon points="200,382 230,399 230,433 200,450 170,433 170,399"/>
+  </g>
+
+  <!-- Accent line -->
+  <rect x="0" y="0" width="1280" height="3" fill="url(#accent)" opacity="0.9"/>
+
+  <!-- Circuit lines decoration - left -->
+  <g opacity="0.15" stroke="#4f6ef7" stroke-width="1" fill="none">
+    <path d="M 60,160 L 120,160 L 120,200 L 180,200"/>
+    <circle cx="60" cy="160" r="3" fill="#4f6ef7"/>
+    <circle cx="180" cy="200" r="3" fill="#4f6ef7"/>
+    <path d="M 80,220 L 140,220 L 140,260 L 80,260 L 80,300"/>
+    <circle cx="80" cy="220" r="3" fill="#4f6ef7"/>
+    <circle cx="80" cy="300" r="3" fill="#4f6ef7"/>
+  </g>
+
+  <!-- Circuit lines decoration - right -->
+  <g opacity="0.15" stroke="#a855f7" stroke-width="1" fill="none">
+    <path d="M 1220,160 L 1160,160 L 1160,200 L 1100,200"/>
+    <circle cx="1220" cy="160" r="3" fill="#a855f7"/>
+    <circle cx="1100" cy="200" r="3" fill="#a855f7"/>
+    <path d="M 1200,300 L 1140,300 L 1140,340 L 1200,340 L 1200,380"/>
+    <circle cx="1200" cy="300" r="3" fill="#a855f7"/>
+    <circle cx="1200" cy="380" r="3" fill="#a855f7"/>
+  </g>
+
+  <!-- Divider line top of content area -->
+  <line x1="440" y1="130" x2="840" y2="130" stroke="url(#accent)" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- AI Badge -->
+  <g transform="translate(586, 100)">
+    <rect x="0" y="0" width="108" height="26" rx="13" fill="none" stroke="url(#accent)" stroke-width="1" opacity="0.6"/>
+    <text x="54" y="17" text-anchor="middle" fill="#a0b4ff" font-size="11" font-weight="500" letter-spacing="2">AI POWERED</text>
+  </g>
+
+  <!-- Main title -->
+  <text x="640" y="230" text-anchor="middle" font-size="72" font-weight="800" letter-spacing="-1" fill="url(#title-grad)" filter="url(#text-glow)">AI Powered</text>
+  <text x="640" y="312" text-anchor="middle" font-size="72" font-weight="800" letter-spacing="-1" fill="url(#title-grad)" filter="url(#text-glow)">Coding Team</text>
+
+  <!-- Tagline -->
+  <text x="640" y="358" text-anchor="middle" font-size="20" font-weight="400" fill="#8899cc" letter-spacing="0.5">Um engenheiro sênior. Uma equipe inteira de desenvolvimento.</text>
+
+  <!-- Divider line bottom of content area -->
+  <line x1="440" y1="382" x2="840" y2="382" stroke="url(#accent)" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Role badges -->
+  <g transform="translate(215, 408)">
+    <!-- Arquiteto -->
+    <g>
+      <rect x="0" y="0" width="148" height="36" rx="8" fill="#0f1f3d" stroke="#4f6ef7" stroke-width="1" opacity="0.8"/>
+      <text x="74" y="13" text-anchor="middle" fill="#4f6ef7" font-size="9" font-weight="600" letter-spacing="1.5">ARQUITETO</text>
+      <text x="74" y="27" text-anchor="middle" fill="#7c9fff" font-size="10">de Soluções</text>
+    </g>
+    <!-- Analista -->
+    <g transform="translate(168, 0)">
+      <rect x="0" y="0" width="148" height="36" rx="8" fill="#1a1040" stroke="#7c3aed" stroke-width="1" opacity="0.8"/>
+      <text x="74" y="13" text-anchor="middle" fill="#9b7fff" font-size="9" font-weight="600" letter-spacing="1.5">ANALISTA</text>
+      <text x="74" y="27" text-anchor="middle" fill="#b09fff" font-size="10">de Negócio</text>
+    </g>
+    <!-- Designer -->
+    <g transform="translate(336, 0)">
+      <rect x="0" y="0" width="148" height="36" rx="8" fill="#1a0f2e" stroke="#a855f7" stroke-width="1" opacity="0.8"/>
+      <text x="74" y="13" text-anchor="middle" fill="#c084fc" font-size="9" font-weight="600" letter-spacing="1.5">DESIGNER</text>
+      <text x="74" y="27" text-anchor="middle" fill="#d8b4fe" font-size="10">de Interface</text>
+    </g>
+    <!-- Engenheiro -->
+    <g transform="translate(504, 0)">
+      <rect x="0" y="0" width="148" height="36" rx="8" fill="#071a10" stroke="#10b981" stroke-width="1" opacity="0.8"/>
+      <text x="74" y="13" text-anchor="middle" fill="#10b981" font-size="9" font-weight="600" letter-spacing="1.5">ENGENHEIRO</text>
+      <text x="74" y="27" text-anchor="middle" fill="#34d399" font-size="10">de Software</text>
+    </g>
+  </g>
+
+  <!-- Hibex Solutions branding -->
+  <text x="640" y="468" text-anchor="middle" font-size="12" fill="#3a4a6a" letter-spacing="2">by HIBEX SOLUTIONS</text>
+</svg>
