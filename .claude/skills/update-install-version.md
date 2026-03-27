@@ -1,3 +1,9 @@
+---
+name: update-install-version
+description: Atualiza a versão do exemplo de instalação no README
+allowed-tools: Bash, Read, Edit, WebFetch
+---
+
 # Atualiza a versão do exemplo de instalação no README
 
 Consulte a última release disponível em https://api.github.com/repos/hibex-solutions/ai-powered-coding-team/releases/latest

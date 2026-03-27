@@ -1,4 +1,5 @@
 ---
+name: generate-github-site
 description: Gera o site estático para GitHub Pages em docs/site/ e atualiza o README com a URL do Pages.
 allowed-tools: Bash, Read, Write, Edit
 ---
