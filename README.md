@@ -78,7 +78,7 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 Para instalar uma versão específica, informe a tag como segundo argumento:
 
 ```bash
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha3
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha4
 ```
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
@@ -124,11 +124,10 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 ├── .claude/                    # Configurações do Claude Code
 │   ├── CLAUDE.md               # Instruções para a IA
 │   └── skills/                 # Skills customizadas
-│       ├── generate-github-site/
-│       ├── review-architecture/
-│       ├── review-business/
-│       ├── review-guideline/
-│       └── update-install-version/
+│       ├── architect-reviewer/
+│       ├── business-reviewer/
+│       ├── github-site-generator/
+│       └── guideline-reviewer/
 │
 ├── docs/                       # Toda a documentação
 │   ├── ARCHITECTURE.md         # Especificação arquitetural
@@ -150,20 +149,6 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 
 ---
 
-## Comandos disponíveis
-
-O projeto inclui comandos Claude prontos para revisão de conformidade. Execute dentro do Claude Code:
-
-| Comando | O que faz |
-|---|---|
-| `/review-architecture` | Revisa o projeto em busca de violações arquiteturais |
-| `/review-business` | Revisa violações das regras de negócio |
-| `/review-guideline` | Revisa violações das diretrizes de marca e UX |
-
-Esses comandos listam problemas **sem corrigir nada** — a decisão e a correção são sempre do engenheiro.
-
----
-
 ## Regras fundamentais do modelo
 
 - **Especificação antes de implementação** — nenhuma funcionalidade sem regra de negócio documentada
@@ -179,7 +164,7 @@ Esses comandos listam problemas **sem corrigir nada** — a decisão e a correç
 
 Veja [CONTRIBUTING.md](CONTRIBUTING.md) para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.
 
-Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novos comandos de revisão, e suporte a outros assistentes além do Claude Code.
+Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novas skills de revisão, e suporte a outros assistentes além do Claude Code.
 
 ---
 

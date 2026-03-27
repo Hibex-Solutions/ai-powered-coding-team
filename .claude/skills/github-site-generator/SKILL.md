@@ -1,12 +1,29 @@
 ---
 name: github-site-generator
 description: Atua como gerador do site GitHub Pages, produzindo docs/site/ e atualizando o README com a URL do Pages.
-allowed-tools: Bash, Read, Write, Edit
+allowed-tools: Bash, Read, Write, Edit, WebFetch
 ---
 
 Atue como gerador do site GitHub Pages e produza o site estático do projeto em `docs/site/`, atualizando o `README.md` com a URL do GitHub Pages.
 
-## Passo 1 — Derivar a URL do GitHub Pages
+## Passo 1 — Atualizar a versão no README.md
+
+Consulte a última release disponível em https://api.github.com/repos/hibex-solutions/ai-powered-coding-team/releases/latest
+e extraia o valor de `tag_name`.
+
+Use a ferramenta `WebFetch` para acessar essa URL (não use `gh api` nem `curl`, pois `gh` pode não estar disponível no ambiente).
+
+Se a resposta for 404 ou `tag_name` estiver vazio, use a string `latest` como versão.
+
+Em seguida, edite o arquivo `README.md` substituindo o segundo argumento do comando de instalação com versão específica pelo valor obtido. A linha a editar segue o padrão:
+
+```
+... | bash -s -- meu-projeto <versão-atual>
+```
+
+Essa linha aparece no segundo bloco de código da seção "### 1. Instale o template". Substitua apenas o valor da versão nessa linha, mantendo todo o restante inalterado.
+
+## Passo 2 — Derivar a URL do GitHub Pages
 
 Execute:
 
@@ -24,11 +41,11 @@ Em ambos os casos, extraia `owner` e `repo` (sem o sufixo `.git`) e construa:
 PAGES_URL = https://<owner>.github.io/<repo>
 ```
 
-## Passo 2 — Criar o diretório docs/site/
+## Passo 3 — Criar o diretório docs/site/
 
 Se `docs/site/` não existir, crie-o.
 
-## Passo 3 — Gerar docs/site/index.html
+## Passo 4 — Gerar docs/site/index.html
 
 Escreva um arquivo HTML autocontido e moderno seguindo estritamente a identidade visual do `banner.svg`
 (`.github/assets/banner.svg`). O HTML deve ser uma única página com CSS e JS inline.
@@ -167,44 +184,17 @@ Use o conteúdo de `README.md` como fonte para todas as seções. Leia o arquivo
 
 ### URLs de instalação
 
-Nos blocos de código da seção de instalação, use o placeholder literal:
-
-```
-@@INSTALL_BASE_URL@@
-```
-
-Exemplo do bloco:
+Nos blocos de código da seção de instalação, use a `PAGES_URL` derivada no Passo 2 diretamente. Exemplo:
 
 ```html
-<pre><code>curl -fsSL @@INSTALL_BASE_URL@@/install.sh | bash -s -- meu-projeto</code></pre>
+<pre><code>curl -fsSL <PAGES_URL>/install.sh | bash -s -- meu-projeto</code></pre>
 ```
-
-Esse placeholder será substituído pela URL real ao executar `eng/update-site-data.sh`.
-
-## Passo 4 — Executar eng/update-site-data.sh
-
-Após escrever `docs/site/index.html`, execute:
-
-```bash
-bash eng/update-site-data.sh "<PAGES_URL>"
-```
-
-Substituindo `<PAGES_URL>` pelo valor derivado no Passo 1.
-
-## Passo 5 — Atualizar README.md
-
-Edite `README.md` substituindo as duas ocorrências da URL do `install.sh` na seção `### 1. Instale o template`:
-
-- De: `https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh`
-- Para: `<PAGES_URL>/install.sh`
-
-Altere somente as URLs dentro dos blocos de código dessa seção. Não altere nenhuma outra linha.
 
 ## Resultado
 
 Ao final, informe:
 - Caminho do arquivo gerado: `docs/site/index.html`
 - URL base utilizada
-- Que o `README.md` foi atualizado
+- Que o `README.md` foi atualizado com a versão e a URL do GitHub Pages
 
 Não faça commits.

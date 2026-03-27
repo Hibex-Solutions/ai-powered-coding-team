@@ -30,8 +30,8 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Atualiza dados do site
-        run: bash eng/update-site-data.sh "${{ steps.pages.outputs.base_url }}"
+      - name: Copia install.sh para o site
+        run: cp eng/install.sh docs/site/install.sh
 
       - name: Envia artefato do Pages
         uses: actions/upload-pages-artifact@v3
