@@ -6,3 +6,5 @@ docs/TODO.md
 README.md
 LICENSE
 CODE_OF_CONDUCT.md
+eng/install.sh
+eng/release.sh

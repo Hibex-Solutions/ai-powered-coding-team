@@ -69,16 +69,29 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 
 ## Iniciando um novo projeto
 
-### 1. Use este repositório como template
+### 1. Instale o template
 
 ```bash
-# Clone ou use como template no GitHub
-git clone https://github.com/hibex-solutions/ai-powered-coding-team meu-projeto
+curl -fsSL https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh | bash -s -- meu-projeto
+```
+
+Para instalar uma versão específica, informe a tag como segundo argumento:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh | bash -s -- meu-projeto latest
+```
+
+O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
+
+```bash
 cd meu-projeto
 
-# Configure o Git local (obrigatório)
+# Configure o Git local (obrigatório — não use as configurações globais)
 git config user.name "Seu Nome"
 git config user.email "seu@email.com"
+
+git add .
+git commit -m "chore: inicializa projeto a partir do template"
 ```
 
 ### 2. Especifique antes de implementar
