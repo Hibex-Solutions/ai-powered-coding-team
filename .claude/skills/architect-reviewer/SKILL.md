@@ -1,11 +1,11 @@
 ---
-name: review-architecture
-description: Revisa o projeto em busca de violações arquiteturais. Use ao validar conformidade com ARCHITECTURE.md, SOLUTION.md e os 12 fatores.
+name: architect-reviewer
+description: Atua como arquiteto revisor, validando conformidade com ARCHITECTURE.md, SOLUTION.md e os 12 fatores.
 agent: Explore
 allowed-tools: Read, Glob, Grep
 ---
 
-Revise o projeto em busca de violações das regras arquiteturais definidas em
+Atue como arquiteto revisor e analise o projeto em busca de violações das regras arquiteturais definidas em
 `docs/ARCHITECTURE.md`. Não corrija nada — apenas liste os problemas encontrados,
 agrupados por categoria.
 

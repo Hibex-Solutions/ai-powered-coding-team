@@ -1,10 +1,10 @@
 ---
-name: update-install-version
-description: Atualiza a versão do exemplo de instalação no README
+name: install-version-updater
+description: Atualizador da versão do exemplo de instalação no README.
 allowed-tools: Bash, Read, Edit, WebFetch
 ---
 
-# Atualiza a versão do exemplo de instalação no README
+# Atualizador da versão do exemplo de instalação no README
 
 Consulte a última release disponível em https://api.github.com/repos/hibex-solutions/ai-powered-coding-team/releases/latest
 e extraia o valor de `tag_name`.

@@ -1,11 +1,11 @@
 ---
-name: review-business
-description: Revisa o projeto em busca de violações das regras de negócio. Use ao validar conformidade entre BUSINESS.md, implementação e cobertura de testes.
+name: business-reviewer
+description: Atua como revisor de regras de negócio, validando conformidade entre BUSINESS.md, implementação e cobertura de testes.
 agent: Explore
 allowed-tools: Read, Glob, Grep
 ---
 
-Revise o projeto em busca de violações das regras de negócio definidas em
+Atue como revisor de negócio e analise o projeto em busca de violações das regras de negócio definidas em
 `docs/BUSINESS.md`. Não corrija nada — apenas liste os problemas encontrados.
 
 ## Instruções de saída

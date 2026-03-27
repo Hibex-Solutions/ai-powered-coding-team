@@ -1,11 +1,11 @@
 ---
-name: review-guideline
-description: Revisa o projeto em busca de violações das diretrizes de marca e UX. Use ao validar conformidade entre GUIDELINE.md e as interfaces construídas.
+name: guideline-reviewer
+description: Atua como revisor de guideline e UX, validando conformidade entre GUIDELINE.md e as interfaces construídas.
 agent: Explore
 allowed-tools: Read, Glob, Grep
 ---
 
-Revise o projeto em busca de violações das diretrizes de marca e experiência do usuário
+Atue como revisor de guideline e UX e analise o projeto em busca de violações das diretrizes de marca e experiência do usuário
 definidas em `docs/GUIDELINE.md`. Não corrija nada — apenas liste os problemas encontrados.
 
 ## Instruções de saída

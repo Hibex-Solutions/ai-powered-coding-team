@@ -16,12 +16,6 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 - Manter `docs/SOLUTION.md` atualizado conforme a solução evolui, garantindo que componentes e tecnologias adotados estejam documentados
 - Garantir que nenhuma tecnologia ou componente seja adotado sem estar registrado no desenho de solução
 
-### Comandos Claude disponíveis
-
-| Comando | Descrição |
-|---|---|
-| `/review-architecture` | Revisa a estrutura do projeto em busca de violações arquiteturais. Lista os problemas sem corrigir nada. |
-
 ### Tarefas de engenharia disponíveis
 
 | Script | Descrição |
@@ -39,16 +33,6 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 - Documentar regras de negócio em `docs/BUSINESS.md` antes de qualquer implementação de funcionalidade
 - Garantir que toda funcionalidade proposta tenha correspondência negocial documentada
 
-### Comandos Claude disponíveis
-
-| Comando | Descrição |
-|---|---|
-| `/review-business` | Revisa a estrutura do projeto em busca de violações das regras de negócio. Lista os problemas sem corrigir nada. |
-
-### Tarefas de engenharia disponíveis
-
-*(nenhuma disponível no momento)*
-
 ---
 
 ## Designer
@@ -60,14 +44,4 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 - Documentar padrões visuais, de marca e de experiência do usuário em `docs/GUIDELINE.md`
 - Atualizar o Guideline sempre que houver evolução nas diretrizes de marca ou UX
 - Garantir que nenhum comportamento de interface viole as regras estabelecidas no Guideline
-
-### Comandos Claude disponíveis
-
-| Comando | Descrição |
-|---|---|
-| `/review-guideline` | Revisa a estrutura do projeto em busca de violações das diretrizes de marca e UX. Lista os problemas sem corrigir nada. |
-
-### Tarefas de engenharia disponíveis
-
-*(nenhuma disponível no momento)*
 

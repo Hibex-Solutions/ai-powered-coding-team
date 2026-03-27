@@ -1,10 +1,10 @@
 ---
-name: generate-github-site
-description: Gera o site estático para GitHub Pages em docs/site/ e atualiza o README com a URL do Pages.
+name: github-site-generator
+description: Atua como gerador do site GitHub Pages, produzindo docs/site/ e atualizando o README com a URL do Pages.
 allowed-tools: Bash, Read, Write, Edit
 ---
 
-Gera o site estático do projeto em `docs/site/` e atualiza o `README.md` com a URL do GitHub Pages.
+Atue como gerador do site GitHub Pages e produza o site estático do projeto em `docs/site/`, atualizando o `README.md` com a URL do GitHub Pages.
 
 ## Passo 1 — Derivar a URL do GitHub Pages
 
@@ -111,10 +111,12 @@ Escreva um arquivo HTML autocontido e moderno seguindo estritamente a identidade
 - `.code-block` (wrapper do `<pre>`): `position: relative; min-width: 0; max-width: 100%` — o `min-width: 0` é obrigatório quando o wrapper está dentro de um flex container para evitar overflow
 - Tabelas: cabeçalho com `color: #4f6ef7`, linhas com `border-bottom: 1px solid rgba(255,255,255,0.05)`
 - Links: `color: #7c9fff`
-- Botão Copiar: `background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #7c9fff; border-radius: 6px`
+- Botão Copiar: `background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #7c9fff; border-radius: 6px; position: absolute; top: 8px; right: 8px`
+- `.code-block:has(.copy-btn) pre`: `padding-top: 40px` — garante que a primeira linha nunca fique sob o botão Copiar, independente do comprimento do texto
 - Decorações hex/circuito: `position: fixed; pointer-events: none; z-index: 0; opacity: 0.07`
 - `.shields` (linha de badges/shields): `display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center` — `align-items: center` é obrigatório para alinhamento vertical uniforme entre imagens e emojis
 - `.shields img`: `display: block; height: 20px` — garante que todos os shields tenham a mesma altura e não causem desalinhamento vertical
+- `.step-num` (número de passo na seção "Iniciando um novo projeto"): `width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: linear-gradient(135deg, #4f6ef7, #a855f7); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; margin-top: 2px` — círculo com degradê azul→roxo, obrigatório para todos os índices de passo
 
 ### Decorações de background obrigatórias
 
