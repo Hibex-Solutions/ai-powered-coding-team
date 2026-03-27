@@ -29,7 +29,7 @@ BASE_URL="${1%/}"
 
 if [[ ! -f "${SITE_DIR}/index.html" ]]; then
     echo "Erro: ${SITE_DIR}/index.html não encontrado." >&2
-    echo "Execute primeiro o comando Claude /generate-github-site para gerar o site." >&2
+    echo "Execute primeiro a skill /generate-github-site para gerar o site." >&2
     exit 1
 fi
 

@@ -6,7 +6,7 @@ set -euo pipefail
 # Uso: ./eng/install.sh <diretório-destino> [versão]
 #
 # Ou diretamente via curl:
-#   curl -fsSL https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh | bash -s -- <diretório-destino> [versão]
+#   curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- <diretório-destino> [versão]
 #
 # Argumentos:
 #   <diretório-destino>  Caminho onde o template será instalado (obrigatório)
