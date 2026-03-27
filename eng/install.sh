@@ -81,11 +81,11 @@ fi
 
 echo "==> Versão encontrada: ${VERSION}"
 
-ASSET_NAME="${VERSION}.zip"
-DOWNLOAD_URL="$(echo "${RELEASE_JSON}" | grep '"browser_download_url"' | grep "${ASSET_NAME}" | head -1 | sed 's/.*"browser_download_url": *"\([^"]*\)".*/\1/')"
+DOWNLOAD_URL="$(echo "${RELEASE_JSON}" | grep '"browser_download_url"' | grep '\.zip"' | head -1 | sed 's/.*"browser_download_url": *"\([^"]*\)".*/\1/')"
+ASSET_NAME="$(basename "${DOWNLOAD_URL}")"
 
 if [[ -z "${DOWNLOAD_URL}" ]]; then
-    echo "ERRO: asset '${ASSET_NAME}' não encontrado na release ${VERSION}." >&2
+    echo "ERRO: nenhum asset .zip encontrado na release ${VERSION}." >&2
     exit 1
 fi
 
