@@ -78,7 +78,7 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 Para instalar uma versão específica, informe a tag como segundo argumento:
 
 ```bash
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto latest
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha2
 ```
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
@@ -123,10 +123,12 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 .
 ├── .claude/                    # Configurações do Claude Code
 │   ├── CLAUDE.md               # Instruções para a IA
-│   └── commands/               # Comandos customizados
-│       ├── review-architecture.md
-│       ├── review-business.md
-│       └── review-guideline.md
+│   └── skills/                 # Skills customizadas
+│       ├── generate-github-site/
+│       ├── review-architecture/
+│       ├── review-business/
+│       ├── review-guideline/
+│       └── update-install-version/
 │
 ├── docs/                       # Toda a documentação
 │   ├── ARCHITECTURE.md         # Especificação arquitetural
