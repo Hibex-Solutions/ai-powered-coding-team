@@ -72,13 +72,13 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 ### 1. Instale o template
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh | bash -s -- meu-projeto
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto
 ```
 
 Para instalar uma versão específica, informe a tag como segundo argumento:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hibex-solutions/ai-powered-coding-team/main/eng/install.sh | bash -s -- meu-projeto latest
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto latest
 ```
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:

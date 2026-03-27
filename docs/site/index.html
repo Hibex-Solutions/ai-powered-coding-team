@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Powered Coding Team — Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento. Modelo de governança para desenvolvimento de software guiado por IA.">
+  <meta property="og:title" content="AI Powered Coding Team">
+  <meta property="og:description" content="Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento.">
+  <meta property="og:type" content="website">
+  <title>AI Powered Coding Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:        #080d1a;
+      --bg-surface:     #0f1729;
+      --bg-card:        #0d1530;
+      --accent-blue:    #4f6ef7;
+      --accent-purple:  #a855f7;
+      --title-start:    #7c9fff;
+      --title-mid:      #ffffff;
+      --title-end:      #c084fc;
+      --text-primary:   #ffffff;
+      --text-secondary: #8899cc;
+      --text-muted:     #3a4a6a;
+      --blue-light:     #7c9fff;
+      --purple-light:   #c084fc;
+      --green:          #10b981;
+      --green-light:    #34d399;
+      --font:           'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-surface) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: var(--font);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── Top accent bar ── */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      z-index: 100;
+    }
+
+    /* ── Decorative SVG overlays ── */
+    .deco {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ── */
+    .page-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 90px 24px 64px;
+      position: relative;
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      color: #a0b4ff;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      background: rgba(79, 110, 247, 0.06);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--title-start) 0%, var(--title-mid) 50%, var(--title-end) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 24px rgba(79, 110, 247, 0.3));
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Divider lines (like banner.svg) ── */
+    .header-divider {
+      width: 340px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-purple), transparent);
+      margin: 0 auto 32px;
+      opacity: 0.4;
+    }
+
+    /* ── Role badges ── */
+    .role-badges {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .role-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 20px;
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+      min-width: 130px;
+      gap: 3px;
+    }
+
+    .role-badge .role-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+    }
+
+    .role-badge .role-name {
+      font-size: 10px;
+      font-weight: 400;
+    }
+
+    .badge-arquiteto  { border-color: #4f6ef7; background: #0f1f3d; }
+    .badge-arquiteto  .role-label { color: #4f6ef7; }
+    .badge-arquiteto  .role-name  { color: #7c9fff; }
+
+    .badge-analista   { border-color: #7c3aed; background: #1a1040; }
+    .badge-analista   .role-label { color: #9b7fff; }
+    .badge-analista   .role-name  { color: #b09fff; }
+
+    .badge-designer   { border-color: #a855f7; background: #1a0f2e; }
+    .badge-designer   .role-label { color: #c084fc; }
+    .badge-designer   .role-name  { color: #d8b4fe; }
+
+    .badge-engenheiro { border-color: #10b981; background: #071a10; }
+    .badge-engenheiro .role-label { color: #10b981; }
+    .badge-engenheiro .role-name  { color: #34d399; }
+
+    /* ── Shield badges ── */
+    .shields {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .shields a { text-decoration: none; }
+    .shields img { height: 20px; vertical-align: middle; }
+
+    /* ── Sections ── */
+    section {
+      background: rgba(13, 21, 48, 0.6);
+      border: 1px solid rgba(79, 110, 247, 0.15);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--blue-light);
+      border-bottom: 1px solid rgba(79, 110, 247, 0.3);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 24px 0 12px;
+    }
+
+    h3:first-child { margin-top: 0; }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    a { color: var(--blue-light); text-decoration: none; }
+    a:hover { color: var(--purple-light); text-decoration: underline; }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th {
+      color: var(--accent-blue);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(79, 110, 247, 0.3);
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+
+    td strong { color: var(--text-primary); }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ── Code blocks ── */
+    pre {
+      background: #0a1020;
+      border: 1px solid rgba(79, 110, 247, 0.25);
+      border-radius: 8px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 12px 0;
+      color: #c0cff0;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85em;
+      color: #c0cff0;
+      background: rgba(10, 16, 32, 0.7);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(79, 110, 247, 0.2);
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    /* ── Install blocks ── */
+    .install-block {
+      position: relative;
+      margin: 14px 0;
+    }
+
+    .install-block pre {
+      padding-right: 80px;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(79, 110, 247, 0.15);
+      border: 1px solid rgba(79, 110, 247, 0.3);
+      color: var(--blue-light);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: rgba(79, 110, 247, 0.3);
+      color: #ffffff;
+    }
+
+    .copy-btn.copied {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--green-light);
+    }
+
+    /* ── Lists ── */
+    ul, ol {
+      padding-left: 22px;
+      color: var(--text-secondary);
+    }
+
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text-primary); }
+
+    /* ── Blockquote ── */
+    blockquote {
+      border-left: 3px solid var(--accent-blue);
+      padding: 12px 20px;
+      background: rgba(79, 110, 247, 0.06);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text-secondary); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      section { padding: 24px 20px; }
+      header { padding: 80px 16px 48px; }
+      .role-badges { gap: 8px; }
+      .role-badge { min-width: 110px; padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top accent bar -->
+  <div class="top-bar"></div>
+
+  <!-- Decorative hexagonal grids (from banner.svg) -->
+  <svg class="deco" style="top:0;right:0;width:340px;height:260px;" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.07" stroke="#7c9fff" stroke-width="0.8" fill="none">
+      <polygon points="220,20 250,37 250,71 220,88 190,71 190,37"/>
+      <polygon points="280,20 310,37 310,71 280,88 250,71 250,37"/>
+      <polygon points="340,20 370,37 370,71 340,88 310,71 310,37"/>
+      <polygon points="250,71 280,88 280,122 250,139 220,122 220,88"/>
+      <polygon points="310,71 340,88 340,122 310,139 280,122 280,88"/>
+      <polygon points="220,122 250,139 250,173 220,190 190,173 190,139"/>
+      <polygon points="280,122 310,139 310,173 280,190 250,173 250,139"/>
+      <polygon points="340,122 370,139 370,173 340,190 310,173 310,139"/>
+      <polygon points="250,173 280,190 280,224 250,241 220,224 220,190"/>
+      <polygon points="310,173 340,190 340,224 310,241 280,224 280,190"/>
+    </g>
+  </svg>
+
+  <svg class="deco" style="bottom:0;left:0;width:280px;height:220px;" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.07" stroke="#a855f7" stroke-width="0.8" fill="none">
+      <polygon points="20,20 50,37 50,71 20,88 -10,71 -10,37"/>
+      <polygon points="80,20 110,37 110,71 80,88 50,71 50,37"/>
+      <polygon points="140,20 170,37 170,71 140,88 110,71 110,37"/>
+      <polygon points="50,71 80,88 80,122 50,139 20,122 20,88"/>
+      <polygon points="110,71 140,88 140,122 110,139 80,122 80,88"/>
+      <polygon points="170,71 200,88 200,122 170,139 140,122 140,88"/>
+      <polygon points="20,122 50,139 50,173 20,190 -10,173 -10,139"/>
+      <polygon points="80,122 110,139 110,173 80,190 50,173 50,139"/>
+      <polygon points="140,122 170,139 170,173 140,190 110,173 110,139"/>
+    </g>
+  </svg>
+
+  <!-- Decorative circuit lines (from banner.svg) -->
+  <svg class="deco" style="top:80px;left:0;width:200px;height:200px;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.12" stroke="#4f6ef7" stroke-width="1" fill="none">
+      <path d="M 20,40 L 80,40 L 80,80 L 140,80"/>
+      <circle cx="20" cy="40" r="3" fill="#4f6ef7"/>
+      <circle cx="140" cy="80" r="3" fill="#4f6ef7"/>
+      <path d="M 40,100 L 100,100 L 100,140 L 40,140 L 40,180"/>
+      <circle cx="40" cy="100" r="3" fill="#4f6ef7"/>
+      <circle cx="40" cy="180" r="3" fill="#4f6ef7"/>
+    </g>
+  </svg>
+
+  <svg class="deco" style="top:80px;right:0;width:200px;height:200px;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.12" stroke="#a855f7" stroke-width="1" fill="none">
+      <path d="M 180,40 L 120,40 L 120,80 L 60,80"/>
+      <circle cx="180" cy="40" r="3" fill="#a855f7"/>
+      <circle cx="60" cy="80" r="3" fill="#a855f7"/>
+      <path d="M 160,120 L 100,120 L 100,160 L 160,160 L 160,200"/>
+      <circle cx="160" cy="120" r="3" fill="#a855f7"/>
+      <circle cx="160" cy="200" r="3" fill="#a855f7"/>
+    </g>
+  </svg>
+
+  <!-- Header -->
+  <header>
+    <div class="ai-badge">AI POWERED</div>
+    <h1>AI Powered<br>Coding Team</h1>
+    <p class="tagline">Um engenheiro sênior. Uma equipe inteira de desenvolvimento.</p>
+    <div class="header-divider"></div>
+    <div class="role-badges">
+      <div class="role-badge badge-arquiteto">
+        <span class="role-label">ARQUITETO</span>
+        <span class="role-name">de Soluções</span>
+      </div>
+      <div class="role-badge badge-analista">
+        <span class="role-label">ANALISTA</span>
+        <span class="role-name">de Negócio</span>
+      </div>
+      <div class="role-badge badge-designer">
+        <span class="role-label">DESIGNER</span>
+        <span class="role-name">de Interface</span>
+      </div>
+      <div class="role-badge badge-engenheiro">
+        <span class="role-label">ENGENHEIRO</span>
+        <span class="role-name">de Software</span>
+      </div>
+    </div>
+    <div class="shields">
+      <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/LICENSE">
+        <img src="https://img.shields.io/badge/licença-MIT-4f6ef7?style=flat-square" alt="Licença MIT">
+      </a>
+      <a href="https://www.anthropic.com/claude-code">
+        <img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code">
+      </a>
+      <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">
+        <img src="https://img.shields.io/badge/contribuição-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas">
+      </a>
+      <img src="https://img.shields.io/badge/Open_Source-♥-ff6b6b?style=flat-square" alt="Open Source">
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="page-content">
+
+    <!-- O que é -->
+    <section id="o-que-e">
+      <h2>O que é</h2>
+      <p>
+        <strong>AI Powered Coding Team</strong> é um modelo de projeto (<em>project template</em>) que define
+        a estrutura, os papéis e as instruções necessárias para que um engenheiro de software sênior utilize
+        IA — inicialmente Claude Code — como uma equipe completa de desenvolvimento.
+      </p>
+      <p>
+        O engenheiro deixa de atuar apenas como desenvolvedor e passa a assumir todos os papéis de um time:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Papel</th>
+              <th>Responsabilidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Arquiteto de Soluções</strong></td>
+              <td>Define arquitetura, tecnologias e governança técnica</td>
+            </tr>
+            <tr>
+              <td><strong>Analista de Negócio</strong></td>
+              <td>Especifica regras de negócio e requisitos funcionais</td>
+            </tr>
+            <tr>
+              <td><strong>Designer</strong></td>
+              <td>Define diretrizes de marca, UI e UX</td>
+            </tr>
+            <tr>
+              <td><strong>Engenheiro de Software</strong></td>
+              <td>Implementa, testa e entrega o software</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;">
+        A IA executa sob a supervisão e gestão ativa do engenheiro — que direciona, revisa e decide.
+        A autonomia técnica permanece humana; o volume e a velocidade de execução são amplificados pela IA.
+      </p>
+    </section>
+
+    <!-- Como funciona -->
+    <section id="como-funciona">
+      <h2>Como funciona</h2>
+      <pre><code>Engenheiro Sênior
+      │
+      ├── atua como ──► Arquiteto  ──► docs/ARCHITECTURE.md
+      │                                docs/SOLUTION.md
+      │
+      ├── atua como ──► Analista   ──► docs/BUSINESS.md
+      │
+      ├── atua como ──► Designer   ──► docs/GUIDELINE.md
+      │
+      └── delega para ─► IA (Claude Code)
+                              │
+                              ├── lê as especificações
+                              ├── implementa o software
+                              ├── escreve os testes
+                              ├── revisa a arquitetura
+                              └── valida regras de negócio</code></pre>
+      <p style="margin-top:16px;">
+        O modelo garante que <strong>nenhum código seja escrito sem especificação</strong>, que
+        <strong>nenhuma decisão técnica seja tomada sem documentação</strong> e que
+        <strong>toda implementação seja validada contra regras de negócio e diretrizes de marca</strong>
+        — mantendo a qualidade de uma equipe madura mesmo com um único operador.
+      </p>
+    </section>
+
+    <!-- Pré-requisitos -->
+    <section id="prerequisitos">
+      <h2>Pré-requisitos</h2>
+      <ul>
+        <li><a href="https://www.anthropic.com/claude-code">Claude Code</a> instalado e configurado</li>
+        <li><a href="https://git-scm.com">Git</a> instalado localmente</li>
+        <li>
+          <a href="https://gitversion.net">GitVersion</a> — necessário para geração de pacotes de liberação.
+          Se não estiver disponível no sistema, o script <code>eng/release.sh</code> baixa e instala
+          automaticamente o binário em <code>.GitVersion.Tool/</code> a partir da última release no GitHub.
+        </li>
+        <li>Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)</li>
+      </ul>
+    </section>
+
+    <!-- Instalação -->
+    <section id="instalacao">
+      <h2>Iniciando um novo projeto</h2>
+
+      <h3>1. Instale o template</h3>
+      <div class="install-block">
+        <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+      </div>
+      <p>Para instalar uma versão específica, informe a tag como segundo argumento:</p>
+      <div class="install-block">
+        <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto latest</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+      </div>
+      <p>
+        O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o
+        diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
+      </p>
+      <div class="install-block">
+        <pre><code>cd meu-projeto
+
+# Configure o Git local (obrigatório — não use as configurações globais)
+git config user.name "Seu Nome"
+git config user.email "seu@email.com"
+
+git add .
+git commit -m "chore: inicializa projeto a partir do template"</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+      </div>
+
+      <h3>2. Especifique antes de implementar</h3>
+      <p>Antes de qualquer linha de código, o engenheiro documenta:</p>
+      <pre><code>docs/ARCHITECTURE.md  ← decisões arquiteturais e regras invioláveis
+docs/SOLUTION.md      ← componentes, tecnologias e desenho da solução
+docs/BUSINESS.md      ← regras de negócio e requisitos funcionais
+docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
+
+      <h3>3. Delegue para a IA</h3>
+      <p>Com as especificações em mãos, use o Claude Code para implementar:</p>
+      <div class="install-block">
+        <pre><code>claude</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+      </div>
+      <p>
+        O <code>CLAUDE.md</code> do projeto já instrui a IA com as regras arquiteturais, a especificação
+        negocial e as diretrizes de marca — sem necessidade de repetir contexto a cada sessão.
+      </p>
+    </section>
+
+    <!-- Estrutura do projeto -->
+    <section id="estrutura">
+      <h2>Estrutura do projeto</h2>
+      <pre><code>.
+├── .claude/                    # Configurações do Claude Code
+│   ├── CLAUDE.md               # Instruções para a IA
+│   └── commands/               # Comandos customizados
+│       ├── review-architecture.md
+│       ├── review-business.md
+│       └── review-guideline.md
+│
+├── docs/                       # Toda a documentação
+│   ├── ARCHITECTURE.md         # Especificação arquitetural
+│   ├── SOLUTION.md             # Especificação da solução
+│   ├── BUSINESS.md             # Especificação negocial
+│   ├── GUIDELINE.md            # Guideline de marca e UX
+│   └── architecture/
+│       └── 12factor/           # Referência: The Twelve-Factor App
+│
+├── src/                        # Código-fonte
+├── test/                       # Testes
+├── eng/                        # Scripts de engenharia e CI/CD
+├── samples/                    # Exemplos de uso
+│
+├── CLAUDE.md                   # Ponto de entrada das instruções para IA
+├── CONTRIBUTING.md             # Guia de contribuição por perfil
+└── LICENSE</code></pre>
+    </section>
+
+    <!-- Comandos disponíveis -->
+    <section id="comandos">
+      <h2>Comandos disponíveis</h2>
+      <p>
+        O projeto inclui comandos Claude prontos para revisão de conformidade.
+        Execute dentro do Claude Code:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Comando</th>
+              <th>O que faz</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/review-architecture</code></td>
+              <td>Revisa o projeto em busca de violações arquiteturais</td>
+            </tr>
+            <tr>
+              <td><code>/review-business</code></td>
+              <td>Revisa violações das regras de negócio</td>
+            </tr>
+            <tr>
+              <td><code>/review-guideline</code></td>
+              <td>Revisa violações das diretrizes de marca e UX</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;">
+        Esses comandos listam problemas <strong>sem corrigir nada</strong> — a decisão e a correção
+        são sempre do engenheiro.
+      </p>
+    </section>
+
+    <!-- Regras fundamentais -->
+    <section id="regras">
+      <h2>Regras fundamentais do modelo</h2>
+      <ul>
+        <li><strong>Especificação antes de implementação</strong> — nenhuma funcionalidade sem regra de negócio documentada</li>
+        <li><strong>Nenhuma tecnologia sem registro</strong> — toda stack deve estar em <code>docs/SOLUTION.md</code></li>
+        <li><strong>Testes guiados por negócio</strong> — cobertura 100% das regras especificadas</li>
+        <li><strong>Secrets nunca no código</strong> — sempre configuráveis por ambiente</li>
+        <li><strong>The Twelve-Factor App</strong> — software aderente aos doze fatores</li>
+        <li><strong>Commits são humanos</strong> — a IA propõe, o engenheiro commita</li>
+      </ul>
+    </section>
+
+    <!-- Contribuindo e Licença -->
+    <section id="contribuindo">
+      <h2>Contribuindo</h2>
+      <p>
+        Veja <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+        para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.
+      </p>
+      <p>
+        Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novos comandos de
+        revisão, e suporte a outros assistentes além do Claude Code.
+      </p>
+      <h3>Licença</h3>
+      <p>
+        Este projeto é distribuído sob a licença
+        <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/LICENSE">MIT</a>.
+        Copyright © 2026 <a href="https://github.com/Hibex-Solutions">Hibex Solutions</a>
+      </p>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Feito com ♥ por <a href="https://github.com/hibex-solutions">Hibex Solutions</a></p>
+  </footer>
+
+  <script>
+    function copyCode(btn) {
+      var pre = btn.previousElementSibling;
+      var code = pre.querySelector('code') || pre;
+      var text = code.textContent || code.innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = 'Copiado!';
+          btn.classList.add('copied');
+          setTimeout(function() {
+            btn.textContent = 'Copiar';
+            btn.classList.remove('copied');
+          }, 2000);
+        }).catch(function() {
+          fallbackCopy(text, btn);
+        });
+      } else {
+        fallbackCopy(text, btn);
+      }
+    }
+
+    function fallbackCopy(text, btn) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        btn.textContent = 'Copiado!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copiar';
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  </script>
+
+</body>
+</html>

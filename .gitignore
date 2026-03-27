@@ -5,6 +5,9 @@ Thumbs.db
 # Pacotes de liberação
 dist/
 
+# Artefato do site gerado em CI (não commitar)
+docs/site/install.sh
+
 # GitVersion binário local (baixado automaticamente por eng/release.sh)
 .GitVersion.Tool/
 

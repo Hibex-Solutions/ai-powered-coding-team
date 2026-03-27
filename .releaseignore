@@ -8,3 +8,5 @@ LICENSE
 CODE_OF_CONDUCT.md
 eng/install.sh
 eng/release.sh
+eng/update-site-data.sh
+docs/site/
