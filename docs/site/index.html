@@ -259,6 +259,18 @@
     .copy-btn:hover { background: rgba(79,110,247,0.3); }
     .copy-btn.copied { color: #10b981; border-color: rgba(16,185,129,0.4); }
 
+    /* OS label pills */
+    .os-label {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .os-label-linux  { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.4); color: #10b981; }
+    .os-label-windows { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
+
     /* Steps */
     .step {
       display: flex;
@@ -289,6 +301,18 @@
       font-size: 0.9rem;
       margin-bottom: 8px;
     }
+
+    /* Note box */
+    .note {
+      background: rgba(79,110,247,0.07);
+      border: 1px solid rgba(79,110,247,0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #8899cc;
+      font-size: 0.85rem;
+      margin: 8px 0 12px;
+    }
+    .note strong { color: #a0b4ff; }
 
     /* Lists */
     ul.rules {
@@ -535,7 +559,7 @@
       <ul class="prereqs">
         <li><a href="https://www.anthropic.com/claude-code">Claude Code</a> instalado e configurado</li>
         <li><a href="https://git-scm.com">Git</a> instalado localmente</li>
-        <li><a href="https://gitversion.net">GitVersion</a> — necessário para geração de pacotes de liberação. Se não estiver disponível no sistema, o script <code>eng/release.sh</code> baixa e instala automaticamente o binário em <code>.GitVersion.Tool/</code> a partir da última release no GitHub.</li>
+        <li>PowerShell 5.1 ou superior — nativo no Windows 10+; necessário apenas para usuários Windows</li>
         <li>Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)</li>
       </ul>
     </section>
@@ -548,16 +572,17 @@
         <div class="step-num">1</div>
         <div class="step-body">
           <h3>Instale o template</h3>
-          <p>Execute o instalador diretamente via <code>curl</code>:</p>
+          <p><span class="os-label os-label-linux">Linux / macOS</span></p>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto</code></pre>
           </div>
-          <p>Para instalar uma versão específica, informe a tag como segundo argumento:</p>
+          <p><span class="os-label os-label-windows">Windows — PowerShell 5.1+</span></p>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-            <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha4</code></pre>
+            <pre><code>& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto</code></pre>
           </div>
+          <div class="note"><strong>Versão específica:</strong> acrescente a tag ao final do comando, após o nome do diretório (ex: <code>meu-projeto v1.2.0</code>).</div>
           <p>O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git.</p>
         </div>
       </div>

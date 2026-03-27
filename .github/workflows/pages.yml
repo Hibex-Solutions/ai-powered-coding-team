@@ -30,8 +30,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Copia install.sh para o site
-        run: cp eng/install.sh docs/site/install.sh
+      - name: Copia scripts de instalação para o site
+        run: |
+          cp eng/install.sh docs/site/install.sh
+          cp eng/install.ps1 docs/site/install.ps1
 
       - name: Envia artefato do Pages
         uses: actions/upload-pages-artifact@v3

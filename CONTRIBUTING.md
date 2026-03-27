@@ -18,9 +18,9 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 ### Tarefas de engenharia disponíveis
 
-| Script | Descrição |
-|---|---|
-| `eng/update-12factor.sh` | Atualiza os documentos de `docs/architecture/12factor/` a partir do repositório oficial `heroku/12factor` (pt_br). |
+| Script (Linux/macOS) | Script (Windows) | Descrição |
+|---|---|---|
+| `eng/update-12factor.sh` | `eng/update-12factor.ps1` | Atualiza os documentos de `docs/architecture/12factor/` a partir do repositório oficial `heroku/12factor` (pt_br). |
 
 ---
 

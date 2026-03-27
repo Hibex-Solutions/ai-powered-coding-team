@@ -62,7 +62,7 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 
 - [Claude Code](https://www.anthropic.com/claude-code) instalado e configurado
 - [Git](https://git-scm.com) instalado localmente
-- [GitVersion](https://gitversion.net) — necessário para geração de pacotes de liberação. Se não estiver disponível no sistema, o script `eng/release.sh` baixa e instala automaticamente o binário em `.GitVersion.Tool/` a partir da última release no GitHub.
+- PowerShell 5.1 ou superior — nativo no Windows 10+; necessário apenas para usuários Windows
 - Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)
 
 ---
@@ -71,15 +71,19 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 
 ### 1. Instale o template
 
+**Linux / macOS (bash):**
+
 ```bash
 curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto
 ```
 
-Para instalar uma versão específica, informe a tag como segundo argumento:
+**Windows (PowerShell 5.1+):**
 
-```bash
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha4
+```powershell
+& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto
 ```
+
+> **Versão específica:** acrescente a tag ao final do comando, após o nome do diretório (ex: `meu-projeto v1.2.0`).
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
 

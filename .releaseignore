@@ -7,7 +7,9 @@ README.md
 LICENSE
 CODE_OF_CONDUCT.md
 eng/install.sh
+eng/install.ps1
 eng/release.sh
+eng/release.ps1
 .editorconfig
 docs/site/
 .claude/skills/github-site-generator/
