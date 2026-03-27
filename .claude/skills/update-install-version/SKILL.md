@@ -9,6 +9,8 @@ allowed-tools: Bash, Read, Edit, WebFetch
 Consulte a última release disponível em https://api.github.com/repos/hibex-solutions/ai-powered-coding-team/releases/latest
 e extraia o valor de `tag_name`.
 
+Use a ferramenta `WebFetch` para acessar essa URL (não use `gh api` nem `curl`, pois `gh` pode não estar disponível no ambiente).
+
 Se a resposta for 404 ou `tag_name` estiver vazio, use a string `latest` como versão.
 
 Em seguida, edite o arquivo `README.md` substituindo o segundo argumento do comando de instalação com versão específica pelo valor obtido. A linha a editar segue o padrão:

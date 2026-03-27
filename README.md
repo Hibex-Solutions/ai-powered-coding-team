@@ -78,7 +78,7 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 Para instalar uma versão específica, informe a tag como segundo argumento:
 
 ```bash
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha2
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha3
 ```
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:

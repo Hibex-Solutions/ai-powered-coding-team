@@ -106,12 +106,58 @@ Escreva um arquivo HTML autocontido e moderno seguindo estritamente a identidade
 - Barra de topo: `position: fixed; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4f6ef7, #a855f7); z-index: 100`
 - `h1`: `font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; background: linear-gradient(90deg, #7c9fff, #ffffff, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text`
 - `h2`: `color: #7c9fff; border-bottom: 1px solid rgba(79,110,247,0.3); padding-bottom: 8px`
-- Cards/seções: `background: rgba(13,21,48,0.6); border: 1px solid rgba(79,110,247,0.15); border-radius: 12px; padding: 32px`
-- Blocos `<pre>/<code>`: `background: #0a1020; border: 1px solid rgba(79,110,247,0.25); border-radius: 8px; color: #c0cff0`
+- Cards/seções: `background: rgba(13,21,48,0.6); border: 1px solid rgba(79,110,247,0.15); border-radius: 12px; padding: 32px; overflow: hidden` — o `overflow: hidden` é obrigatório para conter blocos de código longos
+- Blocos `<pre>`: `background: #0a1020; border: 1px solid rgba(79,110,247,0.25); border-radius: 8px; color: #c0cff0; overflow-x: auto; max-width: 100%`
+- `.code-block` (wrapper do `<pre>`): `position: relative; min-width: 0; max-width: 100%` — o `min-width: 0` é obrigatório quando o wrapper está dentro de um flex container para evitar overflow
 - Tabelas: cabeçalho com `color: #4f6ef7`, linhas com `border-bottom: 1px solid rgba(255,255,255,0.05)`
 - Links: `color: #7c9fff`
 - Botão Copiar: `background: rgba(79,110,247,0.15); border: 1px solid rgba(79,110,247,0.3); color: #7c9fff; border-radius: 6px`
 - Decorações hex/circuito: `position: fixed; pointer-events: none; z-index: 0; opacity: 0.07`
+- `.shields` (linha de badges/shields): `display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center` — `align-items: center` é obrigatório para alinhamento vertical uniforme entre imagens e emojis
+- `.shields img`: `display: block; height: 20px` — garante que todos os shields tenham a mesma altura e não causem desalinhamento vertical
+
+### Decorações de background obrigatórias
+
+O background deve incluir **obrigatoriamente** os seguintes elementos fixos (portados do `banner.svg`), para garantir consistência visual entre gerações:
+
+1. **Barra de topo** (3px, gradiente azul→roxo, `position: fixed`)
+2. **Glow blobs** — dois elementos `div` com `position: fixed`, `background: radial-gradient`, sem interação:
+   - `.glow-left`: `top: 10%; left: -10%; width: 500px; height: 400px; background: radial-gradient(ellipse, rgba(79,110,247,0.15) 0%, transparent 70%)`
+   - `.glow-right`: `bottom: 10%; right: -10%; width: 450px; height: 380px; background: radial-gradient(ellipse, rgba(168,85,247,0.12) 0%, transparent 70%)`
+3. **Grade hexagonal superior direita** — SVG inline com `position: fixed; top: 0; right: 0; opacity: 0.07`, hexágonos em `stroke="#7c9fff"`
+4. **Grade hexagonal inferior esquerda** — SVG inline com `position: fixed; bottom: 0; left: 0; opacity: 0.07`, hexágonos em `stroke="#a855f7"`
+5. **Linhas de circuito esquerda** — SVG inline com `position: fixed; opacity: 0.12`, linhas em `stroke="#4f6ef7"` com círculos terminais
+6. **Linhas de circuito direita** — SVG inline com `position: fixed; opacity: 0.12`, linhas em `stroke="#a855f7"` com círculos terminais
+
+Todos esses elementos devem ter `pointer-events: none; z-index: 0`.
+
+### Layout dos steps de instalação
+
+Os passos da seção "Iniciando um novo projeto" devem usar a estrutura de `div.step` com flex:
+
+```css
+.step {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.step-num {
+  width: 28px; height: 28px; min-width: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f6ef7, #a855f7);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; color: #fff;
+  margin-top: 2px;
+}
+
+/* OBRIGATÓRIO: min-width: 0 para evitar que pre/code estourem o card */
+.step-body {
+  min-width: 0;
+  flex: 1;
+}
+```
 
 ### Conteúdo das seções (baseado no README.md)
 

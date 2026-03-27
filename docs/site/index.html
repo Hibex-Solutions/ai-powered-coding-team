@@ -35,323 +35,544 @@
     /* Top bar */
     .top-bar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
       z-index: 100;
     }
 
-    /* Decorações fixas */
-    .deco {
+    /* Background decorations */
+    .bg-hex {
       position: fixed;
       pointer-events: none;
       z-index: 0;
       opacity: 0.07;
     }
-    .deco-tr { top: 0; right: 0; }
-    .deco-bl { bottom: 0; left: 0; }
+    .bg-hex-tr { top: 0; right: 0; }
+    .bg-hex-bl { bottom: 0; left: 0; }
+    .bg-circuit {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+    }
+    .bg-circuit-l { top: 30%; left: 0; }
+    .bg-circuit-r { top: 30%; right: 0; }
+
+    /* Glow blobs */
+    .glow-left {
+      position: fixed;
+      top: 10%;
+      left: -10%;
+      width: 500px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(79,110,247,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-right {
+      position: fixed;
+      bottom: 10%;
+      right: -10%;
+      width: 450px;
+      height: 380px;
+      background: radial-gradient(ellipse, rgba(168,85,247,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
     /* Layout */
     .container {
       position: relative;
       z-index: 1;
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 80px 24px 48px;
+      padding: 80px 24px 60px;
     }
 
     /* Header */
     header {
       text-align: center;
-      padding: 60px 0 48px;
+      margin-bottom: 64px;
     }
 
-    .badge-ai {
+    .ai-badge {
       display: inline-block;
-      padding: 4px 16px;
+      padding: 6px 20px;
       border-radius: 20px;
       border: 1px solid rgba(79,110,247,0.6);
-      background: rgba(79,110,247,0.08);
+      background: transparent;
       color: #a0b4ff;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 2px;
       margin-bottom: 24px;
+      background: linear-gradient(135deg, rgba(79,110,247,0.08), rgba(168,85,247,0.08));
     }
 
     h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 800;
-      background: linear-gradient(90deg, var(--title-start), var(--title-mid), var(--title-end));
+      background: linear-gradient(90deg, #7c9fff, #ffffff, #c084fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1.1;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .tagline {
-      font-size: 1.15rem;
       color: var(--text-secondary);
-      margin-bottom: 36px;
-      letter-spacing: 0.3px;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 32px;
     }
 
-    /* Role badges */
-    .roles {
+    .role-badges {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 12px;
-      margin-bottom: 36px;
+      justify-content: center;
+      margin-bottom: 32px;
     }
 
     .role-badge {
       padding: 8px 20px;
       border-radius: 8px;
-      font-size: 11px;
+      border-width: 1px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .role-badge .label {
+      font-size: 9px;
       font-weight: 600;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      line-height: 1.4;
-      text-align: center;
     }
-    .role-badge span {
-      display: block;
-      font-weight: 400;
-      font-size: 10px;
-      letter-spacing: 0.5px;
-      text-transform: none;
-      opacity: 0.85;
-    }
-    .role-arquiteto  { border: 1px solid var(--accent-blue);   background: #0f1f3d; color: var(--accent-blue); }
-    .role-arquiteto span { color: var(--title-start); }
-    .role-analista   { border: 1px solid #7c3aed; background: #1a1040; color: #9b7fff; }
-    .role-analista span  { color: #b09fff; }
-    .role-designer   { border: 1px solid var(--accent-purple); background: #1a0f2e; color: #c084fc; }
-    .role-designer span  { color: #d8b4fe; }
-    .role-engenheiro { border: 1px solid var(--green); background: #071a10; color: var(--green); }
-    .role-engenheiro span { color: #34d399; }
 
-    /* Shields */
+    .role-badge .sub {
+      font-size: 10px;
+    }
+
+    .role-badge-architect {
+      background: #0f1f3d;
+      border-color: #4f6ef7;
+    }
+    .role-badge-architect .label { color: #4f6ef7; }
+    .role-badge-architect .sub   { color: #7c9fff; }
+
+    .role-badge-analyst {
+      background: #1a1040;
+      border-color: #7c3aed;
+    }
+    .role-badge-analyst .label { color: #9b7fff; }
+    .role-badge-analyst .sub   { color: #b09fff; }
+
+    .role-badge-designer {
+      background: #1a0f2e;
+      border-color: #a855f7;
+    }
+    .role-badge-designer .label { color: #c084fc; }
+    .role-badge-designer .sub   { color: #d8b4fe; }
+
+    .role-badge-engineer {
+      background: #071a10;
+      border-color: #10b981;
+    }
+    .role-badge-engineer .label { color: #10b981; }
+    .role-badge-engineer .sub   { color: #34d399; }
+
     .shields {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 8px;
-      margin-bottom: 8px;
+      justify-content: center;
+      align-items: center;
     }
-    .shields img { height: 20px; }
 
-    /* Divider */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(79,110,247,0.3), transparent);
-      margin: 48px 0;
+    .shields a,
+    .shields span {
+      display: flex;
+      align-items: center;
+    }
+
+    .shields img {
+      display: block;
+      height: 20px;
     }
 
     /* Sections */
-    section {
-      margin-bottom: 40px;
+    main section {
+      background: rgba(13,21,48,0.6);
+      border: 1px solid rgba(79,110,247,0.15);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      overflow: hidden;
     }
 
     h2 {
+      color: var(--title-start);
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--title-start);
       border-bottom: 1px solid rgba(79,110,247,0.3);
       padding-bottom: 8px;
       margin-bottom: 20px;
     }
 
-    h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #c0cff0;
-      margin: 24px 0 12px;
-    }
-
-    .card {
-      background: rgba(13,21,48,0.6);
-      border: 1px solid rgba(79,110,247,0.15);
-      border-radius: 12px;
-      padding: 32px;
-    }
-
     p {
-      color: #c0cff0;
+      color: #c8d4f0;
       margin-bottom: 12px;
     }
 
-    a { color: var(--title-start); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--title-start);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
 
     /* Tables */
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.93rem;
       margin-top: 8px;
     }
-    th {
+
+    thead th {
       color: var(--accent-blue);
-      text-align: left;
-      padding: 10px 12px;
+      font-size: 0.8rem;
       font-weight: 600;
-      border-bottom: 1px solid rgba(79,110,247,0.25);
-      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(79,110,247,0.3);
     }
-    td {
+
+    tbody td {
       padding: 10px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #c0cff0;
-      vertical-align: top;
+      color: #c8d4f0;
+      font-size: 0.9rem;
     }
-    tr:last-child td { border-bottom: none; }
-    td strong { color: #e0e8ff; }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody td strong {
+      color: #ffffff;
+    }
 
     /* Code blocks */
-    .code-wrap {
-      position: relative;
-      margin: 12px 0;
-    }
     pre {
       background: #0a1020;
       border: 1px solid rgba(79,110,247,0.25);
       border-radius: 8px;
-      padding: 16px 48px 16px 20px;
+      padding: 20px;
       overflow-x: auto;
-      font-size: 0.87rem;
-      line-height: 1.55;
+      margin: 12px 0;
+      position: relative;
     }
+
     code {
       font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.85rem;
       color: #c0cff0;
     }
+
+    pre code {
+      background: none;
+      padding: 0;
+      border: none;
+    }
+
+    /* Inline code */
+    p code, li code {
+      background: rgba(79,110,247,0.1);
+      border: 1px solid rgba(79,110,247,0.2);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.82rem;
+      color: #a0c0ff;
+    }
+
+    /* Copy button */
+    .code-block {
+      position: relative;
+      min-width: 0;
+      max-width: 100%;
+    }
+
     .copy-btn {
       position: absolute;
-      top: 8px; right: 8px;
+      top: 10px;
+      right: 10px;
       background: rgba(79,110,247,0.15);
       border: 1px solid rgba(79,110,247,0.3);
       color: var(--title-start);
       border-radius: 6px;
       padding: 4px 10px;
-      font-size: 11px;
+      font-size: 0.75rem;
       cursor: pointer;
       font-family: inherit;
       transition: background 0.2s;
     }
-    .copy-btn:hover { background: rgba(79,110,247,0.3); }
-    .copy-btn.copied { color: var(--green); border-color: var(--green); background: rgba(16,185,129,0.1); }
+
+    .copy-btn:hover {
+      background: rgba(79,110,247,0.3);
+      color: #fff;
+    }
 
     /* Lists */
     ul, ol {
-      padding-left: 24px;
-      color: #c0cff0;
+      padding-left: 20px;
+      color: #c8d4f0;
     }
-    li { margin-bottom: 8px; }
-    li strong { color: #e0e8ff; }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    li strong {
+      color: #ffffff;
+    }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px 24px;
+      padding: 32px 0 24px;
+      position: relative;
+      z-index: 1;
       color: var(--text-muted);
-      font-size: 0.88rem;
-      border-top: 1px solid rgba(79,110,247,0.1);
+      font-size: 0.9rem;
     }
-    footer a { color: var(--text-secondary); }
 
-    @media (max-width: 600px) {
-      .container { padding: 70px 16px 32px; }
-      .card { padding: 20px; }
-      pre { font-size: 0.78rem; }
-      h1 { font-size: 2.2rem; }
+    footer a {
+      color: var(--text-secondary);
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,110,247,0.3), rgba(168,85,247,0.3), transparent);
+      margin: 8px 0 32px;
+    }
+
+    /* Step numbers */
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .step-body {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .step-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 60px 16px 40px; }
+      main section { padding: 20px; }
+      h1 { font-size: 2.4rem; }
     }
   </style>
 </head>
 <body>
+
   <div class="top-bar"></div>
 
-  <!-- Decoração hexagonal topo direita -->
-  <svg class="deco deco-tr" width="340" height="260" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- Background glows -->
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+
+  <!-- Hex decorations top-right -->
+  <svg class="bg-hex bg-hex-tr" width="320" height="280" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#7c9fff" stroke-width="0.8" fill="none">
-      <polygon points="220,20 250,37 250,71 220,88 190,71 190,37"/>
-      <polygon points="280,20 310,37 310,71 280,88 250,71 250,37"/>
-      <polygon points="250,71 280,88 280,122 250,139 220,122 220,88"/>
-      <polygon points="310,71 340,88 340,122 310,139 280,122 280,88"/>
-      <polygon points="220,122 250,139 250,173 220,190 190,173 190,139"/>
-      <polygon points="280,122 310,139 310,173 280,190 250,173 250,139"/>
+      <polygon points="20,20 50,37 50,71 20,88 -10,71 -10,37"/>
+      <polygon points="80,20 110,37 110,71 80,88 50,71 50,37"/>
+      <polygon points="140,20 170,37 170,71 140,88 110,71 110,37"/>
+      <polygon points="200,20 230,37 230,71 200,88 170,71 170,37"/>
+      <polygon points="260,20 290,37 290,71 260,88 230,71 230,37"/>
+      <polygon points="50,71 80,88 80,122 50,139 20,122 20,88"/>
+      <polygon points="110,71 140,88 140,122 110,139 80,122 80,88"/>
+      <polygon points="170,71 200,88 200,122 170,139 140,122 140,88"/>
+      <polygon points="230,71 260,88 260,122 230,139 200,122 200,88"/>
+      <polygon points="290,71 320,88 320,122 290,139 260,122 260,88"/>
+      <polygon points="20,122 50,139 50,173 20,190 -10,173 -10,139"/>
+      <polygon points="80,122 110,139 110,173 80,190 50,173 50,139"/>
+      <polygon points="140,122 170,139 170,173 140,190 110,173 110,139"/>
+      <polygon points="200,122 230,139 230,173 200,190 170,173 170,139"/>
+      <polygon points="260,122 290,139 290,173 260,190 230,173 230,139"/>
     </g>
   </svg>
 
-  <!-- Decoração hexagonal baixo esquerda -->
-  <svg class="deco deco-bl" width="280" height="200" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- Hex decorations bottom-left -->
+  <svg class="bg-hex bg-hex-bl" width="280" height="240" viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#a855f7" stroke-width="0.8" fill="none">
       <polygon points="20,20 50,37 50,71 20,88 -10,71 -10,37"/>
       <polygon points="80,20 110,37 110,71 80,88 50,71 50,37"/>
       <polygon points="140,20 170,37 170,71 140,88 110,71 110,37"/>
+      <polygon points="200,20 230,37 230,71 200,88 170,71 170,37"/>
       <polygon points="50,71 80,88 80,122 50,139 20,122 20,88"/>
       <polygon points="110,71 140,88 140,122 110,139 80,122 80,88"/>
       <polygon points="170,71 200,88 200,122 170,139 140,122 140,88"/>
+      <polygon points="230,71 260,88 260,122 230,139 200,122 200,88"/>
+      <polygon points="20,122 50,139 50,173 20,190 -10,173 -10,139"/>
+      <polygon points="80,122 110,139 110,173 80,190 50,173 50,139"/>
+      <polygon points="140,122 170,139 170,173 140,190 110,173 110,139"/>
+      <polygon points="200,122 230,139 230,173 200,190 170,173 170,139"/>
+    </g>
+  </svg>
+
+  <!-- Circuit lines left -->
+  <svg class="bg-circuit bg-circuit-l" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#4f6ef7" stroke-width="1" fill="none">
+      <path d="M 10,40 L 70,40 L 70,80 L 130,80"/>
+      <circle cx="10" cy="40" r="3" fill="#4f6ef7"/>
+      <circle cx="130" cy="80" r="3" fill="#4f6ef7"/>
+      <path d="M 30,100 L 90,100 L 90,140 L 30,140 L 30,180"/>
+      <circle cx="30" cy="100" r="3" fill="#4f6ef7"/>
+      <circle cx="30" cy="180" r="3" fill="#4f6ef7"/>
+    </g>
+  </svg>
+
+  <!-- Circuit lines right -->
+  <svg class="bg-circuit bg-circuit-r" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#a855f7" stroke-width="1" fill="none">
+      <path d="M 190,40 L 130,40 L 130,80 L 70,80"/>
+      <circle cx="190" cy="40" r="3" fill="#a855f7"/>
+      <circle cx="70" cy="80" r="3" fill="#a855f7"/>
+      <path d="M 170,120 L 110,120 L 110,160 L 170,160 L 170,200"/>
+      <circle cx="170" cy="120" r="3" fill="#a855f7"/>
+      <circle cx="170" cy="200" r="3" fill="#a855f7"/>
     </g>
   </svg>
 
   <div class="container">
+
+    <!-- HEADER -->
     <header>
-      <div class="badge-ai">AI POWERED</div>
+      <div class="ai-badge">AI POWERED</div>
       <h1>AI Powered<br>Coding Team</h1>
       <p class="tagline">Um engenheiro sênior. Uma equipe inteira de desenvolvimento.</p>
 
-      <div class="roles">
-        <div class="role-badge role-arquiteto">Arquiteto<span>de Soluções</span></div>
-        <div class="role-badge role-analista">Analista<span>de Negócio</span></div>
-        <div class="role-badge role-designer">Designer<span>de Interface</span></div>
-        <div class="role-badge role-engenheiro">Engenheiro<span>de Software</span></div>
+      <div class="role-badges">
+        <div class="role-badge role-badge-architect">
+          <span class="label">Arquiteto</span>
+          <span class="sub">de Soluções</span>
+        </div>
+        <div class="role-badge role-badge-analyst">
+          <span class="label">Analista</span>
+          <span class="sub">de Negócio</span>
+        </div>
+        <div class="role-badge role-badge-designer">
+          <span class="label">Designer</span>
+          <span class="sub">de Interface</span>
+        </div>
+        <div class="role-badge role-badge-engineer">
+          <span class="label">Engenheiro</span>
+          <span class="sub">de Software</span>
+        </div>
       </div>
 
       <div class="shields">
-        <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/LICENSE"><img src="https://img.shields.io/badge/licença-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/></a>
-        <a href="https://www.anthropic.com/claude-code"><img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/></a>
-        <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md"><img src="https://img.shields.io/badge/contribuição-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/></a>
+        <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/LICENSE">
+          <img src="https://img.shields.io/badge/licença-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/>
+        </a>
+        <a href="https://www.anthropic.com/claude-code">
+          <img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/>
+        </a>
+        <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">
+          <img src="https://img.shields.io/badge/contribuição-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/>
+        </a>
         <img src="https://img.shields.io/badge/Open_Source-♥-ff6b6b?style=flat-square" alt="Open Source"/>
       </div>
     </header>
 
     <div class="divider"></div>
 
-    <section>
-      <div class="card">
-        <p><strong style="color:#e0e8ff;">AI Powered Coding Team</strong> é um modelo de projeto (<em>project template</em>) que define a estrutura, os papéis e as instruções necessárias para que um engenheiro de software sênior utilize IA — inicialmente Claude Code — como uma equipe completa de desenvolvimento.</p>
-        <p>O engenheiro deixa de atuar apenas como desenvolvedor e passa a assumir todos os papéis de um time:</p>
-      </div>
-    </section>
+    <!-- MAIN CONTENT -->
+    <main>
 
-    <section>
-      <h2>O que é</h2>
-      <div class="card">
+      <!-- O que é -->
+      <section>
+        <h2>O que é</h2>
+        <p>
+          <strong>AI Powered Coding Team</strong> é um modelo de projeto (<em>project template</em>) que define a estrutura, os papéis e as instruções necessárias para que um engenheiro de software sênior utilize IA — inicialmente Claude Code — como uma equipe completa de desenvolvimento.
+        </p>
+        <p>O engenheiro deixa de atuar apenas como desenvolvedor e passa a assumir todos os papéis de um time:</p>
         <table>
           <thead>
-            <tr><th>Papel</th><th>Responsabilidade</th></tr>
+            <tr>
+              <th>Papel</th>
+              <th>Responsabilidade</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td><strong>Arquiteto de Soluções</strong></td><td>Define arquitetura, tecnologias e governança técnica</td></tr>
-            <tr><td><strong>Analista de Negócio</strong></td><td>Especifica regras de negócio e requisitos funcionais</td></tr>
-            <tr><td><strong>Designer</strong></td><td>Define diretrizes de marca, UI e UX</td></tr>
-            <tr><td><strong>Engenheiro de Software</strong></td><td>Implementa, testa e entrega o software</td></tr>
+            <tr>
+              <td><strong>Arquiteto de Soluções</strong></td>
+              <td>Define arquitetura, tecnologias e governança técnica</td>
+            </tr>
+            <tr>
+              <td><strong>Analista de Negócio</strong></td>
+              <td>Especifica regras de negócio e requisitos funcionais</td>
+            </tr>
+            <tr>
+              <td><strong>Designer</strong></td>
+              <td>Define diretrizes de marca, UI e UX</td>
+            </tr>
+            <tr>
+              <td><strong>Engenheiro de Software</strong></td>
+              <td>Implementa, testa e entrega o software</td>
+            </tr>
           </tbody>
         </table>
         <p style="margin-top:16px;">A IA executa sob a supervisão e gestão ativa do engenheiro — que direciona, revisa e decide. A autonomia técnica permanece humana; o volume e a velocidade de execução são amplificados pela IA.</p>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Como funciona</h2>
-      <div class="card">
-        <div class="code-wrap">
+      <!-- Como funciona -->
+      <section>
+        <h2>Como funciona</h2>
+        <div class="code-block">
           <pre><code>Engenheiro Sênior
       │
       ├── atua como ──► Arquiteto  ──► docs/ARCHITECTURE.md
@@ -369,38 +590,42 @@
                               ├── revisa a arquitetura
                               └── valida regras de negócio</code></pre>
         </div>
-        <p>O modelo garante que <strong style="color:#e0e8ff;">nenhum código seja escrito sem especificação</strong>, que <strong style="color:#e0e8ff;">nenhuma decisão técnica seja tomada sem documentação</strong> e que <strong style="color:#e0e8ff;">toda implementação seja validada contra regras de negócio e diretrizes de marca</strong> — mantendo a qualidade de uma equipe madura mesmo com um único operador.</p>
-      </div>
-    </section>
+        <p style="margin-top:12px;">O modelo garante que <strong>nenhum código seja escrito sem especificação</strong>, que <strong>nenhuma decisão técnica seja tomada sem documentação</strong> e que <strong>toda implementação seja validada contra regras de negócio e diretrizes de marca</strong> — mantendo a qualidade de uma equipe madura mesmo com um único operador.</p>
+      </section>
 
-    <section>
-      <h2>Pré-requisitos</h2>
-      <div class="card">
+      <!-- Pré-requisitos -->
+      <section>
+        <h2>Pré-requisitos</h2>
         <ul>
           <li><a href="https://www.anthropic.com/claude-code">Claude Code</a> instalado e configurado</li>
           <li><a href="https://git-scm.com">Git</a> instalado localmente</li>
           <li><a href="https://gitversion.net">GitVersion</a> — necessário para geração de pacotes de liberação. Se não estiver disponível no sistema, o script <code>eng/release.sh</code> baixa e instala automaticamente o binário em <code>.GitVersion.Tool/</code> a partir da última release no GitHub.</li>
           <li>Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Iniciando um novo projeto</h2>
-      <div class="card">
-        <h3>1. Instale o template</h3>
-        <div class="code-wrap">
-          <pre><code>curl -fsSL https://Hibex-Solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto</code></pre>
-          <button class="copy-btn" data-copy="curl -fsSL https://Hibex-Solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto">Copiar</button>
-        </div>
-        <p>Para instalar uma versão específica, informe a tag como segundo argumento:</p>
-        <div class="code-wrap">
-          <pre><code>curl -fsSL https://Hibex-Solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha2</code></pre>
-          <button class="copy-btn" data-copy="curl -fsSL https://Hibex-Solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha2">Copiar</button>
-        </div>
-        <p>O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:</p>
-        <div class="code-wrap">
-          <pre><code>cd meu-projeto
+      <!-- Iniciando um novo projeto -->
+      <section>
+        <h2>Iniciando um novo projeto</h2>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Instale o template</h3>
+            <p>Instale a versão mais recente disponível:</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+              <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto</code></pre>
+            </div>
+            <p>Para instalar uma versão específica, informe a tag como segundo argumento:</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+              <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto v0.1.0-alpha3</code></pre>
+            </div>
+            <p>O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+              <pre><code>cd meu-projeto
 
 # Configure o Git local (obrigatório — não use as configurações globais)
 git config user.name "Seu Nome"
@@ -408,38 +633,42 @@ git config user.email "seu@email.com"
 
 git add .
 git commit -m "chore: inicializa projeto a partir do template"</code></pre>
-          <button class="copy-btn" data-copy='cd meu-projeto
-
-git config user.name "Seu Nome"
-git config user.email "seu@email.com"
-
-git add .
-git commit -m "chore: inicializa projeto a partir do template"'>Copiar</button>
+            </div>
+          </div>
         </div>
 
-        <h3>2. Especifique antes de implementar</h3>
-        <p>Antes de qualquer linha de código, o engenheiro documenta:</p>
-        <div class="code-wrap">
-          <pre><code>docs/ARCHITECTURE.md  ← decisões arquiteturais e regras invioláveis
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Especifique antes de implementar</h3>
+            <p>Antes de qualquer linha de código, o engenheiro documenta:</p>
+            <div class="code-block">
+              <pre><code>docs/ARCHITECTURE.md  ← decisões arquiteturais e regras invioláveis
 docs/SOLUTION.md      ← componentes, tecnologias e desenho da solução
 docs/BUSINESS.md      ← regras de negócio e requisitos funcionais
 docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
+            </div>
+          </div>
         </div>
 
-        <h3>3. Delegue para a IA</h3>
-        <p>Com as especificações em mãos, use o Claude Code para implementar:</p>
-        <div class="code-wrap">
-          <pre><code>claude</code></pre>
-          <button class="copy-btn" data-copy="claude">Copiar</button>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Delegue para a IA</h3>
+            <p>Com as especificações em mãos, use o Claude Code para implementar:</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+              <pre><code>claude</code></pre>
+            </div>
+            <p>O <code>CLAUDE.md</code> do projeto já instrui a IA com as regras arquiteturais, a especificação negocial e as diretrizes de marca — sem necessidade de repetir contexto a cada sessão.</p>
+          </div>
         </div>
-        <p>O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especificação negocial e as diretrizes de marca — sem necessidade de repetir contexto a cada sessão.</p>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Estrutura do projeto</h2>
-      <div class="card">
-        <div class="code-wrap">
+      <!-- Estrutura do projeto -->
+      <section>
+        <h2>Estrutura do projeto</h2>
+        <div class="code-block">
           <pre><code>.
 ├── .claude/                    # Configurações do Claude Code
 │   ├── CLAUDE.md               # Instruções para a IA
@@ -467,30 +696,40 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
 ├── CONTRIBUTING.md             # Guia de contribuição por perfil
 └── LICENSE</code></pre>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Comandos disponíveis</h2>
-      <div class="card">
+      <!-- Comandos disponíveis -->
+      <section>
+        <h2>Comandos disponíveis</h2>
         <p>O projeto inclui comandos Claude prontos para revisão de conformidade. Execute dentro do Claude Code:</p>
         <table>
           <thead>
-            <tr><th>Comando</th><th>O que faz</th></tr>
+            <tr>
+              <th>Comando</th>
+              <th>O que faz</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td><code>/review-architecture</code></td><td>Revisa o projeto em busca de violações arquiteturais</td></tr>
-            <tr><td><code>/review-business</code></td><td>Revisa violações das regras de negócio</td></tr>
-            <tr><td><code>/review-guideline</code></td><td>Revisa violações das diretrizes de marca e UX</td></tr>
+            <tr>
+              <td><code>/review-architecture</code></td>
+              <td>Revisa o projeto em busca de violações arquiteturais</td>
+            </tr>
+            <tr>
+              <td><code>/review-business</code></td>
+              <td>Revisa violações das regras de negócio</td>
+            </tr>
+            <tr>
+              <td><code>/review-guideline</code></td>
+              <td>Revisa violações das diretrizes de marca e UX</td>
+            </tr>
           </tbody>
         </table>
-        <p style="margin-top:16px;">Esses comandos listam problemas <strong style="color:#e0e8ff;">sem corrigir nada</strong> — a decisão e a correção são sempre do engenheiro.</p>
-      </div>
-    </section>
+        <p style="margin-top:12px;">Esses comandos listam problemas <strong>sem corrigir nada</strong> — a decisão e a correção são sempre do engenheiro.</p>
+      </section>
 
-    <section>
-      <h2>Regras fundamentais do modelo</h2>
-      <div class="card">
+      <!-- Regras fundamentais -->
+      <section>
+        <h2>Regras fundamentais do modelo</h2>
         <ul>
           <li><strong>Especificação antes de implementação</strong> — nenhuma funcionalidade sem regra de negócio documentada</li>
           <li><strong>Nenhuma tecnologia sem registro</strong> — toda stack deve estar em <code>docs/SOLUTION.md</code></li>
@@ -499,49 +738,47 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
           <li><strong>The Twelve-Factor App</strong> — software aderente aos doze fatores</li>
           <li><strong>Commits são humanos</strong> — a IA propõe, o engenheiro commita</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Contribuindo</h2>
-      <div class="card">
-        <p>Veja <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.</p>
-        <p>Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novos comandos de revisão, e suporte a outros assistentes além do Claude Code.</p>
-      </div>
-    </section>
+      <!-- Contribuindo e Licença -->
+      <section>
+        <h2>Contribuindo</h2>
+        <p>
+          Veja <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+          para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.
+        </p>
+        <p>
+          Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novos comandos de revisão, e suporte a outros assistentes além do Claude Code.
+        </p>
+        <h2 style="margin-top:24px;">Licença</h2>
+        <p>
+          Este projeto é distribuído sob a licença
+          <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/LICENSE">MIT</a>.
+          Copyright &copy; 2026 <a href="https://github.com/hibex-solutions">Hibex Solutions</a>.
+        </p>
+      </section>
 
-    <section>
-      <h2>Licença</h2>
-      <div class="card">
-        <p>Este projeto é distribuído sob a licença <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/LICENSE">MIT</a>.</p>
-        <p>Copyright © 2026 <a href="https://github.com/hibex-solutions">Hibex Solutions</a></p>
-      </div>
-    </section>
+    </main>
 
-    <div class="divider"></div>
+    <footer>
+      <p>Feito com ♥ por <a href="https://github.com/hibex-solutions">Hibex Solutions</a></p>
+    </footer>
+
   </div>
 
-  <footer>
-    <p>Feito com ♥ por <a href="https://github.com/hibex-solutions">Hibex Solutions</a></p>
-  </footer>
-
   <script>
-    document.querySelectorAll('.copy-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var text = btn.getAttribute('data-copy');
-        navigator.clipboard.writeText(text).then(function() {
-          btn.textContent = 'Copiado!';
-          btn.classList.add('copied');
-          setTimeout(function() {
-            btn.textContent = 'Copiar';
-            btn.classList.remove('copied');
-          }, 2000);
-        }).catch(function() {
-          btn.textContent = 'Erro';
-          setTimeout(function() { btn.textContent = 'Copiar'; }, 2000);
-        });
+    function copyCode(btn) {
+      const pre = btn.nextElementSibling;
+      const text = pre ? pre.innerText : '';
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copiado!';
+        setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+      }).catch(() => {
+        btn.textContent = 'Erro';
+        setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
       });
-    });
+    }
   </script>
+
 </body>
 </html>
