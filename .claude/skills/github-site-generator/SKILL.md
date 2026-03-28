@@ -178,6 +178,58 @@ Os passos da seção "Iniciando um novo projeto" devem usar a estrutura de `div.
 }
 ```
 
+### Layout da seção "Regras fundamentais do modelo"
+
+Esta seção **deve obrigatoriamente** usar o formato de lista com ícone, título e descrição. Nunca use parágrafo ou lista `<ul>/<li>` simples.
+
+CSS obrigatório:
+
+```css
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rule-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  background: rgba(79,110,247,0.05);
+  border: 1px solid rgba(79,110,247,0.12);
+  border-radius: 8px;
+}
+.rule-icon {
+  font-size: 1rem;
+  min-width: 24px;
+}
+.rule-text strong { color: #c0cff0; display: block; margin-bottom: 2px; font-size: 0.9rem; }
+.rule-text span   { color: #8899cc; font-size: 0.85rem; }
+```
+
+HTML obrigatório para cada regra:
+
+```html
+<div class="rules-list">
+  <div class="rule-item">
+    <div class="rule-icon"><!-- emoji --></div>
+    <div class="rule-text">
+      <strong>Título da regra</strong>
+      <span>Breve descrição da regra</span>
+    </div>
+  </div>
+  <!-- repetir para cada regra -->
+</div>
+```
+
+As regras e ícones devem ser derivados do conteúdo de `docs/ARCHITECTURE.md`. Exemplos de mapeamento:
+- 📋 Especificação antes de implementação — Nenhuma funcionalidade sem regra de negócio documentada
+- 📂 Nenhuma tecnologia sem registro — Toda stack deve estar em `docs/SOLUTION.md`
+- 🧪 Testes guiados por negócio — Cobertura 100% das regras especificadas
+- 🔒 Secrets nunca no código — Sempre configuráveis por ambiente
+- ⚙️ The Twelve-Factor App — Software aderente aos doze fatores
+- 🤝 Commits são humanos — A IA propõe, o engenheiro commita
+
 ### Conteúdo das seções (baseado no README.md)
 
 Use o conteúdo de `README.md` como fonte para todas as seções. Leia o arquivo antes de gerar.
