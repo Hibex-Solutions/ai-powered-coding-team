@@ -31,7 +31,7 @@
       font-family: 'Inter', 'Segoe UI', sans-serif;
       color: #ffffff;
       min-height: 100vh;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Top bar */
@@ -61,40 +61,46 @@
       z-index: 0;
     }
 
-    /* Hex/circuit decorations */
-    .deco { position: fixed; pointer-events: none; z-index: 0; }
+    /* SVG decorations */
+    .deco-svg {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
 
     /* Layout */
     .container {
       position: relative;
       z-index: 1;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 80px 24px 48px;
+      padding: 0 24px 80px;
     }
 
     /* Header */
     header {
       text-align: center;
-      padding: 60px 0 48px;
+      padding: 80px 0 60px;
     }
 
     .ai-badge {
-      display: inline-block;
-      padding: 6px 20px;
-      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
       border: 1px solid rgba(79,110,247,0.6);
-      color: #a0b4ff;
+      border-radius: 20px;
+      padding: 5px 18px;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 2px;
-      margin-bottom: 24px;
-      background: rgba(79,110,247,0.08);
+      color: #a0b4ff;
+      margin-bottom: 28px;
+      background: rgba(79,110,247,0.05);
     }
 
     h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 800;
+      letter-spacing: -1px;
       background: linear-gradient(90deg, #7c9fff, #ffffff, #c084fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -104,18 +110,18 @@
     }
 
     .tagline {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      color: #8899cc;
       font-weight: 400;
-      max-width: 600px;
-      margin: 0 auto 32px;
+      letter-spacing: 0.3px;
+      margin-bottom: 36px;
     }
 
     /* Role badges */
-    .roles {
+    .role-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       justify-content: center;
       margin-bottom: 32px;
     }
@@ -123,31 +129,37 @@
     .role-badge {
       padding: 8px 20px;
       border-radius: 8px;
-      font-size: 0.75rem;
+      border-width: 1px;
+      border-style: solid;
+      opacity: 0.9;
       text-align: center;
-      min-width: 120px;
     }
     .role-badge .role-title {
       display: block;
-      font-weight: 700;
+      font-size: 9px;
+      font-weight: 600;
       letter-spacing: 1.5px;
-      font-size: 0.65rem;
-      margin-bottom: 2px;
+      text-transform: uppercase;
     }
     .role-badge .role-sub {
       display: block;
-      font-size: 0.72rem;
+      font-size: 10px;
+      margin-top: 2px;
     }
-    .role-arquiteto  { border: 1px solid #4f6ef7; background: #0f1f3d; }
+
+    .role-arquiteto  { border-color: #4f6ef7; background: #0f1f3d; }
     .role-arquiteto  .role-title { color: #4f6ef7; }
     .role-arquiteto  .role-sub   { color: #7c9fff; }
-    .role-analista   { border: 1px solid #7c3aed; background: #1a1040; }
+
+    .role-analista   { border-color: #7c3aed; background: #1a1040; }
     .role-analista   .role-title { color: #9b7fff; }
     .role-analista   .role-sub   { color: #b09fff; }
-    .role-designer   { border: 1px solid #a855f7; background: #1a0f2e; }
+
+    .role-designer   { border-color: #a855f7; background: #1a0f2e; }
     .role-designer   .role-title { color: #c084fc; }
     .role-designer   .role-sub   { color: #d8b4fe; }
-    .role-engenheiro { border: 1px solid #10b981; background: #071a10; }
+
+    .role-engenheiro { border-color: #10b981; background: #071a10; }
     .role-engenheiro .role-title { color: #10b981; }
     .role-engenheiro .role-sub   { color: #34d399; }
 
@@ -164,17 +176,8 @@
       height: 20px;
     }
 
-    /* Sections */
-    h2 {
-      color: #7c9fff;
-      font-size: 1.3rem;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(79,110,247,0.3);
-      padding-bottom: 8px;
-      margin-bottom: 20px;
-    }
-
-    .card {
+    /* Section cards */
+    section {
       background: rgba(13,21,48,0.6);
       border: 1px solid rgba(79,110,247,0.15);
       border-radius: 12px;
@@ -183,6 +186,33 @@
       overflow: hidden;
     }
 
+    h2 {
+      color: #7c9fff;
+      font-size: 1.35rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(79,110,247,0.3);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      color: #c0cff0;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+    h3:first-child { margin-top: 0; }
+
+    p {
+      color: #8899cc;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: #7c9fff; }
+
     /* Tables */
     table {
       width: 100%;
@@ -190,20 +220,19 @@
       font-size: 0.9rem;
     }
     th {
-      color: #4f6ef7;
       text-align: left;
-      padding: 10px 12px;
+      color: #4f6ef7;
       font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(79,110,247,0.3);
     }
     td {
       padding: 10px 12px;
+      color: #8899cc;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #c0cff0;
+      vertical-align: top;
     }
-    tr:last-child td { border-bottom: none; }
-    td strong, td code { color: #a0b4ff; }
+    td strong, td code { color: #c0cff0; }
 
     /* Code blocks */
     .code-block {
@@ -212,7 +241,10 @@
       max-width: 100%;
       margin: 12px 0;
     }
-    .code-block:has(.copy-btn) pre { padding-top: 40px; }
+
+    .code-block:has(.copy-btn) pre {
+      padding-top: 40px;
+    }
 
     pre {
       background: #0a1020;
@@ -221,7 +253,7 @@
       color: #c0cff0;
       overflow-x: auto;
       max-width: 100%;
-      padding: 16px;
+      padding: 16px 18px;
       font-size: 0.85rem;
       line-height: 1.6;
       font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
@@ -230,46 +262,35 @@
     code {
       font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
       font-size: 0.85em;
-      color: #a0b4ff;
-      background: rgba(79,110,247,0.12);
-      padding: 2px 6px;
+      color: #c0cff0;
+      background: rgba(79,110,247,0.1);
       border-radius: 4px;
+      padding: 1px 5px;
     }
+
     pre code {
       background: none;
       padding: 0;
-      color: inherit;
       font-size: inherit;
     }
 
+    /* Copy button */
     .copy-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
       background: rgba(79,110,247,0.15);
       border: 1px solid rgba(79,110,247,0.3);
       color: #7c9fff;
       border-radius: 6px;
-      padding: 4px 10px;
-      font-size: 0.72rem;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
+      transition: background 0.15s, color 0.15s;
     }
-    .copy-btn:hover { background: rgba(79,110,247,0.3); }
-    .copy-btn.copied { color: #10b981; border-color: rgba(16,185,129,0.4); }
-
-    /* OS label pills */
-    .os-label {
-      display: inline-block;
-      padding: 3px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .os-label-linux  { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.4); color: #10b981; }
-    .os-label-windows { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.4); color: #c084fc; }
+    .copy-btn:hover { background: rgba(79,110,247,0.3); color: #fff; }
+    .copy-btn.copied { background: rgba(16,185,129,0.2); border-color: #10b981; color: #10b981; }
 
     /* Steps */
     .step {
@@ -278,6 +299,7 @@
       margin-bottom: 24px;
       align-items: flex-start;
     }
+
     .step-num {
       width: 28px; height: 28px; min-width: 28px;
       border-radius: 50%;
@@ -286,102 +308,82 @@
       font-size: 0.8rem; font-weight: 700; color: #fff;
       margin-top: 2px;
     }
+
     .step-body {
       min-width: 0;
       flex: 1;
     }
-    .step-body h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #c0cff0;
-      margin-bottom: 8px;
-    }
-    .step-body p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-    }
 
-    /* Note box */
-    .note {
-      background: rgba(79,110,247,0.07);
-      border: 1px solid rgba(79,110,247,0.25);
-      border-radius: 8px;
-      padding: 10px 14px;
-      color: #8899cc;
-      font-size: 0.85rem;
-      margin: 8px 0 12px;
-    }
-    .note strong { color: #a0b4ff; }
+    .step-body h3 { margin-top: 0; }
 
     /* Lists */
-    ul.rules {
+    ul {
       list-style: none;
       padding: 0;
     }
-    ul.rules li {
+    ul li {
+      color: #8899cc;
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.6;
+    }
+    ul li::before {
+      content: '\25B8';
+      position: absolute;
+      left: 0;
+      color: #4f6ef7;
+    }
+
+    /* Note */
+    .note {
+      background: rgba(79,110,247,0.08);
+      border-left: 3px solid #4f6ef7;
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      color: #8899cc;
+      font-size: 0.9rem;
+    }
+
+    /* Fundamental rules list */
+    .rules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rule-item {
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #c0cff0;
-      font-size: 0.9rem;
+      padding: 12px 16px;
+      background: rgba(79,110,247,0.05);
+      border: 1px solid rgba(79,110,247,0.12);
+      border-radius: 8px;
     }
-    ul.rules li:last-child { border-bottom: none; }
-    ul.rules li::before {
-      content: "→";
-      color: #4f6ef7;
-      font-weight: 700;
-      flex-shrink: 0;
+    .rule-icon {
+      font-size: 1rem;
+      min-width: 24px;
     }
-    ul.rules li strong { color: #7c9fff; }
-
-    ul.prereqs {
-      list-style: none;
-      padding: 0;
-    }
-    ul.prereqs li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      color: #c0cff0;
-      font-size: 0.9rem;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    ul.prereqs li:last-child { border-bottom: none; }
-    ul.prereqs li::before { content: "◆"; color: #a855f7; font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; }
-
-    /* Links */
-    a { color: #7c9fff; text-decoration: none; }
-    a:hover { color: #c084fc; text-decoration: underline; }
+    .rule-text strong { color: #c0cff0; display: block; margin-bottom: 2px; font-size: 0.9rem; }
+    .rule-text span   { color: #8899cc; font-size: 0.85rem; }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px 24px;
-      color: var(--text-muted);
-      font-size: 0.875rem;
+      padding: 32px 0 24px;
+      color: #3a4a6a;
+      font-size: 0.85rem;
       position: relative;
       z-index: 1;
     }
-    footer a { color: var(--text-secondary); }
+    footer a { color: #4f6ef7; text-decoration: none; }
     footer a:hover { color: #7c9fff; }
 
-    /* Divider */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(79,110,247,0.3), transparent);
-      margin: 0 0 24px;
-    }
-
     @media (max-width: 600px) {
-      .container { padding: 70px 16px 32px; }
-      .card { padding: 20px; }
-      header { padding: 40px 0 32px; }
-      table { font-size: 0.8rem; }
-      th, td { padding: 8px; }
+      section { padding: 20px; }
+      header { padding: 60px 0 40px; }
+      .role-badges { gap: 8px; }
     }
   </style>
 </head>
@@ -394,50 +396,51 @@
   <div class="glow-left"></div>
   <div class="glow-right"></div>
 
-  <!-- Hex grid top-right -->
-  <svg class="deco" style="top:0;right:0;opacity:0.07;width:320px;height:250px" viewBox="0 0 320 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#7c9fff" stroke-width="0.8">
-      <polygon points="270,10 300,27 300,61 270,78 240,61 240,27"/>
-      <polygon points="210,10 240,27 240,61 210,78 180,61 180,27"/>
-      <polygon points="300,61 330,78 330,112 300,129 270,112 270,78"/>
-      <polygon points="240,61 270,78 270,112 240,129 210,112 210,78"/>
-      <polygon points="180,61 210,78 210,112 180,129 150,112 150,78"/>
-      <polygon points="270,112 300,129 300,163 270,180 240,163 240,129"/>
-      <polygon points="210,112 240,129 240,163 210,180 180,163 180,129"/>
-      <polygon points="300,163 330,180 330,214 300,231 270,214 270,180"/>
-      <polygon points="240,163 270,180 270,214 240,231 210,214 210,180"/>
+  <!-- Hexagonal grid - top right -->
+  <svg class="deco-svg" style="top:0;right:0;opacity:0.07;" width="340" height="260" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#7c9fff" stroke-width="0.8" fill="none">
+      <polygon points="260,20 290,37 290,71 260,88 230,71 230,37"/>
+      <polygon points="320,20 350,37 350,71 320,88 290,71 290,37"/>
+      <polygon points="290,71 320,88 320,122 290,139 260,122 260,88"/>
+      <polygon points="230,71 260,88 260,122 230,139 200,122 200,88"/>
+      <polygon points="260,122 290,139 290,173 260,190 230,173 230,139"/>
+      <polygon points="320,71 350,88 350,122 320,139 290,122 290,88"/>
+      <polygon points="200,122 230,139 230,173 200,190 170,173 170,139"/>
+      <polygon points="290,173 320,190 320,224 290,241 260,224 260,190"/>
+      <polygon points="230,173 260,190 260,224 230,241 200,224 200,190"/>
     </g>
   </svg>
 
-  <!-- Hex grid bottom-left -->
-  <svg class="deco" style="bottom:0;left:0;opacity:0.07;width:280px;height:220px" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#a855f7" stroke-width="0.8">
-      <polygon points="10,60 40,77 40,111 10,128 -20,111 -20,77"/>
-      <polygon points="70,60 100,77 100,111 70,128 40,111 40,77"/>
-      <polygon points="130,60 160,77 160,111 130,128 100,111 100,77"/>
-      <polygon points="40,111 70,128 70,162 40,179 10,162 10,128"/>
-      <polygon points="100,111 130,128 130,162 100,179 70,162 70,128"/>
-      <polygon points="160,111 190,128 190,162 160,179 130,162 130,128"/>
-      <polygon points="10,162 40,179 40,213 10,230 -20,213 -20,179"/>
-      <polygon points="70,162 100,179 100,213 70,230 40,213 40,179"/>
+  <!-- Hexagonal grid - bottom left -->
+  <svg class="deco-svg" style="bottom:0;left:0;opacity:0.07;" width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#a855f7" stroke-width="0.8" fill="none">
+      <polygon points="20,20 50,37 50,71 20,88 -10,71 -10,37"/>
+      <polygon points="80,20 110,37 110,71 80,88 50,71 50,37"/>
+      <polygon points="140,20 170,37 170,71 140,88 110,71 110,37"/>
+      <polygon points="50,71 80,88 80,122 50,139 20,122 20,88"/>
+      <polygon points="110,71 140,88 140,122 110,139 80,122 80,88"/>
+      <polygon points="170,71 200,88 200,122 170,139 140,122 140,88"/>
+      <polygon points="20,122 50,139 50,173 20,190 -10,173 -10,139"/>
+      <polygon points="80,122 110,139 110,173 80,190 50,173 50,139"/>
+      <polygon points="140,122 170,139 170,173 140,190 110,173 110,139"/>
     </g>
   </svg>
 
   <!-- Circuit lines left -->
-  <svg class="deco" style="top:30%;left:0;opacity:0.12;width:200px;height:200px" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#4f6ef7" stroke-width="1">
+  <svg class="deco-svg" style="left:0;top:30%;opacity:0.12;" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#4f6ef7" stroke-width="1" fill="none">
       <path d="M 20,40 L 80,40 L 80,80 L 140,80"/>
       <circle cx="20" cy="40" r="3" fill="#4f6ef7"/>
       <circle cx="140" cy="80" r="3" fill="#4f6ef7"/>
-      <path d="M 40,110 L 100,110 L 100,150 L 40,150 L 40,180"/>
-      <circle cx="40" cy="110" r="3" fill="#4f6ef7"/>
+      <path d="M 40,100 L 100,100 L 100,140 L 40,140 L 40,180"/>
+      <circle cx="40" cy="100" r="3" fill="#4f6ef7"/>
       <circle cx="40" cy="180" r="3" fill="#4f6ef7"/>
     </g>
   </svg>
 
   <!-- Circuit lines right -->
-  <svg class="deco" style="top:40%;right:0;opacity:0.12;width:200px;height:200px" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#a855f7" stroke-width="1">
+  <svg class="deco-svg" style="right:0;top:50%;opacity:0.12;" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#a855f7" stroke-width="1" fill="none">
       <path d="M 180,40 L 120,40 L 120,80 L 60,80"/>
       <circle cx="180" cy="40" r="3" fill="#a855f7"/>
       <circle cx="60" cy="80" r="3" fill="#a855f7"/>
@@ -453,52 +456,42 @@
     <header>
       <div class="ai-badge">AI POWERED</div>
       <h1>AI Powered<br>Coding Team</h1>
-      <p class="tagline">Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento.</p>
+      <p class="tagline">Um engenheiro sênior. Uma equipe inteira de desenvolvimento.</p>
 
-      <div class="roles">
+      <div class="role-badges">
         <div class="role-badge role-arquiteto">
-          <span class="role-title">ARQUITETO</span>
+          <span class="role-title">Arquiteto</span>
           <span class="role-sub">de Soluções</span>
         </div>
         <div class="role-badge role-analista">
-          <span class="role-title">ANALISTA</span>
+          <span class="role-title">Analista</span>
           <span class="role-sub">de Negócio</span>
         </div>
         <div class="role-badge role-designer">
-          <span class="role-title">DESIGNER</span>
+          <span class="role-title">Designer</span>
           <span class="role-sub">de Interface</span>
         </div>
         <div class="role-badge role-engenheiro">
-          <span class="role-title">ENGENHEIRO</span>
+          <span class="role-title">Engenheiro</span>
           <span class="role-sub">de Software</span>
         </div>
       </div>
 
       <div class="shields">
-        <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/LICENSE">
-          <img src="https://img.shields.io/badge/licença-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/>
-        </a>
-        <a href="https://www.anthropic.com/claude-code">
-          <img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/>
-        </a>
-        <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">
-          <img src="https://img.shields.io/badge/contribuição-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/>
-        </a>
-        <img src="https://img.shields.io/badge/Open_Source-♥-ff6b6b?style=flat-square" alt="Open Source"/>
+        <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/>
+        <img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/>
+        <img src="https://img.shields.io/badge/contribui%C3%A7%C3%A3o-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/>
+        <img src="https://img.shields.io/badge/Open_Source-%E2%99%A5-ff6b6b?style=flat-square" alt="Open Source"/>
       </div>
     </header>
 
-    <div class="divider"></div>
-
     <!-- O que é -->
-    <section class="card">
+    <section>
       <h2>O que é</h2>
-      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:0.95rem;">
+      <p>
         <strong style="color:#c0cff0">AI Powered Coding Team</strong> é um modelo de projeto (<em>project template</em>) que define a estrutura, os papéis e as instruções necessárias para que um engenheiro de software sênior utilize IA — inicialmente Claude Code — como uma equipe completa de desenvolvimento.
       </p>
-      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:0.95rem;">
-        O engenheiro deixa de atuar apenas como desenvolvedor e passa a assumir todos os papéis de um time:
-      </p>
+      <p>O engenheiro deixa de atuar apenas como desenvolvedor e passa a assumir todos os papéis de um time:</p>
       <table>
         <thead>
           <tr>
@@ -525,10 +518,13 @@
           </tr>
         </tbody>
       </table>
+      <p style="margin-top:16px">
+        A IA executa sob a supervisão e gestão ativa do engenheiro — que direciona, revisa e decide. A autonomia técnica permanece humana; o volume e a velocidade de execução são amplificados pela IA.
+      </p>
     </section>
 
     <!-- Como funciona -->
-    <section class="card">
+    <section>
       <h2>Como funciona</h2>
       <div class="code-block">
         <pre><code>Engenheiro Sênior
@@ -548,15 +544,15 @@
                               ├── revisa a arquitetura
                               └── valida regras de negócio</code></pre>
       </div>
-      <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:16px;">
+      <p>
         O modelo garante que <strong style="color:#c0cff0">nenhum código seja escrito sem especificação</strong>, que <strong style="color:#c0cff0">nenhuma decisão técnica seja tomada sem documentação</strong> e que <strong style="color:#c0cff0">toda implementação seja validada contra regras de negócio e diretrizes de marca</strong> — mantendo a qualidade de uma equipe madura mesmo com um único operador.
       </p>
     </section>
 
     <!-- Pré-requisitos -->
-    <section class="card">
+    <section>
       <h2>Pré-requisitos</h2>
-      <ul class="prereqs">
+      <ul>
         <li><a href="https://www.anthropic.com/claude-code">Claude Code</a> instalado e configurado</li>
         <li><a href="https://git-scm.com">Git</a> instalado localmente</li>
         <li>PowerShell 5.1 ou superior — nativo no Windows 10+; necessário apenas para usuários Windows</li>
@@ -565,24 +561,26 @@
     </section>
 
     <!-- Iniciando um novo projeto -->
-    <section class="card">
+    <section>
       <h2>Iniciando um novo projeto</h2>
 
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
           <h3>Instale o template</h3>
-          <p><span class="os-label os-label-linux">Linux / macOS</span></p>
+          <p><strong style="color:#c0cff0">Linux / macOS (bash):</strong></p>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             <pre><code>curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto</code></pre>
           </div>
-          <p><span class="os-label os-label-windows">Windows — PowerShell 5.1+</span></p>
+          <p style="margin-top:12px"><strong style="color:#c0cff0">Windows (PowerShell 5.1+):</strong></p>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-            <pre><code>& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto</code></pre>
+            <pre><code>&amp; ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto</code></pre>
           </div>
-          <div class="note"><strong>Versão específica:</strong> acrescente a tag ao final do comando, após o nome do diretório (ex: <code>meu-projeto v1.2.0</code>).</div>
+          <div class="note">
+            <strong>Versão específica:</strong> acrescente a tag ao final do comando, após o nome do diretório (ex: <code>meu-projeto v0.1.0-alpha5</code>).
+          </div>
           <p>O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git.</p>
         </div>
       </div>
@@ -634,7 +632,7 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
     </section>
 
     <!-- Estrutura do projeto -->
-    <section class="card">
+    <section>
       <h2>Estrutura do projeto</h2>
       <div class="code-block">
         <pre><code>.
@@ -665,46 +663,112 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
       </div>
     </section>
 
+    <!-- Skills disponíveis -->
+    <section>
+      <h2>Skills disponíveis</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/architect-reviewer</code></td>
+            <td>Valida conformidade com <code>ARCHITECTURE.md</code>, <code>SOLUTION.md</code> e os 12 fatores</td>
+          </tr>
+          <tr>
+            <td><code>/business-reviewer</code></td>
+            <td>Valida conformidade entre <code>BUSINESS.md</code>, implementação e cobertura de testes</td>
+          </tr>
+          <tr>
+            <td><code>/guideline-reviewer</code></td>
+            <td>Valida conformidade entre <code>GUIDELINE.md</code> e as interfaces construídas</td>
+          </tr>
+          <tr>
+            <td><code>/github-site-generator</code></td>
+            <td>Gera o site GitHub Pages em <code>docs/site/</code> e atualiza o <code>README.md</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <!-- Regras fundamentais -->
-    <section class="card">
+    <section>
       <h2>Regras fundamentais do modelo</h2>
-      <ul class="rules">
-        <li><strong>Especificação antes de implementação</strong> — nenhuma funcionalidade sem regra de negócio documentada</li>
-        <li><strong>Nenhuma tecnologia sem registro</strong> — toda stack deve estar em <code>docs/SOLUTION.md</code></li>
-        <li><strong>Testes guiados por negócio</strong> — cobertura 100% das regras especificadas</li>
-        <li><strong>Secrets nunca no código</strong> — sempre configuráveis por ambiente</li>
-        <li><strong>The Twelve-Factor App</strong> — software aderente aos doze fatores</li>
-        <li><strong>Commits são humanos</strong> — a IA propõe, o engenheiro commita</li>
-      </ul>
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rule-icon">&#128203;</div>
+          <div class="rule-text">
+            <strong>Especificação antes de implementação</strong>
+            <span>Nenhuma funcionalidade sem regra de negócio documentada</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">&#128194;</div>
+          <div class="rule-text">
+            <strong>Nenhuma tecnologia sem registro</strong>
+            <span>Toda stack deve estar em <code>docs/SOLUTION.md</code></span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">&#129514;</div>
+          <div class="rule-text">
+            <strong>Testes guiados por negócio</strong>
+            <span>Cobertura 100% das regras especificadas</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">&#128274;</div>
+          <div class="rule-text">
+            <strong>Secrets nunca no código</strong>
+            <span>Sempre configuráveis por ambiente</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">&#9881;&#65039;</div>
+          <div class="rule-text">
+            <strong>The Twelve-Factor App</strong>
+            <span>Software aderente aos doze fatores</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">&#129309;</div>
+          <div class="rule-text">
+            <strong>Commits são humanos</strong>
+            <span>A IA propõe, o engenheiro commita</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contribuindo e Licença -->
-    <section class="card">
+    <section>
       <h2>Contribuindo</h2>
-      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">
-        Veja <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.
+      <p>
+        Veja <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> para entender as responsabilidades de cada perfil e as regras de colaboração com o projeto.
       </p>
-      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:20px;">
+      <p>
         Contribuições são bem-vindas — especialmente melhorias nas instruções da IA, novas skills de revisão, e suporte a outros assistentes além do Claude Code.
       </p>
-      <div class="divider" style="margin:20px 0;"></div>
-      <h2 style="margin-top:0;">Licença</h2>
-      <p style="color:var(--text-secondary);font-size:0.9rem;">
-        Este projeto é distribuído sob a licença <a href="https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/LICENSE">MIT</a>.<br>
-        Copyright © 2026 <a href="https://github.com/hibex-solutions">Hibex Solutions</a>
+      <h2 style="margin-top:24px">Licença</h2>
+      <p>
+        Este projeto é distribuído sob a licença <a href="https://github.com/Hibex-Solutions/ai-powered-coding-team/blob/main/LICENSE">MIT</a>.<br>
+        Copyright &copy; 2026 <a href="https://github.com/hibex-solutions">Hibex Solutions</a>
       </p>
     </section>
 
   </div>
 
   <footer>
-    Feito com ♥ por <a href="https://github.com/hibex-solutions">Hibex Solutions</a>
+    <p>Feito com &#9825; por <a href="https://github.com/hibex-solutions">Hibex Solutions</a></p>
   </footer>
 
   <script>
     function copyCode(btn) {
-      const pre = btn.nextElementSibling;
-      const text = pre.textContent;
+      const pre = btn.closest('.code-block').querySelector('pre');
+      const text = pre.innerText;
       navigator.clipboard.writeText(text).then(() => {
         btn.textContent = 'Copiado!';
         btn.classList.add('copied');
