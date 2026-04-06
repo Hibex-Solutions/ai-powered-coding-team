@@ -1,5 +1,5 @@
 ---
-name: dotnet-engineer
+name: stack-dotnet-engineer
 description: Atua como engenheiro .NET implementando soluções conforme TheCleanArch (hibex-solutions.github.io/TheCleanArch)
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---

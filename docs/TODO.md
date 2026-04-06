@@ -1,0 +1,5 @@
+- [ ] Validar scripts com opção de stack
+- [ ] Analisar relação entre SOLUTION-dotnet.md com skill/stack-dotnet-engineer. Onde informações não estejam repetidas na skill diretamente quando fizerem parte das definições de stack da solução. A ideia é que a skill dotnet-engineer saiba que informações de stack estejam na SOLUTION.md final seção x.
+- [ ] Considerar usar --version x e --stack x de maneira opcional no script de inicialização
+- [ ] Analisar README.md para que dotnet seja apenas uma das stacks, e não estar como exemplo padrão de uso de stack
+- [ ] Incluir uma opção de stack para Blazor Apps. Ex: `dotnetblazor`. Talvez `dotnet` vire `dotnetapi`. Seguir modelos de TheCleanArch.Templates

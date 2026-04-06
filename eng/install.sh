@@ -3,14 +3,16 @@ set -euo pipefail
 
 # Instala o AI Powered Coding Team em um diretório novo.
 #
-# Uso: ./eng/install.sh <diretório-destino> [versão]
+# Uso: ./eng/install.sh <diretório-destino> [versão] [--stack <nome>]
 #
 # Ou diretamente via curl:
-#   curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- <diretório-destino> [versão]
+#   curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- <diretório-destino> [versão] [--stack <nome>]
 #
 # Argumentos:
 #   <diretório-destino>  Caminho onde o template será instalado (obrigatório)
 #   [versão]             Tag da release a instalar, ex: v1.2.0 (opcional; padrão: última)
+#   [--stack <nome>]     Stack tecnológica a inicializar, ex: dotnet (opcional)
+#                        Quando omitido, apenas os arquivos agnósticos de stack são instalados.
 #
 # Pré-requisitos:
 #   - git   (https://git-scm.com)
@@ -20,20 +22,51 @@ set -euo pipefail
 REPO="hibex-solutions/ai-powered-coding-team"
 
 # ---------------------------------------------------------------------------
-# Parâmetros: diretório de destino (obrigatório) e versão (opcional)
+# Parâmetros: diretório de destino (obrigatório), versão e stack (opcionais)
 # ---------------------------------------------------------------------------
 
 if [[ $# -lt 1 || -z "${1:-}" ]]; then
-    echo "Uso: $0 <diretório-destino> [versão]" >&2
+    echo "Uso: $0 <diretório-destino> [versão] [--stack <nome>]" >&2
     echo "" >&2
     echo "  Exemplos:" >&2
-    echo "    $0 ~/meu-projeto           # instala a última versão" >&2
-    echo "    $0 ~/meu-projeto v1.2.0    # instala uma versão específica" >&2
+    echo "    $0 ~/meu-projeto                       # instala a última versão (sem stack)" >&2
+    echo "    $0 ~/meu-projeto v1.2.0                # versão específica (sem stack)" >&2
+    echo "    $0 ~/meu-projeto --stack dotnet        # última versão com stack .NET" >&2
+    echo "    $0 ~/meu-projeto v1.2.0 --stack dotnet # versão específica com stack .NET" >&2
     exit 1
 fi
 
 TARGET_DIR="${1}"
-REQUESTED_VERSION="${2:-}"
+REQUESTED_VERSION=""
+REQUESTED_STACK=""
+
+# Parseia os argumentos restantes
+shift
+while [[ $# -gt 0 ]]; do
+    case "${1}" in
+        --stack)
+            if [[ $# -lt 2 || -z "${2:-}" ]]; then
+                echo "ERRO: --stack requer um nome de stack." >&2
+                exit 1
+            fi
+            REQUESTED_STACK="${2}"
+            shift 2
+            ;;
+        --*)
+            echo "ERRO: opção desconhecida '${1}'." >&2
+            exit 1
+            ;;
+        *)
+            if [[ -z "${REQUESTED_VERSION}" ]]; then
+                REQUESTED_VERSION="${1}"
+            else
+                echo "ERRO: argumento inesperado '${1}'." >&2
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
 
 # ---------------------------------------------------------------------------
 # Validação de pré-requisitos
@@ -111,6 +144,102 @@ echo "==> Extraindo para ${TARGET_DIR}..."
 unzip -q "${TMP_ZIP}" -d "${TARGET_DIR}"
 
 # ---------------------------------------------------------------------------
+# Resolução e validação da stack
+# ---------------------------------------------------------------------------
+
+# Deriva as stacks disponíveis a partir dos diretórios stack-* no pacote extraído
+AVAILABLE_STACKS=()
+SKILLS_DIR="${TARGET_DIR}/.claude/skills"
+
+if [[ -d "${SKILLS_DIR}" ]]; then
+    for skill_dir in "${SKILLS_DIR}/stack-"*/; do
+        if [[ -d "${skill_dir}" ]]; then
+            skill_name="$(basename "${skill_dir}")"   # ex: stack-dotnet-engineer
+            stack_part="${skill_name#stack-}"          # ex: dotnet-engineer
+            stack_name="${stack_part%%-*}"             # ex: dotnet
+            # Adiciona apenas se ainda não está na lista
+            already_added=false
+            if [[ ${#AVAILABLE_STACKS[@]} -gt 0 ]]; then
+                for existing in "${AVAILABLE_STACKS[@]}"; do
+                    if [[ "${existing}" == "${stack_name}" ]]; then
+                        already_added=true
+                        break
+                    fi
+                done
+            fi
+            if [[ "${already_added}" == false ]]; then
+                AVAILABLE_STACKS+=("${stack_name}")
+            fi
+        fi
+    done
+fi
+
+if [[ -n "${REQUESTED_STACK}" ]]; then
+    # Valida se a stack solicitada existe no pacote
+    STACK_VALID=false
+    if [[ ${#AVAILABLE_STACKS[@]} -gt 0 ]]; then
+        for s in "${AVAILABLE_STACKS[@]}"; do
+            if [[ "${s}" == "${REQUESTED_STACK}" ]]; then
+                STACK_VALID=true
+                break
+            fi
+        done
+    fi
+
+    if [[ "${STACK_VALID}" == false ]]; then
+        echo "ERRO: stack '${REQUESTED_STACK}' não encontrada nesta versão do template." >&2
+        if [[ ${#AVAILABLE_STACKS[@]} -gt 0 ]]; then
+            echo "  Stacks disponíveis: ${AVAILABLE_STACKS[*]}" >&2
+        else
+            echo "  Nenhuma stack disponível nesta versão." >&2
+        fi
+        rm -rf "${TARGET_DIR}"
+        exit 1
+    fi
+fi
+
+# ---------------------------------------------------------------------------
+# Filtragem de arquivos por stack
+# ---------------------------------------------------------------------------
+
+echo "==> Ajustando arquivos para stack: ${REQUESTED_STACK:-"(nenhuma — agnóstico)"}..."
+
+if [[ -d "${SKILLS_DIR}" ]]; then
+    for skill_dir in "${SKILLS_DIR}/stack-"*/; do
+        if [[ ! -d "${skill_dir}" ]]; then
+            continue
+        fi
+
+        skill_name="$(basename "${skill_dir}")"   # ex: stack-dotnet-engineer
+        stack_part="${skill_name#stack-}"          # ex: dotnet-engineer
+        stack_name="${stack_part%%-*}"             # ex: dotnet
+
+        if [[ -z "${REQUESTED_STACK}" || "${stack_name}" != "${REQUESTED_STACK}" ]]; then
+            # Sem stack ou stack diferente: remove o diretório
+            rm -rf "${skill_dir}"
+        else
+            # Stack correspondente: renomeia removendo o prefixo "stack-"
+            # stack-dotnet-engineer → dotnet-engineer
+            new_name="${stack_part}"               # dotnet-engineer
+            mv "${skill_dir}" "${SKILLS_DIR}/${new_name}"
+        fi
+    done
+fi
+
+# Mescla SOLUTION-{stack}.md em SOLUTION.md (se stack foi selecionada)
+SOLUTION_BASE="${TARGET_DIR}/docs/SOLUTION.md"
+if [[ -n "${REQUESTED_STACK}" ]]; then
+    SOLUTION_STACK="${TARGET_DIR}/docs/SOLUTION-${REQUESTED_STACK}.md"
+    if [[ -f "${SOLUTION_STACK}" ]]; then
+        echo "" >> "${SOLUTION_BASE}"
+        cat "${SOLUTION_STACK}" >> "${SOLUTION_BASE}"
+    fi
+fi
+
+# Remove todos os arquivos SOLUTION-*.md (já foram mesclados ou não são da stack)
+find "${TARGET_DIR}/docs" -maxdepth 1 -name "SOLUTION-*.md" -delete
+
+# ---------------------------------------------------------------------------
 # Inicialização do repositório Git
 # ---------------------------------------------------------------------------
 
@@ -121,10 +250,15 @@ git -C "${TARGET_DIR}" init --initial-branch=main
 # Instruções finais
 # ---------------------------------------------------------------------------
 
+STACK_INFO=""
+if [[ -n "${REQUESTED_STACK}" ]]; then
+    STACK_INFO=" | stack: ${REQUESTED_STACK}"
+fi
+
 echo ""
 echo "================================================================"
 echo " AI Powered Coding Team ${VERSION} instalado em:"
-echo " ${TARGET_DIR}"
+echo " ${TARGET_DIR}${STACK_INFO}"
 echo "================================================================"
 echo ""
 echo "Próximos passos:"
