@@ -83,7 +83,7 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 & ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto
 ```
 
-> **Versão específica:** acrescente a tag ao final do comando, após o nome do diretório (ex: `meu-projeto v0.1.0-alpha6`).
+> **Versão específica:** acrescente a tag ao final do comando, após o nome do diretório (ex: `meu-projeto v0.1.0-alpha7`).
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
 
