@@ -20,7 +20,7 @@ global para toda solução de software construída.
 ## Regras gerais de codificação
 
 - A raiz do projeto deve ser um repositório Git
-- Deve existir um arquivo `.gititnore` na raiz do projeto com as regras de arquivos ignoráveis do Git
+- Deve existir um arquivo `.gitignore` na raiz do projeto com as regras de arquivos ignoráveis do Git
 - Deve existir um arquivo `.editorconfig` na raiz do projeto com as regras de personalização dos editores de código
 - Não devem existir arquivos `.gitkeep` em diretórios que não estejam vazios. Esses são arquivos usados exclusivamente para manter diretórios vazios na árvore do repositório Git. Desnecessários quando o diretório não é vazio.
 - Nenhum segredo deve ser condificado puramente no código. Ao invés disso devem ser configuráveis

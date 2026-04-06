@@ -45,3 +45,28 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 - Atualizar o Guideline sempre que houver evolução nas diretrizes de marca ou UX
 - Garantir que nenhum comportamento de interface viole as regras estabelecidas no Guideline
 
+---
+
+## Engenheiro de Software
+
+**Documentos sob sua responsabilidade:** `src/`, `test/`
+
+**Ações esperadas:**
+
+- Iniciar o Claude Code (`claude`) somente após as especificações estarem documentadas
+- Delegar a implementação à IA, revisando e validando cada entrega antes de commitar
+- Garantir que toda implementação tenha cobertura de testes baseada nas regras de negócio
+- Nunca commitar código sem revisão — a IA propõe, o engenheiro decide
+
+### Skills disponíveis
+
+Cada skill faz o Claude assumir um perfil especializado — não são comandos avulsos, mas contextos de atuação que a IA assume durante a sessão. Para ativar, use `/nome-da-skill` no Claude Code.
+
+| Skill | Perfil assumido / Descrição |
+|---|---|
+| `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `docs/ARCHITECTURE.md` e os doze fatores |
+| `/business-reviewer` | Atua como revisor de negócio — valida cobertura de todas as regras em `docs/BUSINESS.md` |
+| `/guideline-reviewer` | Atua como revisor de UX — valida conformidade das interfaces com `docs/GUIDELINE.md` |
+| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch) |
+| `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
+

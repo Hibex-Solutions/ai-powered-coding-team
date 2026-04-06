@@ -657,32 +657,37 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX</code></pre>
         </div>
       </section>
 
-      <!-- Comandos disponíveis -->
+      <!-- Skills disponíveis -->
       <section>
-        <h2>Comandos disponíveis</h2>
+        <h2>Skills disponíveis</h2>
+        <p style="color:#8899cc;font-size:0.95rem;margin-bottom:20px;">Cada skill faz o Claude assumir um perfil especializado. Para ativar, use <code>/nome-da-skill</code> numa sessão do Claude Code.</p>
         <table>
           <thead>
             <tr>
               <th>Skill</th>
-              <th>Descrição</th>
+              <th>Perfil assumido / Descrição</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>/architect-reviewer</code></td>
-              <td>Valida conformidade com <code>ARCHITECTURE.md</code>, <code>SOLUTION.md</code> e os 12 fatores</td>
+              <td>Atua como arquiteto revisor — valida conformidade com <code>ARCHITECTURE.md</code>, <code>SOLUTION.md</code> e os 12 fatores</td>
             </tr>
             <tr>
               <td><code>/business-reviewer</code></td>
-              <td>Valida conformidade entre <code>BUSINESS.md</code>, implementação e cobertura de testes</td>
+              <td>Atua como revisor de negócio — valida conformidade entre <code>BUSINESS.md</code>, implementação e cobertura de testes</td>
             </tr>
             <tr>
               <td><code>/guideline-reviewer</code></td>
-              <td>Valida conformidade entre <code>GUIDELINE.md</code> e as interfaces construídas</td>
+              <td>Atua como revisor de UX — valida conformidade entre <code>GUIDELINE.md</code> e as interfaces construídas</td>
+            </tr>
+            <tr>
+              <td><code>/dotnet-engineer</code></td>
+              <td>Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch)</td>
             </tr>
             <tr>
               <td><code>/github-site-generator</code></td>
-              <td>Gera o site GitHub Pages em <code>docs/site/</code> e atualiza o README</td>
+              <td>Atua como gerador de site — produz o GitHub Pages em <code>docs/site/</code> e atualiza o README</td>
             </tr>
           </tbody>
         </table>

@@ -103,7 +103,7 @@ Escreva um arquivo HTML autocontido e moderno seguindo estritamente a identidade
     <!-- seção: Pré-requisitos -->
     <!-- seção: Iniciando um novo projeto (instalação) -->
     <!-- seção: Estrutura do projeto (árvore em <pre>) -->
-    <!-- seção: Comandos disponíveis (tabela) -->
+    <!-- seção: Skills disponíveis (tabela com parágrafo introdutório explicando que cada skill faz o Claude assumir um perfil especializado, não executa um comando avulso) -->
     <!-- seção: Regras fundamentais do modelo (lista) -->
     <!-- seção: Contribuindo e Licença -->
   </main>
@@ -233,6 +233,24 @@ As regras e ícones devem ser derivados do conteúdo de `docs/ARCHITECTURE.md`. 
 ### Conteúdo das seções (baseado no README.md)
 
 Use o conteúdo de `README.md` como fonte para todas as seções. Leia o arquivo antes de gerar.
+
+### Seção "Skills disponíveis"
+
+A seção deve abrir com um parágrafo introdutório antes da tabela:
+
+```html
+<p>Cada skill faz o Claude assumir um perfil especializado. Para ativar, use <code>/nome-da-skill</code> numa sessão do Claude Code.</p>
+```
+
+A tabela deve ter duas colunas: **Skill** e **Perfil assumido / Descrição**. Liste as 5 skills na seguinte ordem, usando o padrão "Atua como [papel] — [descrição]":
+
+| Skill | Perfil assumido / Descrição |
+|---|---|
+| `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `ARCHITECTURE.md`, `SOLUTION.md` e os 12 fatores |
+| `/business-reviewer` | Atua como revisor de negócio — valida conformidade entre `BUSINESS.md`, implementação e cobertura de testes |
+| `/guideline-reviewer` | Atua como revisor de UX — valida conformidade entre `GUIDELINE.md` e as interfaces construídas |
+| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch) |
+| `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
 
 ### URLs de instalação
 

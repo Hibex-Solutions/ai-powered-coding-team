@@ -130,6 +130,7 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 │   └── skills/                 # Skills customizadas
 │       ├── architect-reviewer/
 │       ├── business-reviewer/
+│       ├── dotnet-engineer/
 │       ├── github-site-generator/
 │       └── guideline-reviewer/
 │
