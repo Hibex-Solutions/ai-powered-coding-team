@@ -128,6 +128,7 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 ├── .claude/                    # Configurações do Claude Code
 │   ├── CLAUDE.md               # Instruções para a IA
 │   └── skills/                 # Skills customizadas
+│       ├── c4model-architectural-designer/
 │       ├── architect-reviewer/
 │       ├── business-reviewer/
 │       ├── dotnet-engineer/

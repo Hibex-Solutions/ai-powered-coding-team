@@ -12,6 +12,7 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 **Ações esperadas:**
 
 - Validar a arquitetura com o Claude Code — revisar aderência às regras primárias invioláveis antes de qualquer mudança estrutural
+- Usar `/c4model-architectural-designer` para criar e manter os diagramas C4Model em `docs/solution/`, documentando contexto, containers e componentes da solução
 - Atualizar as definições do Twelve-Factor App em `docs/architecture/12factor/` sempre que houver mudança na stack ou no modelo de implantação
 - Manter `docs/SOLUTION.md` atualizado conforme a solução evolui, garantindo que componentes e tecnologias adotados estejam documentados
 - Garantir que nenhuma tecnologia ou componente seja adotado sem estar registrado no desenho de solução
@@ -64,6 +65,7 @@ Cada skill faz o Claude assumir um perfil especializado — não são comandos a
 
 | Skill | Perfil assumido / Descrição |
 |---|---|
+| `/c4model-architectural-designer` | Atua como designer de arquitetura — cria diagramas C4Model com sintaxe Mermaid e salva em `docs/solution/` |
 | `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `docs/ARCHITECTURE.md` e os doze fatores |
 | `/business-reviewer` | Atua como revisor de negócio — valida cobertura de todas as regras em `docs/BUSINESS.md` |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade das interfaces com `docs/GUIDELINE.md` |

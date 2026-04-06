@@ -242,10 +242,11 @@ A seção deve abrir com um parágrafo introdutório antes da tabela:
 <p>Cada skill faz o Claude assumir um perfil especializado. Para ativar, use <code>/nome-da-skill</code> numa sessão do Claude Code.</p>
 ```
 
-A tabela deve ter duas colunas: **Skill** e **Perfil assumido / Descrição**. Liste as 5 skills na seguinte ordem, usando o padrão "Atua como [papel] — [descrição]":
+A tabela deve ter duas colunas: **Skill** e **Perfil assumido / Descrição**. Liste as 6 skills na seguinte ordem, usando o padrão "Atua como [papel] — [descrição]":
 
 | Skill | Perfil assumido / Descrição |
 |---|---|
+| `/c4model-architectural-designer` | Atua como designer de arquitetura — cria diagramas C4Model com sintaxe Mermaid e salva em `docs/solution/` |
 | `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `ARCHITECTURE.md`, `SOLUTION.md` e os 12 fatores |
 | `/business-reviewer` | Atua como revisor de negócio — valida conformidade entre `BUSINESS.md`, implementação e cobertura de testes |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade entre `GUIDELINE.md` e as interfaces construídas |
