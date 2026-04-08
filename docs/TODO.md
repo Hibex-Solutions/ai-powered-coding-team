@@ -1,2 +1,0 @@
-- [ ] Analisar README.md para que dotnet seja apenas uma das stacks, e não estar como exemplo padrão de uso de stack
-- [ ] Incluir uma opção de stack para Blazor Apps. Ex: `dotnetblazor`. Talvez `dotnet` vire `dotnetapi`. Seguir modelos de TheCleanArch.Templates
