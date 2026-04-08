@@ -582,7 +582,11 @@
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
             <pre><code>& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto</code></pre>
           </div>
-          <blockquote><strong>Versão específica:</strong> acrescente a tag ao final do comando, após o nome do diretório (ex: <code>meu-projeto v0.1.0-alpha7</code>).</blockquote>
+          <blockquote>
+            <strong>Versão específica (bash):</strong> use <code>--version &lt;tag&gt;</code> — ex: <code>meu-projeto --version v0.1.0-alpha7 --stack dotnet</code>.<br><br>
+            <strong>Versão específica (PowerShell):</strong> use <code>-Version &lt;tag&gt;</code> — ex: <code>meu-projeto -Version v0.1.0-alpha7 -Stack dotnet</code>.<br><br>
+            <strong>Stack inválida:</strong> o script falha imediatamente e lista as stacks disponíveis na versão solicitada.
+          </blockquote>
           <p style="margin-top:12px;">O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:</p>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copiar</button>

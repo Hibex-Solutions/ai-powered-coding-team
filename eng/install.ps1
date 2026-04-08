@@ -19,9 +19,9 @@
 
 .EXAMPLE
     .\eng\install.ps1 meu-projeto
-    .\eng\install.ps1 meu-projeto v1.2.0
+    .\eng\install.ps1 meu-projeto -Version v1.2.0
     .\eng\install.ps1 meu-projeto -Stack dotnet
-    .\eng\install.ps1 meu-projeto v1.2.0 -Stack dotnet
+    .\eng\install.ps1 meu-projeto -Version v1.2.0 -Stack dotnet
 
 .NOTES
     Pré-requisitos:
@@ -33,7 +33,7 @@ param(
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$TargetDir,
 
-    [Parameter(Mandatory = $false, Position = 1)]
+    [Parameter(Mandatory = $false)]
     [string]$Version = "",
 
     [Parameter(Mandatory = $false)]

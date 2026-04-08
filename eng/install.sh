@@ -3,14 +3,14 @@ set -euo pipefail
 
 # Instala o AI Powered Coding Team em um diretório novo.
 #
-# Uso: ./eng/install.sh <diretório-destino> [versão] [--stack <nome>]
+# Uso: ./eng/install.sh <diretório-destino> [--version <tag>] [--stack <nome>]
 #
 # Ou diretamente via curl:
-#   curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- <diretório-destino> [versão] [--stack <nome>]
+#   curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- <diretório-destino> [--version <tag>] [--stack <nome>]
 #
 # Argumentos:
 #   <diretório-destino>  Caminho onde o template será instalado (obrigatório)
-#   [versão]             Tag da release a instalar, ex: v1.2.0 (opcional; padrão: última)
+#   [--version <tag>]    Tag da release a instalar, ex: v1.2.0 (opcional; padrão: última)
 #   [--stack <nome>]     Stack tecnológica a inicializar, ex: dotnet (opcional)
 #                        Quando omitido, apenas os arquivos agnósticos de stack são instalados.
 #
@@ -26,13 +26,13 @@ REPO="hibex-solutions/ai-powered-coding-team"
 # ---------------------------------------------------------------------------
 
 if [[ $# -lt 1 || -z "${1:-}" ]]; then
-    echo "Uso: $0 <diretório-destino> [versão] [--stack <nome>]" >&2
+    echo "Uso: $0 <diretório-destino> [--version <tag>] [--stack <nome>]" >&2
     echo "" >&2
     echo "  Exemplos:" >&2
-    echo "    $0 ~/meu-projeto                       # instala a última versão (sem stack)" >&2
-    echo "    $0 ~/meu-projeto v1.2.0                # versão específica (sem stack)" >&2
-    echo "    $0 ~/meu-projeto --stack dotnet        # última versão com stack .NET" >&2
-    echo "    $0 ~/meu-projeto v1.2.0 --stack dotnet # versão específica com stack .NET" >&2
+    echo "    $0 ~/meu-projeto                                    # instala a última versão (sem stack)" >&2
+    echo "    $0 ~/meu-projeto --version v1.2.0                   # versão específica (sem stack)" >&2
+    echo "    $0 ~/meu-projeto --stack dotnet                     # última versão com stack .NET" >&2
+    echo "    $0 ~/meu-projeto --version v1.2.0 --stack dotnet    # versão específica com stack .NET" >&2
     exit 1
 fi
 
@@ -44,6 +44,14 @@ REQUESTED_STACK=""
 shift
 while [[ $# -gt 0 ]]; do
     case "${1}" in
+        --version)
+            if [[ $# -lt 2 || -z "${2:-}" ]]; then
+                echo "ERRO: --version requer uma tag de versão." >&2
+                exit 1
+            fi
+            REQUESTED_VERSION="${2}"
+            shift 2
+            ;;
         --stack)
             if [[ $# -lt 2 || -z "${2:-}" ]]; then
                 echo "ERRO: --stack requer um nome de stack." >&2
@@ -52,18 +60,9 @@ while [[ $# -gt 0 ]]; do
             REQUESTED_STACK="${2}"
             shift 2
             ;;
-        --*)
-            echo "ERRO: opção desconhecida '${1}'." >&2
-            exit 1
-            ;;
         *)
-            if [[ -z "${REQUESTED_VERSION}" ]]; then
-                REQUESTED_VERSION="${1}"
-            else
-                echo "ERRO: argumento inesperado '${1}'." >&2
-                exit 1
-            fi
-            shift
+            echo "ERRO: argumento ou opção desconhecida '${1}'." >&2
+            exit 1
             ;;
     esac
 done

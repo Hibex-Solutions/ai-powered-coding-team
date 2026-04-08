@@ -91,7 +91,9 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 & ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack dotnet
 ```
 
-> **Versão específica:** acrescente a tag após o nome do diretório (ex: `meu-projeto v0.1.0-alpha7 --stack dotnet`).
+> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha7 --stack dotnet`.
+>
+> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha7 -Stack dotnet`.
 >
 > **Stack inválida:** o script falha imediatamente e lista as stacks disponíveis na versão solicitada.
 
