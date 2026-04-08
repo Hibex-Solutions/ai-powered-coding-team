@@ -171,21 +171,26 @@ try {
                 # stack-dotnet-engineer → dotnet-engineer
                 $NewPath = Join-Path $SkillsDir $StackPart
                 Rename-Item -Path $SkillDir -NewName $StackPart
+                # Atualiza o campo name: no frontmatter do SKILL.md
+                $SkillMd = Join-Path $NewPath "SKILL.md"
+                if (Test-Path $SkillMd) {
+                    (Get-Content $SkillMd) -replace "^name: $SkillName$", "name: $StackPart" |
+                        Set-Content $SkillMd
+                }
             }
         }
     }
 
-    # Mescla SOLUTION-{stack}.md em SOLUTION.md (se stack foi selecionada)
+    # Substitui SOLUTION.md pelo arquivo de stack (se stack foi selecionada)
     $SolutionBase = Join-Path $TargetDir "docs\SOLUTION.md"
     if ($Stack -ne "") {
         $SolutionStack = Join-Path $TargetDir "docs\SOLUTION-$Stack.md"
         if (Test-Path $SolutionStack) {
-            Add-Content -Path $SolutionBase -Value ""
-            Get-Content $SolutionStack | Add-Content -Path $SolutionBase
+            Move-Item -Path $SolutionStack -Destination $SolutionBase -Force
         }
     }
 
-    # Remove todos os arquivos SOLUTION-*.md
+    # Remove todos os arquivos SOLUTION-*.md restantes (não são da stack selecionada)
     Get-ChildItem -Path (Join-Path $TargetDir "docs") -Filter "SOLUTION-*.md" -File |
         Remove-Item -Force
 

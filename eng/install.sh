@@ -222,21 +222,25 @@ if [[ -d "${SKILLS_DIR}" ]]; then
             # stack-dotnet-engineer → dotnet-engineer
             new_name="${stack_part}"               # dotnet-engineer
             mv "${skill_dir}" "${SKILLS_DIR}/${new_name}"
+            # Atualiza o campo name: no frontmatter do SKILL.md
+            skill_md="${SKILLS_DIR}/${new_name}/SKILL.md"
+            if [[ -f "${skill_md}" ]]; then
+                sed -i "s/^name: ${skill_name}$/name: ${new_name}/" "${skill_md}"
+            fi
         fi
     done
 fi
 
-# Mescla SOLUTION-{stack}.md em SOLUTION.md (se stack foi selecionada)
+# Substitui SOLUTION.md pelo arquivo de stack (se stack foi selecionada)
 SOLUTION_BASE="${TARGET_DIR}/docs/SOLUTION.md"
 if [[ -n "${REQUESTED_STACK}" ]]; then
     SOLUTION_STACK="${TARGET_DIR}/docs/SOLUTION-${REQUESTED_STACK}.md"
     if [[ -f "${SOLUTION_STACK}" ]]; then
-        echo "" >> "${SOLUTION_BASE}"
-        cat "${SOLUTION_STACK}" >> "${SOLUTION_BASE}"
+        mv "${SOLUTION_STACK}" "${SOLUTION_BASE}"
     fi
 fi
 
-# Remove todos os arquivos SOLUTION-*.md (já foram mesclados ou não são da stack)
+# Remove todos os arquivos SOLUTION-*.md restantes (não são da stack selecionada)
 find "${TARGET_DIR}/docs" -maxdepth 1 -name "SOLUTION-*.md" -delete
 
 # ---------------------------------------------------------------------------
