@@ -1,22 +1,15 @@
 ---
-name: dotnet-engineer
+name: stack-dotnet-engineer
 description: Atua como engenheiro .NET implementando soluções conforme TheCleanArch (hibex-solutions.github.io/TheCleanArch)
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
-Atue como engenheiro .NET e implemente a solução seguindo estritamente as convenções do guia _TheCleanArch_ da Hibex Solutions. Antes de qualquer ação, leia `docs/SOLUTION.md` para entender o contexto e os componentes da solução que deve ser construída.
+Atue como engenheiro .NET e implemente a solução seguindo estritamente as convenções do guia _TheCleanArch_ da Hibex Solutions. Antes de qualquer ação:
+
+1. Leia `docs/SOLUTION.md` para entender o contexto e os componentes da solução que deve ser construída.
+2. Leia a **seção de stack tecnológica** em `docs/SOLUTION.md` (normalmente ao final do arquivo). Essa seção é a fonte de verdade para: tecnologias adotadas, versões, decisões de implementação invioláveis e convenções de nomenclatura. Siga-as rigorosamente.
 
 > **Templates:** Leia todos os arquivos em `.claude/skills/dotnet-engineer/templates/` antes de iniciar qualquer implementação. Esses arquivos são os templates de referência que devem ser usados como base para gerar o código real — substituindo os placeholders `{Projeto}`, `{Solução}`, `{Prefix}` etc. pelos valores corretos do projeto.
-
----
-
-## Decisões arquiteturais invioláveis
-
-1. **Explícito é melhor que implícito:** `global.json` com SDK fixado, `<ImplicitUsings>disable`, `Usings.cs` declarado explicitamente em cada projeto
-2. **Abstração de tempo:** Use `TimeProvider` (.NET 8+) — nunca use `DateTime.UtcNow` ou `DateTime.Now` diretamente no código
-3. **Segredos:** Nunca hardcode segredos no código — sempre via configuração (variáveis de ambiente, `appsettings.json`, Azure Key Vault, etc.)
-4. **Header de licença:** Todo arquivo de código deve ter o cabeçalho de licença
-5. **Independência de IDE:** Não use recursos exclusivos de um editor. Configure `omnisharp.json` e `.editorconfig` para garantir comportamento consistente em qualquer editor
 
 ---
 
@@ -153,11 +146,6 @@ Sufixos: `UnitTests`, `IntegrationTests`, `EndToEndTests`, `LoadTests`
 - `Hibex.Age.Business.UseCasesUnitTests`
 - `Hibex.Age.InterfaceAdapters.Data.MongoDBIntegrationTests`
 - `Hibex.Age.InterfaceAdapters.UI.WebApiLoadTests`
-
-### Stack de testes
-- **Framework:** TUnit (pacote `TUnit`)
-- **Mocking:** Moq (pacote `Moq`)
-- **Runner:** Microsoft.Testing.Platform
 
 ### Estrutura mínima para um projeto de teste
 

@@ -63,12 +63,14 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 Cada skill faz o Claude assumir um perfil especializado — não são comandos avulsos, mas contextos de atuação que a IA assume durante a sessão. Para ativar, use `/nome-da-skill` no Claude Code.
 
+> Skills marcadas como dependentes de stack são incluídas no projeto somente quando o script de inicialização é executado com a opção `--stack <nome>` correspondente.
+
 | Skill | Perfil assumido / Descrição |
 |---|---|
 | `/c4model-architectural-designer` | Atua como designer de arquitetura — cria diagramas C4Model com sintaxe Mermaid e salva em `docs/solution/` |
 | `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `docs/ARCHITECTURE.md` e os doze fatores |
 | `/business-reviewer` | Atua como revisor de negócio — valida cobertura de todas as regras em `docs/BUSINESS.md` |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade das interfaces com `docs/GUIDELINE.md` |
-| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch) |
+| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch). Disponível apenas em projetos inicializados com `--stack dotnet`. |
 | `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
 

@@ -74,16 +74,34 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 **Linux / macOS (bash):**
 
 ```bash
+# Sem stack (agnóstico — você define a tecnologia depois)
 curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto
+
+# Com stack .NET Web API
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto --stack dotnet
+
+# Com stack .NET Blazor
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto --stack dotnetblazor
 ```
 
 **Windows (PowerShell 5.1+):**
 
 ```powershell
+# Sem stack (agnóstico — você define a tecnologia depois)
 & ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto
+
+# Com stack .NET Web API
+& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack dotnet
+
+# Com stack .NET Blazor
+& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack dotnetblazor
 ```
 
-> **Versão específica:** acrescente a tag ao final do comando, após o nome do diretório (ex: `meu-projeto v0.1.0-alpha7`).
+> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha7 --stack dotnet`.
+>
+> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha7 -Stack dotnetblazor`.
+>
+> **Stack inválida:** o script falha imediatamente e lista as stacks disponíveis na versão solicitada.
 
 O script baixa automaticamente a versão solicitada (ou a última disponível) e inicializa o diretório como repositório Git. Após a instalação, configure o Git local e faça o primeiro commit:
 
@@ -124,33 +142,75 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 ## Estrutura do projeto
 
 ```
-.
-├── .claude/                    # Configurações do Claude Code
-│   ├── CLAUDE.md               # Instruções para a IA
-│   └── skills/                 # Skills customizadas
+.                                   # framework (repositório do template)
+├── .claude/
+│   ├── CLAUDE.md
+│   └── skills/
+│       ├── c4model-architectural-designer/   # skill genérica
+│       ├── architect-reviewer/               # skill genérica
+│       ├── business-reviewer/                # skill genérica
+│       ├── guideline-reviewer/               # skill genérica
+│       ├── github-site-generator/            # skill genérica
+│       ├── stack-dotnet-engineer/            # skill de stack .NET Web API
+│       └── stack-dotnetblazor-engineer/      # skill de stack .NET Blazor
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── SOLUTION.md                 # agnóstico de stack
+│   ├── SOLUTION-dotnet.md          # complemento de stack (mesclado na inicialização)
+│   ├── SOLUTION-dotnetblazor.md    # complemento de stack (mesclado na inicialização)
+│   ├── BUSINESS.md
+│   ├── GUIDELINE.md
+│   └── architecture/
+│       └── 12factor/
+│
+├── src/
+├── test/
+├── eng/
+├── samples/
+├── CLAUDE.md
+├── CONTRIBUTING.md
+└── LICENSE
+```
+
+Após a inicialização com uma stack, o projeto do usuário terá:
+
+```
+meu-projeto/                        # projeto inicializado com --stack dotnet
+├── .claude/
+│   └── skills/
+│       ├── c4model-architectural-designer/   # skills genéricas incluídas
+│       ├── architect-reviewer/
+│       ├── business-reviewer/
+│       ├── guideline-reviewer/
+│       └── dotnet-engineer/                  # prefixo "stack-" removido
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── SOLUTION.md             # base + conteúdo da stack mesclado
+│   ├── BUSINESS.md
+│   └── GUIDELINE.md            # SOLUTION-{stack}.md removido após mesclagem
+│
+└── ...
+```
+
+```
+meu-projeto/                        # projeto inicializado com --stack dotnetblazor
+├── .claude/
+│   └── skills/
 │       ├── c4model-architectural-designer/
 │       ├── architect-reviewer/
 │       ├── business-reviewer/
-│       ├── dotnet-engineer/
-│       ├── github-site-generator/
-│       └── guideline-reviewer/
+│       ├── guideline-reviewer/
+│       └── dotnetblazor-engineer/            # prefixo "stack-" removido
 │
-├── docs/                       # Toda a documentação
-│   ├── ARCHITECTURE.md         # Especificação arquitetural
-│   ├── SOLUTION.md             # Especificação da solução
-│   ├── BUSINESS.md             # Especificação negocial
-│   ├── GUIDELINE.md            # Guideline de marca e UX
-│   └── architecture/
-│       └── 12factor/           # Referência: The Twelve-Factor App
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── SOLUTION.md             # base + conteúdo dotnetblazor mesclado
+│   ├── BUSINESS.md
+│   └── GUIDELINE.md
 │
-├── src/                        # Código-fonte
-├── test/                       # Testes
-├── eng/                        # Scripts de engenharia e CI/CD
-├── samples/                    # Exemplos de uso
-│
-├── CLAUDE.md                   # Ponto de entrada das instruções para IA
-├── CONTRIBUTING.md             # Guia de contribuição por perfil
-└── LICENSE
+└── ...
 ```
 
 ---

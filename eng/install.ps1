@@ -13,9 +13,15 @@
 .PARAMETER Version
     Tag da release a instalar, ex: v1.2.0 (opcional; padrão: última disponível).
 
+.PARAMETER Stack
+    Stack tecnológica a inicializar, ex: dotnet (opcional).
+    Quando omitido, apenas os arquivos agnósticos de stack são instalados.
+
 .EXAMPLE
     .\eng\install.ps1 meu-projeto
-    .\eng\install.ps1 meu-projeto v1.2.0
+    .\eng\install.ps1 meu-projeto -Version v1.2.0
+    .\eng\install.ps1 meu-projeto -Stack dotnet
+    .\eng\install.ps1 meu-projeto -Version v1.2.0 -Stack dotnet
 
 .NOTES
     Pré-requisitos:
@@ -27,8 +33,11 @@ param(
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$TargetDir,
 
-    [Parameter(Mandatory = $false, Position = 1)]
-    [string]$Version = ""
+    [Parameter(Mandatory = $false)]
+    [string]$Version = "",
+
+    [Parameter(Mandatory = $false)]
+    [string]$Stack = ""
 )
 
 $ErrorActionPreference = 'Stop'
@@ -111,6 +120,81 @@ try {
     Expand-Archive -Path $TmpZip -DestinationPath $TargetDir -Force
 
     # ---------------------------------------------------------------------------
+    # Resolução e validação da stack
+    # ---------------------------------------------------------------------------
+
+    $SkillsDir = Join-Path $TargetDir ".claude\skills"
+
+    # Deriva as stacks disponíveis a partir dos diretórios stack-* no pacote extraído
+    $AvailableStacks = @()
+
+    if (Test-Path $SkillsDir) {
+        Get-ChildItem -Path $SkillsDir -Directory -Filter "stack-*" | ForEach-Object {
+            $SkillName  = $_.Name                          # ex: stack-dotnet-engineer
+            $StackPart  = $SkillName -replace '^stack-','' # ex: dotnet-engineer
+            $StackName  = ($StackPart -split '-')[0]       # ex: dotnet
+            if ($AvailableStacks -notcontains $StackName) {
+                $AvailableStacks += $StackName
+            }
+        }
+    }
+
+    if ($Stack -ne "") {
+        if ($AvailableStacks -notcontains $Stack) {
+            $StackList = if ($AvailableStacks.Count -gt 0) { $AvailableStacks -join ", " } else { "(nenhuma)" }
+            Write-Host "ERRO: stack '$Stack' não encontrada nesta versão do template." -ForegroundColor Red
+            Write-Host "  Stacks disponíveis: $StackList" -ForegroundColor Red
+            Remove-Item -Recurse -Force $TargetDir -ErrorAction SilentlyContinue
+            exit 1
+        }
+    }
+
+    # ---------------------------------------------------------------------------
+    # Filtragem de arquivos por stack
+    # ---------------------------------------------------------------------------
+
+    $StackLabel = if ($Stack -ne "") { $Stack } else { "(nenhuma — agnóstico)" }
+    Write-Host "==> Ajustando arquivos para stack: $StackLabel..."
+
+    if (Test-Path $SkillsDir) {
+        Get-ChildItem -Path $SkillsDir -Directory -Filter "stack-*" | ForEach-Object {
+            $SkillDir   = $_.FullName
+            $SkillName  = $_.Name                          # ex: stack-dotnet-engineer
+            $StackPart  = $SkillName -replace '^stack-','' # ex: dotnet-engineer
+            $StackName  = ($StackPart -split '-')[0]       # ex: dotnet
+
+            if ($Stack -eq "" -or $StackName -ne $Stack) {
+                # Sem stack ou stack diferente: remove o diretório
+                Remove-Item -Recurse -Force $SkillDir
+            } else {
+                # Stack correspondente: renomeia removendo o prefixo "stack-"
+                # stack-dotnet-engineer → dotnet-engineer
+                $NewPath = Join-Path $SkillsDir $StackPart
+                Rename-Item -Path $SkillDir -NewName $StackPart
+                # Atualiza o campo name: no frontmatter do SKILL.md
+                $SkillMd = Join-Path $NewPath "SKILL.md"
+                if (Test-Path $SkillMd) {
+                    (Get-Content $SkillMd) -replace "^name: $SkillName$", "name: $StackPart" |
+                        Set-Content $SkillMd
+                }
+            }
+        }
+    }
+
+    # Substitui SOLUTION.md pelo arquivo de stack (se stack foi selecionada)
+    $SolutionBase = Join-Path $TargetDir "docs\SOLUTION.md"
+    if ($Stack -ne "") {
+        $SolutionStack = Join-Path $TargetDir "docs\SOLUTION-$Stack.md"
+        if (Test-Path $SolutionStack) {
+            Move-Item -Path $SolutionStack -Destination $SolutionBase -Force
+        }
+    }
+
+    # Remove todos os arquivos SOLUTION-*.md restantes (não são da stack selecionada)
+    Get-ChildItem -Path (Join-Path $TargetDir "docs") -Filter "SOLUTION-*.md" -File |
+        Remove-Item -Force
+
+    # ---------------------------------------------------------------------------
     # Inicialização do repositório Git
     # ---------------------------------------------------------------------------
 
@@ -121,10 +205,12 @@ try {
     # Instruções finais
     # ---------------------------------------------------------------------------
 
+    $StackInfo = if ($Stack -ne "") { " | stack: $Stack" } else { "" }
+
     Write-Host ""
     Write-Host "================================================================"
     Write-Host " AI Powered Coding Team $ResolvedVersion instalado em:"
-    Write-Host " $TargetDir"
+    Write-Host " $TargetDir$StackInfo"
     Write-Host "================================================================"
     Write-Host ""
     Write-Host "Próximos passos:"
