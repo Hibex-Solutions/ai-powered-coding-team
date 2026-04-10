@@ -61,27 +61,3 @@ Quando se tratar de poucos arquivos (até 5) prefira usar a API, mas com mais ar
 clonar, considere não clonar o repositório completo, mas apenas com profundidade do último commit.
 
 Ao final da análise o usuário deve ser questionado se deseja remover o diretório temporário.
-
----
-
-# Especificação arquitetural
-
-@../docs/ARCHITECTURE.md
-
----
-
-# Especificação da solução de software
-
-@../docs/SOLUTION.md
-
----
-
-# Especificação negocial
-
-@../docs/BUSINESS.md
-
----
-
-# Guideline da marca
-
-@../docs/GUIDELINE.md

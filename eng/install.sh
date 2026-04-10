@@ -218,6 +218,16 @@ if [[ -d "${STACKS_SRC}" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
+# Mescla docs/CLAUDE.md no .claude/CLAUDE.md instalado
+# ---------------------------------------------------------------------------
+
+DOCS_CLAUDE="${TARGET_DIR}/docs/CLAUDE.md"
+if [[ -f "${DOCS_CLAUDE}" ]]; then
+    cat "${DOCS_CLAUDE}" >> "${TARGET_DIR}/.claude/CLAUDE.md"
+    rm "${DOCS_CLAUDE}"
+fi
+
+# ---------------------------------------------------------------------------
 # Inicialização do repositório Git
 # ---------------------------------------------------------------------------
 

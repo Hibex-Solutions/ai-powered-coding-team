@@ -186,6 +186,17 @@ try {
     }
 
     # ---------------------------------------------------------------------------
+    # Mescla docs/CLAUDE.md no .claude/CLAUDE.md instalado
+    # ---------------------------------------------------------------------------
+
+    $DocsClaude = Join-Path $TargetDir "docs\CLAUDE.md"
+    if (Test-Path $DocsClaude) {
+        $ClaudeMdPath = Join-Path $TargetDir ".claude\CLAUDE.md"
+        Get-Content $DocsClaude | Add-Content $ClaudeMdPath
+        Remove-Item $DocsClaude
+    }
+
+    # ---------------------------------------------------------------------------
     # Inicialização do repositório Git
     # ---------------------------------------------------------------------------
 
