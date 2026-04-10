@@ -13,10 +13,10 @@ vinculantes para toda a implementação.
 | Runtime | .NET | 10 |
 | Linguagem | C# | 13 |
 | UI Framework | Blazor Web App | .NET 10 |
-| Testes — Framework | TUnit | última estável |
-| Testes — Mocking | Moq | última estável |
+| Testes — Framework | TUnit | 1.x |
+| Testes — Mocking | Moq | 4.x |
 | Testes — Runner | Microsoft.Testing.Platform | última estável |
-| Arquitetura | TheCleanArch (Hibex Solutions) | última pré-release |
+| Arquitetura | TheCleanArch (Hibex Solutions) | 0.1.0-rc* |
 
 ---
 
@@ -70,7 +70,11 @@ Sufixos válidos: `UnitTests`, `IntegrationTests`, `EndToEndTests`, `LoadTests`
 3. **Abstração de tempo** — use `TimeProvider` (.NET 8+); nunca `DateTime.UtcNow` ou `DateTime.Now` diretamente
 4. **Licença no código** — todo arquivo `.cs` deve começar com o cabeçalho de licença Apache 2.0
 5. **Independência de IDE** — configurar `omnisharp.json` e `.editorconfig`; nunca depender de recursos exclusivos de um editor
-6. **Blazor Web App** — usar `dotnet new blazor` para o projeto de UI; não usar `dotnet new blazorserver` ou `dotnet new blazorwasm` isolados
+6. **Blazor Web App** — usar `dotnet new tca-webapp` para o projeto de UI; nunca `dotnet new blazorserver` ou `dotnet new blazorwasm` isolados
+7. **BlazorDisableThrowNavigationException** — o projeto Blazor deve ter `<BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>` no `.csproj`
+8. **Reconexão e rotas ausentes** — o app Blazor deve ter o componente `ReconnectModal` e a página `NotFound` para tratamento de desconexão e rotas inválidas
+9. **Testes na camada External** — projetos de teste declaram `[assembly: ArchLayer(External, ...)]` no `AssemblyInfo.cs`; nomes de métodos de teste em PascalCase (sem sublinhados)
+10. **Templates TheCleanArch** — use `dotnet new tca-webapp` para Blazor e `dotnet new tca-unittest` para testes; requer `TheCleanArch.Templates` instalado
 
 ---
 

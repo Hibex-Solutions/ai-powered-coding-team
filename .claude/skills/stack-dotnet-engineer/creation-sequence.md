@@ -2,6 +2,14 @@
 
 Siga estes passos ao criar uma nova solução .NET do zero:
 
+## Passo 0 — Pré-requisito: templates TheCleanArch
+
+Verifique se os templates estão instalados; se não, instale:
+
+```sh
+dotnet new list tca-webapi 2>/dev/null || dotnet new install TheCleanArch.Templates
+```
+
 ## Passo 1 — Estrutura de diretórios e arquivos essenciais
 
 ```sh
@@ -24,8 +32,11 @@ dotnet new classlib -n {Prefix}.Business.UseCases -o src/Business/UseCases
 
 # InterfaceAdapters (um ou mais, conforme docs/SOLUTION.md)
 mkdir src/InterfaceAdapters
-dotnet new classlib -n {Prefix}.InterfaceAdapters.{AdapterName} -o src/InterfaceAdapters/{AdapterName}
-# Para Web API usar: dotnet new webapi -n ... -o ...
+
+# Para Web API:
+dotnet new tca-webapi -n {Prefix}.InterfaceAdapters.UI.WebApi -o src/InterfaceAdapters/UI.WebApi
+# Para outros adapters (dados, gateways, workers) usar classlib:
+# dotnet new classlib -n {Prefix}.InterfaceAdapters.{AdapterName} -o src/InterfaceAdapters/{AdapterName}
 ```
 
 ## Passo 3 — `Directory.Build.props` e limpeza dos `.csproj`
@@ -43,13 +54,15 @@ dotnet package add TheCleanArch.Enterprise --prerelease --project src/Business/E
 # UseCases
 dotnet package add TheCleanArch.Application --prerelease --project src/Business/UseCases/{Prefix}.Business.UseCases.csproj
 
-# Cada InterfaceAdapter
+# Cada InterfaceAdapter criado com classlib (o tca-webapi já inclui o pacote)
 dotnet package add TheCleanArch.InterfaceAdapter --prerelease --project src/InterfaceAdapters/{AdapterName}/{Prefix}.InterfaceAdapters.{AdapterName}.csproj
 ```
 
 ## Passo 5 — `AssemblyInfo.cs` e `Usings.cs`
 
 Crie em cada projeto em `src/` os dois arquivos usando os templates de referência conforme definido no SKILL.md.
+
+> Para projetos criados com `tca-webapi`, o `AssemblyInfo.cs` já existe com a camada `InterfaceAdapter` configurada. Apenas atualize o header de licença e o `Usings.cs` com o namespace correto do projeto.
 
 ## Passo 6 — Dependências entre projetos
 
@@ -74,14 +87,11 @@ dotnet sln add src/InterfaceAdapters/{AdapterName}/{Prefix}.InterfaceAdapters.{A
 
 ## Passo 8 — Projetos de teste
 
-**Confirme com o usuário antes de criar e instalar pacotes de teste.** Após confirmação:
+**Confirme com o usuário antes de criar projetos de teste.** Após confirmação:
 
 ```sh
 mkdir test/{Category}
-dotnet new console -n {Prefix}.{Category}.{TestComponentName} -o test/{Category}/{TestComponentName}
-
-dotnet add test/{Category}/{TestComponentName}/{Prefix}.{Category}.{TestComponentName}.csproj package TUnit
-dotnet add test/{Category}/{TestComponentName}/{Prefix}.{Category}.{TestComponentName}.csproj package Moq
+dotnet new tca-unittest -n {Prefix}.{Category}.{TestComponentName} -o test/{Category}/{TestComponentName}
 
 # Remover Program.cs gerado (TUnit provê o entry point)
 rm test/{Category}/{TestComponentName}/Program.cs
@@ -93,8 +103,10 @@ dotnet add test/{Category}/{TestComponentName}/{Prefix}.{Category}.{TestComponen
 dotnet sln add test/{Category}/{TestComponentName}/{Prefix}.{Category}.{TestComponentName}.csproj
 ```
 
-Crie o `Usings.cs` em cada projeto de teste usando o template `templates/Usings.tests.cs`.
-Remova `<ImplicitUsings>` e `<Nullable>` dos `.csproj` em `test/`.
+O template `tca-unittest` já inclui `TUnit`, `Moq` e `TheCleanArch.Core`. Após criar:
+- Substitua o `Usings.cs` pelo template `Usings.tests.cs` com o namespace correto
+- Substitua o `AssemblyInfo.cs` pelo template `AssemblyInfo.external.cs`
+- Remova `<ImplicitUsings>` e `<Nullable>` do `.csproj` (ficam no `Directory.Build.props`)
 
 ## Passo 9 — Runner de testes no `global.json`
 

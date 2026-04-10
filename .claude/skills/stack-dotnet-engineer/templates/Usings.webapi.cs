@@ -20,3 +20,5 @@ global using Microsoft.Extensions.Logging;
 
 global using TheCleanArch.Core;
 global using TheCleanArch.Core.Patterns.GuardClauses;
+
+global using {Prefix}.InterfaceAdapters.UI.WebApi;

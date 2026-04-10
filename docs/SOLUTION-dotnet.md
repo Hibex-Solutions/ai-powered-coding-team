@@ -12,10 +12,11 @@ vinculantes para toda a implementação.
 |---|---|---|
 | Runtime | .NET | 10 |
 | Linguagem | C# | 13 |
-| Testes — Framework | TUnit | última estável |
-| Testes — Mocking | Moq | última estável |
+| Web API — OpenAPI | Microsoft.AspNetCore.OpenApi | 10.x |
+| Testes — Framework | TUnit | 1.x |
+| Testes — Mocking | Moq | 4.x |
 | Testes — Runner | Microsoft.Testing.Platform | última estável |
-| Arquitetura | TheCleanArch (Hibex Solutions) | última pré-release |
+| Arquitetura | TheCleanArch (Hibex Solutions) | 0.1.0-rc* |
 
 ---
 
@@ -67,6 +68,9 @@ Sufixos válidos: `UnitTests`, `IntegrationTests`, `EndToEndTests`, `LoadTests`
 3. **Abstração de tempo** — use `TimeProvider` (.NET 8+); nunca `DateTime.UtcNow` ou `DateTime.Now` diretamente
 4. **Licença no código** — todo arquivo `.cs` deve começar com o cabeçalho de licença Apache 2.0
 5. **Independência de IDE** — configurar `omnisharp.json` e `.editorconfig`; nunca depender de recursos exclusivos de um editor
+6. **Web API com OpenAPI** — o adaptador `UI.WebApi` inclui `Microsoft.AspNetCore.OpenApi`; o endpoint `MapOpenApi()` é mapeado apenas em ambiente de desenvolvimento
+7. **Testes na camada External** — projetos de teste declaram `[assembly: ArchLayer(External, ...)]` no `AssemblyInfo.cs`; nomes de métodos de teste em PascalCase (sem sublinhados)
+8. **Templates TheCleanArch** — use `dotnet new tca-webapi` para Web API e `dotnet new tca-unittest` para testes; requer `TheCleanArch.Templates` instalado
 
 ---
 

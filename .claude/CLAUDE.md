@@ -30,6 +30,8 @@ O usuário é **arquiteto de soluções de software**. Foco em decisões de desi
 - `docs` - Toda documentação do projeto reside aqui
 - `samples` - Todo e qualquer exemplo de código reside aqui. Quando é um projeto de biblioteca/framework, os exemplos de uso ficam aqui
 
+---
+
 ### Sobre documentação
 
 A documentação reside no diretório `./docs`, porém ainda assim estão divididos em:
@@ -46,6 +48,19 @@ em documentos adicionais, que residem em diretórios correspondentes a seus nome
 Outras documentações também podem estar presentes, como _tutoriais_. Nesse caso espera-se que sempre haja um
 arquivo de categoria (ex: `./docs/TUTORIAIS.md`) e um diretório `./docs/tutoriais/` para os arquivos complementares.
 Essa regra se aplica para toda a documentação.
+
+---
+
+## Sobre análise em repositórios do GitHub e GitLab
+
+Quando solicitado ao Claude analisar conteúdo de repositórios Git públicos no GitHub ou GitLab, prefira clonar
+o repositório via HTTPS em diretório temporário e analisar os arquivos à partir desse diretório ao invés de baixar
+os conteúdos usando as chamadas diversas de APIs que esses serviços entregam.
+
+Quando se tratar de poucos arquivos (até 5) prefira usar a API, mas com mais arquivos prefira o clone. Mas ao
+clonar, considere não clonar o repositório completo, mas apenas com profundidade do último commit.
+
+Ao final da análise o usuário deve ser questionado se deseja remover o diretório temporário.
 
 ---
 
