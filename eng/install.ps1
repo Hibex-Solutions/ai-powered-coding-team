@@ -123,19 +123,14 @@ try {
     # Resolução e validação da stack
     # ---------------------------------------------------------------------------
 
-    $SkillsDir = Join-Path $TargetDir ".claude\skills"
+    $StacksSrc = Join-Path $TargetDir "stacks"
 
-    # Deriva as stacks disponíveis a partir dos diretórios stack-* no pacote extraído
+    # Deriva as stacks disponíveis a partir dos diretórios em stacks/
     $AvailableStacks = @()
 
-    if (Test-Path $SkillsDir) {
-        Get-ChildItem -Path $SkillsDir -Directory -Filter "stack-*" | ForEach-Object {
-            $SkillName  = $_.Name                          # ex: stack-dotnet-engineer
-            $StackPart  = $SkillName -replace '^stack-','' # ex: dotnet-engineer
-            $StackName  = ($StackPart -split '-')[0]       # ex: dotnet
-            if ($AvailableStacks -notcontains $StackName) {
-                $AvailableStacks += $StackName
-            }
+    if (Test-Path $StacksSrc) {
+        Get-ChildItem -Path $StacksSrc -Directory | ForEach-Object {
+            $AvailableStacks += $_.Name   # ex: aspnet
         }
     }
 
@@ -150,49 +145,45 @@ try {
     }
 
     # ---------------------------------------------------------------------------
-    # Filtragem de arquivos por stack
+    # Instalação da stack selecionada
     # ---------------------------------------------------------------------------
 
     $StackLabel = if ($Stack -ne "") { $Stack } else { "(nenhuma — agnóstico)" }
     Write-Host "==> Ajustando arquivos para stack: $StackLabel..."
 
-    if (Test-Path $SkillsDir) {
-        Get-ChildItem -Path $SkillsDir -Directory -Filter "stack-*" | ForEach-Object {
-            $SkillDir   = $_.FullName
-            $SkillName  = $_.Name                          # ex: stack-dotnet-engineer
-            $StackPart  = $SkillName -replace '^stack-','' # ex: dotnet-engineer
-            $StackName  = ($StackPart -split '-')[0]       # ex: dotnet
+    if (Test-Path $StacksSrc) {
+        if ($Stack -ne "") {
+            $SkillsDir = Join-Path $TargetDir ".claude\skills"
+            $StackDir  = Join-Path $StacksSrc $Stack
 
-            if ($Stack -eq "" -or $StackName -ne $Stack) {
-                # Sem stack ou stack diferente: remove o diretório
-                Remove-Item -Recurse -Force $SkillDir
-            } else {
-                # Stack correspondente: renomeia removendo o prefixo "stack-"
-                # stack-dotnet-engineer → dotnet-engineer
-                $NewPath = Join-Path $SkillsDir $StackPart
-                Rename-Item -Path $SkillDir -NewName $StackPart
-                # Atualiza o campo name: no frontmatter do SKILL.md
-                $SkillMd = Join-Path $NewPath "SKILL.md"
-                if (Test-Path $SkillMd) {
-                    (Get-Content $SkillMd) -replace "^name: $SkillName$", "name: $StackPart" |
-                        Set-Content $SkillMd
+            # Copia todas as skills da stack para .claude/skills/ (cada subdiretório de skills/ é uma skill)
+            $SkillsSrc = Join-Path $StackDir "skills"
+            if (Test-Path $SkillsSrc) {
+                Get-ChildItem -Path $SkillsSrc -Directory | ForEach-Object {
+                    Copy-Item -Path $_.FullName -Destination $SkillsDir -Recurse -Force
+                }
+            }
+
+            # Copia documentação da stack para docs/ (SOLUTION obrigatório; BUSINESS e GUIDELINE opcionais)
+            $DocsSrc = Join-Path $StackDir "docs"
+            if (Test-Path $DocsSrc) {
+                Copy-Item -Path (Join-Path $DocsSrc "SOLUTION.md") -Destination (Join-Path $TargetDir "docs\SOLUTION.md") -Force
+
+                $BusinessMd = Join-Path $DocsSrc "BUSINESS.md"
+                if (Test-Path $BusinessMd) {
+                    Copy-Item -Path $BusinessMd -Destination (Join-Path $TargetDir "docs\BUSINESS.md") -Force
+                }
+
+                $GuidelineMd = Join-Path $DocsSrc "GUIDELINE.md"
+                if (Test-Path $GuidelineMd) {
+                    Copy-Item -Path $GuidelineMd -Destination (Join-Path $TargetDir "docs\GUIDELINE.md") -Force
                 }
             }
         }
-    }
 
-    # Substitui SOLUTION.md pelo arquivo de stack (se stack foi selecionada)
-    $SolutionBase = Join-Path $TargetDir "docs\SOLUTION.md"
-    if ($Stack -ne "") {
-        $SolutionStack = Join-Path $TargetDir "docs\SOLUTION-$Stack.md"
-        if (Test-Path $SolutionStack) {
-            Move-Item -Path $SolutionStack -Destination $SolutionBase -Force
-        }
+        # Remove diretório stacks/ do target (usado apenas para distribuição)
+        Remove-Item -Recurse -Force $StacksSrc
     }
-
-    # Remove todos os arquivos SOLUTION-*.md restantes (não são da stack selecionada)
-    Get-ChildItem -Path (Join-Path $TargetDir "docs") -Filter "SOLUTION-*.md" -File |
-        Remove-Item -Force
 
     # ---------------------------------------------------------------------------
     # Inicialização do repositório Git

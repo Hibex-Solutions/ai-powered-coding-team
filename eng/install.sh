@@ -146,29 +146,15 @@ unzip -q "${TMP_ZIP}" -d "${TARGET_DIR}"
 # Resolução e validação da stack
 # ---------------------------------------------------------------------------
 
-# Deriva as stacks disponíveis a partir dos diretórios stack-* no pacote extraído
+# Deriva as stacks disponíveis a partir dos diretórios em stacks/
 AVAILABLE_STACKS=()
-SKILLS_DIR="${TARGET_DIR}/.claude/skills"
+STACKS_SRC="${TARGET_DIR}/stacks"
 
-if [[ -d "${SKILLS_DIR}" ]]; then
-    for skill_dir in "${SKILLS_DIR}/stack-"*/; do
-        if [[ -d "${skill_dir}" ]]; then
-            skill_name="$(basename "${skill_dir}")"   # ex: stack-dotnet-engineer
-            stack_part="${skill_name#stack-}"          # ex: dotnet-engineer
-            stack_name="${stack_part%%-*}"             # ex: dotnet
-            # Adiciona apenas se ainda não está na lista
-            already_added=false
-            if [[ ${#AVAILABLE_STACKS[@]} -gt 0 ]]; then
-                for existing in "${AVAILABLE_STACKS[@]}"; do
-                    if [[ "${existing}" == "${stack_name}" ]]; then
-                        already_added=true
-                        break
-                    fi
-                done
-            fi
-            if [[ "${already_added}" == false ]]; then
-                AVAILABLE_STACKS+=("${stack_name}")
-            fi
+if [[ -d "${STACKS_SRC}" ]]; then
+    for stack_dir in "${STACKS_SRC}"/*/; do
+        if [[ -d "${stack_dir}" ]]; then
+            stack_name="$(basename "${stack_dir}")"   # ex: aspnet
+            AVAILABLE_STACKS+=("${stack_name}")
         fi
     done
 fi
@@ -192,55 +178,44 @@ if [[ -n "${REQUESTED_STACK}" ]]; then
         else
             echo "  Nenhuma stack disponível nesta versão." >&2
         fi
-        rm -rf "${TARGET_DIR}"
+        rm -r "${TARGET_DIR}"
         exit 1
     fi
 fi
 
 # ---------------------------------------------------------------------------
-# Filtragem de arquivos por stack
+# Instalação da stack selecionada
 # ---------------------------------------------------------------------------
 
 echo "==> Ajustando arquivos para stack: ${REQUESTED_STACK:-"(nenhuma — agnóstico)"}..."
 
-if [[ -d "${SKILLS_DIR}" ]]; then
-    for skill_dir in "${SKILLS_DIR}/stack-"*/; do
-        if [[ ! -d "${skill_dir}" ]]; then
-            continue
+if [[ -d "${STACKS_SRC}" ]]; then
+    if [[ -n "${REQUESTED_STACK}" ]]; then
+        SKILLS_DST="${TARGET_DIR}/.claude/skills"
+        STACK_DIR="${STACKS_SRC}/${REQUESTED_STACK}"
+
+        # Copia todas as skills da stack para .claude/skills/ (cada subdiretório de skills/ é uma skill)
+        SKILLS_SRC="${STACK_DIR}/skills"
+        if [[ -d "${SKILLS_SRC}" ]]; then
+            for skill_dir in "${SKILLS_SRC}"/*/; do
+                [[ -d "${skill_dir}" ]] && cp -r "${skill_dir}" "${SKILLS_DST}/"
+            done
         fi
 
-        skill_name="$(basename "${skill_dir}")"   # ex: stack-dotnet-engineer
-        stack_part="${skill_name#stack-}"          # ex: dotnet-engineer
-        stack_name="${stack_part%%-*}"             # ex: dotnet
-
-        if [[ -z "${REQUESTED_STACK}" || "${stack_name}" != "${REQUESTED_STACK}" ]]; then
-            # Sem stack ou stack diferente: remove o diretório
-            rm -rf "${skill_dir}"
-        else
-            # Stack correspondente: renomeia removendo o prefixo "stack-"
-            # stack-dotnet-engineer → dotnet-engineer
-            new_name="${stack_part}"               # dotnet-engineer
-            mv "${skill_dir}" "${SKILLS_DIR}/${new_name}"
-            # Atualiza o campo name: no frontmatter do SKILL.md
-            skill_md="${SKILLS_DIR}/${new_name}/SKILL.md"
-            if [[ -f "${skill_md}" ]]; then
-                sed -i "s/^name: ${skill_name}$/name: ${new_name}/" "${skill_md}"
-            fi
+        # Copia documentação da stack para docs/ (SOLUTION obrigatório; BUSINESS e GUIDELINE opcionais)
+        DOCS_SRC="${STACK_DIR}/docs"
+        if [[ -d "${DOCS_SRC}" ]]; then
+            cp "${DOCS_SRC}/SOLUTION.md" "${TARGET_DIR}/docs/SOLUTION.md"
+            [[ -f "${DOCS_SRC}/BUSINESS.md" ]] && \
+                cp "${DOCS_SRC}/BUSINESS.md" "${TARGET_DIR}/docs/BUSINESS.md"
+            [[ -f "${DOCS_SRC}/GUIDELINE.md" ]] && \
+                cp "${DOCS_SRC}/GUIDELINE.md" "${TARGET_DIR}/docs/GUIDELINE.md"
         fi
-    done
-fi
-
-# Substitui SOLUTION.md pelo arquivo de stack (se stack foi selecionada)
-SOLUTION_BASE="${TARGET_DIR}/docs/SOLUTION.md"
-if [[ -n "${REQUESTED_STACK}" ]]; then
-    SOLUTION_STACK="${TARGET_DIR}/docs/SOLUTION-${REQUESTED_STACK}.md"
-    if [[ -f "${SOLUTION_STACK}" ]]; then
-        mv "${SOLUTION_STACK}" "${SOLUTION_BASE}"
     fi
-fi
 
-# Remove todos os arquivos SOLUTION-*.md restantes (não são da stack selecionada)
-find "${TARGET_DIR}/docs" -maxdepth 1 -name "SOLUTION-*.md" -delete
+    # Remove diretório stacks/ do target (usado apenas para distribuição)
+    rm -r "${STACKS_SRC}"
+fi
 
 # ---------------------------------------------------------------------------
 # Inicialização do repositório Git

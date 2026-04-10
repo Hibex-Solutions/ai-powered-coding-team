@@ -1,13 +1,13 @@
 # Sequência de criação da solução
 
-Siga estes passos ao criar uma nova solução .NET Blazor do zero:
+Siga estes passos ao criar uma nova solução ASP.NET do zero:
 
 ## Passo 0 — Pré-requisito: templates TheCleanArch
 
 Verifique se os templates estão instalados; se não, instale:
 
 ```sh
-dotnet new list tca-webapp 2>/dev/null || dotnet new install TheCleanArch.Templates
+dotnet new list tca-webapi 2>/dev/null || dotnet new install TheCleanArch.Templates
 ```
 
 ## Passo 1 — Estrutura de diretórios e arquivos essenciais
@@ -33,11 +33,17 @@ dotnet new classlib -n {Prefix}.Business.UseCases -o src/Business/UseCases
 # InterfaceAdapters (um ou mais, conforme docs/SOLUTION.md)
 mkdir src/InterfaceAdapters
 
-# Para UI Blazor Web App:
+# Para Web API REST:
+dotnet new tca-webapi -n {Prefix}.InterfaceAdapters.UI.WebApi -o src/InterfaceAdapters/UI.WebApi
+
+# Para Blazor Web App:
 dotnet new tca-webapp -n {Prefix}.InterfaceAdapters.UI.WebApp -o src/InterfaceAdapters/UI.WebApp
+
 # Para outros adapters (dados, gateways, workers) usar classlib:
 # dotnet new classlib -n {Prefix}.InterfaceAdapters.{AdapterName} -o src/InterfaceAdapters/{AdapterName}
 ```
+
+> Use apenas os adapters previstos em `docs/SOLUTION.md`. Não crie adapters não especificados.
 
 ## Passo 3 — `Directory.Build.props` e limpeza dos `.csproj`
 
@@ -54,7 +60,7 @@ dotnet package add TheCleanArch.Enterprise --prerelease --project src/Business/E
 # UseCases
 dotnet package add TheCleanArch.Application --prerelease --project src/Business/UseCases/{Prefix}.Business.UseCases.csproj
 
-# Cada InterfaceAdapter criado com classlib (o tca-webapp já inclui o pacote)
+# Cada InterfaceAdapter criado com classlib (tca-webapi e tca-webapp já incluem o pacote)
 dotnet package add TheCleanArch.InterfaceAdapter --prerelease --project src/InterfaceAdapters/{AdapterName}/{Prefix}.InterfaceAdapters.{AdapterName}.csproj
 ```
 
@@ -62,11 +68,11 @@ dotnet package add TheCleanArch.InterfaceAdapter --prerelease --project src/Inte
 
 Crie em cada projeto em `src/` os dois arquivos usando os templates de referência conforme definido no SKILL.md.
 
-> Para projetos criados com `tca-webapp`, o `AssemblyInfo.cs` já existe com a camada `InterfaceAdapter` configurada. Apenas atualize o header de licença e o `Usings.cs` com os namespaces corretos do projeto.
+> Para projetos criados com `tca-webapi` ou `tca-webapp`, o `AssemblyInfo.cs` já existe com a camada `InterfaceAdapter` configurada. Apenas atualize o header de licença e o `Usings.cs` com os namespaces corretos do projeto.
 
-Para o projeto Blazor (`UI.WebApp`), use `templates/Usings.webapp.cs` ao invés de `Usings.business.cs`.
+Para o projeto Blazor (`UI.WebApp`), use `templates/Usings.webapp.cs` ao invés de `Usings.webapi.cs`.
 
-## Passo 6 — `_Imports.razor` no projeto Blazor
+## Passo 6 — `_Imports.razor` no projeto Blazor (somente se houver `UI.WebApp`)
 
 Crie o arquivo `Components/_Imports.razor` no projeto `src/InterfaceAdapters/UI.WebApp/` com os namespaces específicos do projeto:
 

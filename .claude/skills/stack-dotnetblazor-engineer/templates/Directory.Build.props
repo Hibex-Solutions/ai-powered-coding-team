@@ -1,9 +1,0 @@
-<Project>
-    <PropertyGroup>
-        <Product>{Solução}</Product>
-        <AnalysisLevel>latest-recommended</AnalysisLevel>
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-</Project>

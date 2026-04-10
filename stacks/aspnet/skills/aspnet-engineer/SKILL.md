@@ -1,15 +1,15 @@
 ---
-name: stack-dotnetblazor-engineer
-description: Atua como engenheiro .NET Blazor implementando soluções conforme TheCleanArch (hibex-solutions.github.io/TheCleanArch)
+name: aspnet-engineer
+description: Atua como engenheiro ASP.NET implementando soluções conforme TheCleanArch (hibex-solutions.github.io/TheCleanArch)
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
-Atue como engenheiro .NET Blazor e implemente a solução seguindo estritamente as convenções do guia _TheCleanArch_ da Hibex Solutions. Antes de qualquer ação:
+Atue como engenheiro ASP.NET e implemente a solução seguindo estritamente as convenções do guia _TheCleanArch_ da Hibex Solutions. Antes de qualquer ação:
 
 1. Leia `docs/SOLUTION.md` para entender o contexto e os componentes da solução que deve ser construída.
 2. Leia a **seção de stack tecnológica** em `docs/SOLUTION.md` (normalmente ao final do arquivo). Essa seção é a fonte de verdade para: tecnologias adotadas, versões, decisões de implementação invioláveis e convenções de nomenclatura. Siga-as rigorosamente.
 
-> **Templates:** Leia todos os arquivos em `.claude/skills/stack-dotnetblazor-engineer/templates/` antes de iniciar qualquer implementação. Esses arquivos são os templates de referência que devem ser usados como base para gerar o código real — substituindo os placeholders `{Projeto}`, `{Solução}`, `{Prefix}` etc. pelos valores corretos do projeto.
+> **Templates:** Leia todos os arquivos em `.claude/skills/aspnet-engineer/templates/` antes de iniciar qualquer implementação. Esses arquivos são os templates de referência que devem ser usados como base para gerar o código real — substituindo os placeholders `{Projeto}`, `{Solução}`, `{Prefix}` etc. pelos valores corretos do projeto.
 
 > **Pré-requisito:** Os templates TheCleanArch devem estar instalados no ambiente antes de usar os comandos `dotnet new tca-*`. Instale com: `dotnet new install TheCleanArch.Templates`
 
@@ -17,7 +17,7 @@ Atue como engenheiro .NET Blazor e implemente a solução seguindo estritamente 
 
 ## Estrutura de diretórios da solução
 
-Toda solução .NET Blazor no estilo TheCleanArch deve ter a seguinte estrutura na raiz:
+Toda solução ASP.NET no estilo TheCleanArch deve ter a seguinte estrutura na raiz:
 
 ```
 ./
@@ -72,7 +72,7 @@ A solução tem **3 ou mais camadas**: 2 obrigatórias de negócio + 1 ou mais a
 
 **Exemplos de nomes de adaptadores (`{AdapterName}`):**
 - Acesso a dados: `Data.MongoDB`, `Data.EFPostgres`, `Data.RedisCache`
-- Interface de usuário: `UI.WebApp` ← **padrão para Blazor**
+- Interface de usuário: `UI.WebApi` (Web API REST), `UI.WebApp` (Blazor Web App), `UI.CliApp`
 - Gateways externos: `Gateways.GitHub`, `Gateways.Stripe`
 - Workers: `Workers.PaymentProcessor`
 
@@ -80,7 +80,7 @@ A solução tem **3 ou mais camadas**: 2 obrigatórias de negócio + 1 ou mais a
 ```
 src/InterfaceAdapters/
 ├─ Data.MongoDB/
-├─ UI.WebApp/
+├─ UI.WebApi/
 └─ Gateways.Stripe/
 ```
 
@@ -92,7 +92,7 @@ src/Business/UseCases/
 
 # Depois (componente único)
 src/Business.UseCases/
-src/InterfaceAdapters.UI.WebApp/
+src/InterfaceAdapters.UI.WebApi/
 ```
 
 ---
@@ -102,26 +102,33 @@ src/InterfaceAdapters.UI.WebApp/
 Todo projeto em `src/` deve conter **no mínimo 3 arquivos**:
 
 ### `{ComponentName}.csproj`
-Use como base o template `.claude/skills/stack-dotnetblazor-engineer/templates/component.csproj` para camadas de negócio.
-Para o projeto Blazor (`UI.WebApp`) use `dotnet new tca-webapp` — o template já inclui `TheCleanArch.InterfaceAdapter` e a propriedade `BlazorDisableThrowNavigationException`.
+Use como base o template `.claude/skills/aspnet-engineer/templates/component.csproj` para camadas de negócio e outros adapters genéricos.
+
+Para adapters de UI, use o template específico:
+- Web API (`UI.WebApi`): use `dotnet new tca-webapi` — o template já inclui `TheCleanArch.InterfaceAdapter` e `Microsoft.AspNetCore.OpenApi`
+- Blazor Web App (`UI.WebApp`): use `dotnet new tca-webapp` — o template já inclui `TheCleanArch.InterfaceAdapter` e `BlazorDisableThrowNavigationException`
+
 Remova `<ImplicitUsings>` e `<Nullable>` do arquivo `.csproj` gerado — essas propriedades ficam no `Directory.Build.props` global.
 
 ### `AssemblyInfo.cs`
 Identifica a camada a que o componente pertence. Use o template correspondente:
-- Enterprise: `.claude/skills/stack-dotnetblazor-engineer/templates/AssemblyInfo.enterprise.cs`
-- Application: `.claude/skills/stack-dotnetblazor-engineer/templates/AssemblyInfo.application.cs`
-- InterfaceAdapter: `.claude/skills/stack-dotnetblazor-engineer/templates/AssemblyInfo.interfaceadapter.cs`
+- Enterprise: `.claude/skills/aspnet-engineer/templates/AssemblyInfo.enterprise.cs`
+- Application: `.claude/skills/aspnet-engineer/templates/AssemblyInfo.application.cs`
+- InterfaceAdapter: `.claude/skills/aspnet-engineer/templates/AssemblyInfo.interfaceadapter.cs`
+
+> Para projetos criados com `tca-webapi` ou `tca-webapp`, o `AssemblyInfo.cs` já existe com a camada `InterfaceAdapter` configurada. Apenas atualize o header de licença.
 
 ### `Usings.cs`
 Declara `global using` de forma **explícita** — nunca use `<ImplicitUsings>enable`. Use o template correspondente ao tipo do componente:
-- Camadas de negócio (Entities e UseCases): `.claude/skills/stack-dotnetblazor-engineer/templates/Usings.business.cs`
-- Blazor Web App (`UI.WebApp`): `.claude/skills/stack-dotnetblazor-engineer/templates/Usings.webapp.cs`
+- Camadas de negócio (Entities e UseCases): `.claude/skills/aspnet-engineer/templates/Usings.business.cs`
+- Web API (`UI.WebApi`): `.claude/skills/aspnet-engineer/templates/Usings.webapi.cs`
+- Blazor Web App (`UI.WebApp`): `.claude/skills/aspnet-engineer/templates/Usings.webapp.cs`
 
 ---
 
 ## `Directory.Build.props` (raiz da solução)
 
-Use como base o template `.claude/skills/stack-dotnetblazor-engineer/templates/Directory.Build.props`.
+Use como base o template `.claude/skills/aspnet-engineer/templates/Directory.Build.props`.
 Substitua `{Solução}` pelo nome real da solução.
 
 ---
@@ -148,6 +155,7 @@ Sufixos: `UnitTests`, `IntegrationTests`, `EndToEndTests`, `LoadTests`
 - `Hibex.Age.Business.EntitiesUnitTests`
 - `Hibex.Age.Business.UseCasesUnitTests`
 - `Hibex.Age.InterfaceAdapters.Data.MongoDBIntegrationTests`
+- `Hibex.Age.InterfaceAdapters.UI.WebApiLoadTests`
 - `Hibex.Age.InterfaceAdapters.UI.WebAppEndToEndTests`
 
 ### Estrutura mínima para um projeto de teste
@@ -163,13 +171,13 @@ Podem existir **quantos componentes de teste forem necessários**, cada um em se
 
 ### `AssemblyInfo.cs` para projetos de teste
 Projetos de teste pertencem à camada **External**. Use o template:
-`.claude/skills/stack-dotnetblazor-engineer/templates/AssemblyInfo.external.cs`
+`.claude/skills/aspnet-engineer/templates/AssemblyInfo.external.cs`
 
 ### `Usings.cs` para projetos de teste
-Use o template `.claude/skills/stack-dotnetblazor-engineer/templates/Usings.tests.cs`.
+Use o template `.claude/skills/aspnet-engineer/templates/Usings.tests.cs`.
 
 ### `.csproj` de teste
-Use como base o template `.claude/skills/stack-dotnetblazor-engineer/templates/test.csproj`.
+Use como base o template `.claude/skills/aspnet-engineer/templates/test.csproj`.
 Remova `<ImplicitUsings>` e `<Nullable>` (ficam no `Directory.Build.props`).
 O template já inclui as referências a `TheCleanArch.Core`, `TUnit` e `Moq`.
 
@@ -182,14 +190,14 @@ O arquivo `Program.cs` gerado automaticamente deve ser removido — TUnit já fo
 - Use `[Skip("...")]` para ignorar testes demonstrativos
 
 ### `global.json` — adicionar runner de testes
-Use o template `.claude/skills/stack-dotnetblazor-engineer/templates/global.json`.
+Use o template `.claude/skills/aspnet-engineer/templates/global.json`.
 Ajuste a versão do SDK conforme a versão instalada no ambiente (`dotnet --version`).
 
 ---
 
 ## Criando uma nova solução do zero
 
-Ao criar uma solução nova do zero, leia `.claude/skills/stack-dotnetblazor-engineer/creation-sequence.md` para obter a sequência completa de passos com os comandos necessários.
+Ao criar uma solução nova do zero, leia `.claude/skills/aspnet-engineer/creation-sequence.md` para obter a sequência completa de passos com os comandos necessários.
 
 ---
 
@@ -197,4 +205,5 @@ Ao criar uma solução nova do zero, leia `.claude/skills/stack-dotnetblazor-eng
 
 - Guia oficial: https://hibex-solutions.github.io/TheCleanArch/
 - Repositório GitHub: https://github.com/Hibex-Solutions/TheCleanArch
+- Documentação oficial ASP.NET Core: https://learn.microsoft.com/pt-br/aspnet/core/overview
 - Documentação oficial Blazor: https://learn.microsoft.com/pt-br/aspnet/core/blazor/

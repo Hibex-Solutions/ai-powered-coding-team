@@ -71,6 +71,6 @@ Cada skill faz o Claude assumir um perfil especializado — não são comandos a
 | `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `docs/ARCHITECTURE.md` e os doze fatores |
 | `/business-reviewer` | Atua como revisor de negócio — valida cobertura de todas as regras em `docs/BUSINESS.md` |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade das interfaces com `docs/GUIDELINE.md` |
-| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch). Disponível apenas em projetos inicializados com `--stack dotnet`. |
+| `/aspnet-engineer` | Atua como engenheiro ASP.NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch). Disponível apenas em projetos inicializados com `--stack aspnet`. |
 | `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
 
