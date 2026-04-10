@@ -91,9 +91,9 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 & ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack aspnet
 ```
 
-> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha7 --stack aspnet`.
+> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha8 --stack aspnet`.
 >
-> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha7 -Stack aspnet`.
+> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha8 -Stack aspnet`.
 >
 > **Stack inválida:** o script falha imediatamente e lista as stacks disponíveis na versão solicitada.
 
