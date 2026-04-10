@@ -77,11 +77,8 @@ O modelo garante que **nenhum código seja escrito sem especificação**, que **
 # Sem stack (agnóstico — você define a tecnologia depois)
 curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto
 
-# Com stack .NET Web API
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto --stack dotnet
-
-# Com stack .NET Blazor
-curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto --stack dotnetblazor
+# Com stack ASP.NET (Web API, Blazor e outros componentes .NET)
+curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto --stack aspnet
 ```
 
 **Windows (PowerShell 5.1+):**
@@ -90,16 +87,13 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 # Sem stack (agnóstico — você define a tecnologia depois)
 & ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto
 
-# Com stack .NET Web API
-& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack dotnet
-
-# Com stack .NET Blazor
-& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack dotnetblazor
+# Com stack ASP.NET (Web API, Blazor e outros componentes .NET)
+& ([ScriptBlock]::Create((irm https://hibex-solutions.github.io/ai-powered-coding-team/install.ps1))) meu-projeto -Stack aspnet
 ```
 
-> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha7 --stack dotnet`.
+> **Versão específica (bash):** use `--version <tag>` — ex: `meu-projeto --version v0.1.0-alpha7 --stack aspnet`.
 >
-> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha7 -Stack dotnetblazor`.
+> **Versão específica (PowerShell):** use `-Version <tag>` — ex: `meu-projeto -Version v0.1.0-alpha7 -Stack aspnet`.
 >
 > **Stack inválida:** o script falha imediatamente e lista as stacks disponíveis na versão solicitada.
 
@@ -150,15 +144,17 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 │       ├── architect-reviewer/               # skill genérica
 │       ├── business-reviewer/                # skill genérica
 │       ├── guideline-reviewer/               # skill genérica
-│       ├── github-site-generator/            # skill genérica
-│       ├── stack-dotnet-engineer/            # skill de stack .NET Web API
-│       └── stack-dotnetblazor-engineer/      # skill de stack .NET Blazor
+│       └── github-site-generator/            # skill genérica (mantenedores)
+│
+├── stacks/
+│   └── aspnet/                     # stack ASP.NET (Web API, Blazor, Workers...)
+│       ├── docs/
+│       └── skills/
+│           └── aspnet-engineer/    # skill de stack
 │
 ├── docs/
 │   ├── ARCHITECTURE.md
-│   ├── SOLUTION.md                 # agnóstico de stack
-│   ├── SOLUTION-dotnet.md          # complemento de stack (mesclado na inicialização)
-│   ├── SOLUTION-dotnetblazor.md    # complemento de stack (mesclado na inicialização)
+│   ├── SOLUTION.md
 │   ├── BUSINESS.md
 │   ├── GUIDELINE.md
 │   └── architecture/
@@ -176,37 +172,18 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 Após a inicialização com uma stack, o projeto do usuário terá:
 
 ```
-meu-projeto/                        # projeto inicializado com --stack dotnet
+meu-projeto/                        # projeto inicializado com --stack aspnet
 ├── .claude/
 │   └── skills/
 │       ├── c4model-architectural-designer/   # skills genéricas incluídas
 │       ├── architect-reviewer/
 │       ├── business-reviewer/
 │       ├── guideline-reviewer/
-│       └── dotnet-engineer/                  # prefixo "stack-" removido
+│       └── aspnet-engineer/                  # skill da stack
 │
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── SOLUTION.md             # base + conteúdo da stack mesclado
-│   ├── BUSINESS.md
-│   └── GUIDELINE.md            # SOLUTION-{stack}.md removido após mesclagem
-│
-└── ...
-```
-
-```
-meu-projeto/                        # projeto inicializado com --stack dotnetblazor
-├── .claude/
-│   └── skills/
-│       ├── c4model-architectural-designer/
-│       ├── architect-reviewer/
-│       ├── business-reviewer/
-│       ├── guideline-reviewer/
-│       └── dotnetblazor-engineer/            # prefixo "stack-" removido
-│
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── SOLUTION.md             # base + conteúdo dotnetblazor mesclado
 │   ├── BUSINESS.md
 │   └── GUIDELINE.md
 │

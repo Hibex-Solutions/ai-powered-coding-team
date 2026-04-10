@@ -72,5 +72,6 @@ Cada skill faz o Claude assumir um perfil especializado — não são comandos a
 | `/business-reviewer` | Atua como revisor de negócio — valida cobertura de todas as regras em `docs/BUSINESS.md` |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade das interfaces com `docs/GUIDELINE.md` |
 | `/aspnet-engineer` | Atua como engenheiro ASP.NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch). Disponível apenas em projetos inicializados com `--stack aspnet`. |
-| `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
+
+> A skill `/github-site-generator` está disponível neste repositório, mas é exclusiva para **mantenedores do framework** — gera o site GitHub Pages do próprio AI Powered Coding Team. Ela não é incluída nos projetos criados a partir do template.
 

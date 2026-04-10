@@ -250,7 +250,7 @@ A tabela deve ter duas colunas: **Skill** e **Perfil assumido / Descrição**. L
 | `/architect-reviewer` | Atua como arquiteto revisor — valida conformidade com `ARCHITECTURE.md`, `SOLUTION.md` e os 12 fatores |
 | `/business-reviewer` | Atua como revisor de negócio — valida conformidade entre `BUSINESS.md`, implementação e cobertura de testes |
 | `/guideline-reviewer` | Atua como revisor de UX — valida conformidade entre `GUIDELINE.md` e as interfaces construídas |
-| `/dotnet-engineer` | Atua como engenheiro .NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch) |
+| `/aspnet-engineer` | Atua como engenheiro ASP.NET — implementa componentes seguindo a arquitetura limpa (TheCleanArch) |
 | `/github-site-generator` | Atua como gerador de site — produz o GitHub Pages em `docs/site/` e atualiza o README |
 
 ### URLs de instalação
