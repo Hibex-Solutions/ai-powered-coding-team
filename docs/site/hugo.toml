@@ -1,0 +1,40 @@
+baseURL = "https://hibex-solutions.github.io/ai-powered-coding-team/"
+languageCode = "pt-br"
+title = "AI Powered Coding Team"
+
+[params]
+  description = "Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento."
+  repoURL = "https://github.com/hibex-solutions/ai-powered-coding-team"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  codeFences = true
+  noClasses = false
+  guessSyntax = false
+
+[[menus.main]]
+  name = "Instalação"
+  url = "/instalacao/"
+  weight = 1
+
+[[menus.main]]
+  name = "Como usar"
+  url = "/uso/"
+  weight = 2
+
+[[menus.main]]
+  name = "Boas práticas"
+  url = "/boas-praticas/"
+  weight = 3
+
+[[menus.main]]
+  name = "Atualização"
+  url = "/atualizacao-artefatos/"
+  weight = 4
+
+[[menus.main]]
+  name = "Contribuindo"
+  url = "/contribuindo/"
+  weight = 5

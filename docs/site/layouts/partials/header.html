@@ -1,0 +1,22 @@
+{{ if .IsHome }}
+<header>
+  <div class="badge-ai">AI POWERED</div>
+  <h1>AI Powered<br>Coding Team</h1>
+
+  <div class="banner">
+    <img src="{{ "banner.png" | relURL }}" alt="AI Powered Coding Team" width="100%"/>
+  </div>
+
+  <div class="shields">
+    <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/>
+    <img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/>
+    <img src="https://img.shields.io/badge/contribui%C3%A7%C3%A3o-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/>
+    <img src="https://img.shields.io/badge/Open_Source-%E2%99%A5-ff6b6b?style=flat-square" alt="Open Source"/>
+  </div>
+</header>
+{{ else }}
+<div class="page-header">
+  <a href="{{ "/" | relURL }}" class="site-name">← AI Powered Coding Team</a>
+  <h1>{{ .Title }}</h1>
+</div>
+{{ end }}

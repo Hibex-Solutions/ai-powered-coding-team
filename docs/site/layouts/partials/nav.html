@@ -1,0 +1,8 @@
+{{ $currentPage := . }}
+<nav class="site-nav">
+  <a href="{{ "/" | relURL }}"{{ if .IsHome }} class="active"{{ end }}>Início</a>
+  {{ range .Site.Menus.main }}
+  {{ $active := eq $currentPage.RelPermalink (.URL | relURL) }}
+  <a href="{{ .URL | relURL }}"{{ if $active }} class="active"{{ end }}>{{ .Name }}</a>
+  {{ end }}
+</nav>

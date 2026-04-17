@@ -1,10 +1,16 @@
 ---
 name: github-site-generator
-description: Atua como gerador do site GitHub Pages, produzindo docs/site/ e atualizando o README com a URL do Pages.
+description: "[DEPRECADA] O site agora é gerado pelo Hugo. Esta skill não deve ser usada."
 allowed-tools: Bash, Read, Write, Edit, WebFetch
 ---
 
-Atue como gerador do site GitHub Pages e produza o site estático do projeto em `docs/site/`, atualizando o `README.md` com a URL do GitHub Pages.
+> **DEPRECADA** — O site de documentação foi migrado para Hugo (gerador de site estático).
+> O conteúdo agora reside em `docs/site/content/` (arquivos Markdown) e os templates em `docs/site/layouts/`.
+> Para atualizar o site, edite os arquivos Markdown e faça push na branch `main`.
+> O GitHub Actions (`.github/workflows/pages.yml`) constrói e publica automaticamente.
+
+Esta skill não deve mais ser utilizada. Ela gerava `docs/site/index.html` como HTML monolítico autocontido,
+abordagem substituída pelo Hugo para permitir consistência visual e crescimento estruturado da documentação.
 
 ## Passo 1 — Atualizar a versão no README.md
 
