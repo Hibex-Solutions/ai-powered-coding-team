@@ -1,29 +1,24 @@
+
 ---
 
-# Objetivo do projeto
+## Objetivo e fase atual
 
 @../docs/GOAL.md
 
 ---
 
-# Especificação arquitetural
-
-@../docs/ARCHITECTURE.md
-
----
-
-# Especificação da solução de software
+## Desenho da solução
 
 @../docs/SOLUTION.md
 
 ---
 
-# Especificação negocial
+## Regras de negócio
 
 @../docs/BUSINESS.md
 
 ---
 
-# Guideline da marca
+## Guideline e UX
 
 @../docs/GUIDELINE.md

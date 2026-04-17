@@ -50,14 +50,20 @@ Outras documentações também podem estar presentes, como _tutoriais_. Nesse ca
 arquivo de categoria (ex: `./docs/TUTORIAIS.md`) e um diretório `./docs/tutoriais/` para os arquivos complementares.
 Essa regra se aplica para toda a documentação.
 
+#### Convenção de includes
+
+Os arquivos de documentação listados acima são incluídos no contexto via diretiva `@`. Cada inclusão é
+precedida de um cabeçalho `##` que identifica a seção. Por isso, **esses arquivos não devem conter
+cabeçalho H1 (`#`)** — o conteúdo começa diretamente após o título. Todos os cabeçalhos internos
+nesses arquivos devem iniciar em nível 3 (`###`) ou inferior.
+
 ---
 
 ## Comportamento por fase do projeto
 
-Antes de qualquer implementação, leia `docs/GOAL.md` e siga as regras de conduta para a fase declarada
-conforme definido em `docs/ARCHITECTURE.md`.
-
-@../docs/ARCHITECTURE.md
+Antes de qualquer implementação, consulte a seção **Objetivo e fase atual** para identificar a fase
+corrente, e siga as regras de conduta definidas na **Especificação arquitetural** — ambas disponíveis
+nas seções de especificação deste arquivo.
 
 ---
 
@@ -71,3 +77,9 @@ Quando se tratar de poucos arquivos (até 5) prefira usar a API, mas com mais ar
 clonar, considere não clonar o repositório completo, mas apenas com profundidade do último commit.
 
 Ao final da análise o usuário deve ser questionado se deseja remover o diretório temporário.
+
+---
+
+## Especificação arquitetural
+
+@../docs/ARCHITECTURE.md

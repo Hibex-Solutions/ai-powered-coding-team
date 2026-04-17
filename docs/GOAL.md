@@ -1,9 +1,12 @@
-# Objetivo do projeto
+<!--
+  Obrigatório: Descreva aqui a meta atual do projeto, a fase em que se encontra e os critérios
+  que determinam quando o objetivo pode ser considerado concluído.
 
-> _Este arquivo é obrigatório. Descreva aqui a meta atual do projeto, a fase em que se encontra
-> e os critérios que determinam quando o objetivo pode ser considerado concluído._
+  Este arquivo é incluído no contexto do assistente de IA via diretiva @-include.
+  Não use cabeçalhos H1 (#) nem H2 (##) — as seções devem iniciar em H3 (###).
+-->
 
-## Fase atual
+### Fase atual
 
 <!-- Escolha a fase abaixo que representa o momento atual do projeto.
      Remova as opções não aplicáveis e mantenha apenas uma. -->
@@ -32,7 +35,7 @@
 
 ---
 
-## Descrição do objetivo atual
+### Descrição do objetivo atual
 
 > _Descreva em linguagem clara qual é a meta do projeto nesta fase._
 > _Exemplos: "Implementar o MVP com as funcionalidades X, Y e Z" ou
@@ -40,7 +43,7 @@
 
 ---
 
-## Critérios de aceite
+### Critérios de aceite
 
 > _Liste os critérios objetivos que, quando atendidos em sua totalidade, indicam que o
 > objetivo desta fase foi concluído e o projeto pode avançar para a próxima fase ou ser encerrado._
@@ -51,7 +54,7 @@
 
 <!-- Inclua esta seção apenas quando Fase = `migracao` -->
 <!--
-## Recursos de referência (migração)
+### Recursos de referência (migração)
 
 > _Informe os caminhos para o código e a documentação do projeto legado que deve ser consultado
 > durante a migração. Os caminhos podem ser relativos à raiz do repositório ou absolutos._

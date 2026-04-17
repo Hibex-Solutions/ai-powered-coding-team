@@ -1,8 +1,5 @@
-## Stack tecnológica: ASP.NET
-
-Esta seção documenta as decisões de stack tecnológica para projetos baseados em ASP.NET.
-As definições abaixo complementam a especificação agnóstica de `SOLUTION.md` e são
-vinculantes para toda a implementação.
+Esta especificação documenta as decisões de stack tecnológica para projetos baseados em ASP.NET.
+As definições abaixo são vinculantes para toda a implementação.
 
 ---
 

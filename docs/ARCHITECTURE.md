@@ -1,10 +1,8 @@
-# Especificação arquitetural
-
 Toda documentação escrita, e código construído deve seguir estritamente as regras
 contidas neste documento, que mantém as decisões arquiteturais relevantes de forma
 global para toda solução de software construída.
 
-## Regras primárias invioláveis
+### Regras primárias invioláveis
 
 - Todo código de software construído deve obedecer ao desenho de solução especificado
   - Nenhum componente de software pode ser adicionado se não estiver mencionado no desenho de solução
@@ -17,7 +15,7 @@ global para toda solução de software construída.
   - Toda interface construída deve obeceder as regras de Guideline
   - Nenhum comportamento do usuário pode violar as regras de Guideline
 
-## Regras gerais de codificação
+### Regras gerais de codificação
 
 - A raiz do projeto deve ser um repositório Git
 - Deve existir um arquivo `.gitignore` na raiz do projeto com as regras de arquivos ignoráveis do Git
@@ -28,13 +26,13 @@ global para toda solução de software construída.
 - Deve existir um arquivo `CONTRIBUTING.md` na raiz do projeto com as diretrizes de contribuição por perfil
 - O repositório local deve estar configurado explicitamente com nome e e-mail do desenvolvedor ao invés de usar as configurações global do Git. Isso evita erros quando se está utilizando várias contas Git, e fazer commits com usuários errados
 
-## Sobre a fase do projeto
+### Sobre a fase do projeto
 
 O arquivo `docs/GOAL.md` é obrigatório e deve sempre existir preenchido. Ele define a fase atual
 do projeto, a meta em curso e os critérios de aceite que determinam quando essa fase pode ser considerada
 concluída. O arquivo nunca deve estar no estado de template vazio.
 
-### Fases válidas
+#### Fases válidas
 
 | Fase | Descrição |
 |---|---|
@@ -43,7 +41,7 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
 | `manutencao` | Software em manutenção; apenas correções críticas de bugs são permitidas |
 | `migracao` | Migração de projeto legado; código e documentação originais devem ser consultados |
 
-### Regras por fase
+#### Regras por fase
 
 - **`criacao`** e **`desenvolvimento-ativo`**: Implementação livre dentro das especificações documentadas.
 - **`manutencao`**: Novas funcionalidades não devem ser implementadas. Qualquer pedido de nova
@@ -53,7 +51,7 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
   devem ser consultados antes de qualquer implementação. A migração deve preservar o comportamento
   original salvo especificação explícita em contrário.
 
-## Sobre a contribuição no projeto
+### Sobre a contribuição no projeto
 
 Cada perfil de colaborador tem responsabilidade sobre documentos específicos e ações bem definidas no ciclo de vida do projeto.
 
@@ -64,3 +62,4 @@ Cada perfil de colaborador tem responsabilidade sobre documentos específicos e 
 | Designer | `docs/GUIDELINE.md` |
 
 As ações esperadas de cada perfil, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto.
+
