@@ -218,13 +218,12 @@ if [[ -d "${STACKS_SRC}" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# Mescla docs/CLAUDE.md no .claude/CLAUDE.md instalado
+# Mescla eng/templates/CLAUDE.fragment.md no .claude/CLAUDE.md instalado
 # ---------------------------------------------------------------------------
 
-DOCS_CLAUDE="${TARGET_DIR}/docs/CLAUDE.md"
-if [[ -f "${DOCS_CLAUDE}" ]]; then
-    cat "${DOCS_CLAUDE}" >> "${TARGET_DIR}/.claude/CLAUDE.md"
-    rm "${DOCS_CLAUDE}"
+CLAUDE_FRAGMENT="${TARGET_DIR}/eng/templates/CLAUDE.fragment.md"
+if [[ -f "${CLAUDE_FRAGMENT}" ]]; then
+    cat "${CLAUDE_FRAGMENT}" >> "${TARGET_DIR}/.claude/CLAUDE.md"
 fi
 
 # ---------------------------------------------------------------------------

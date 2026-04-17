@@ -36,6 +36,7 @@ O usuário é **arquiteto de soluções de software**. Foco em decisões de desi
 
 A documentação reside no diretório `./docs`, porém ainda assim estão divididos em:
 
+- `./docs/GOAL.md` define a meta atual do projeto, a fase em que se encontra e os critérios de aceite
 - `./docs/ARCHITECTURE.md` tem a especificação da arquitetura do software e suas regras
 - `./docs/SOLUTION.md` tem a descrição da solução, que por sua vez deve obedecer todas as regras arquiteturais
 - `./docs/BUSINESS.md` tem a especificação negocial para o software em questão
@@ -48,6 +49,15 @@ em documentos adicionais, que residem em diretórios correspondentes a seus nome
 Outras documentações também podem estar presentes, como _tutoriais_. Nesse caso espera-se que sempre haja um
 arquivo de categoria (ex: `./docs/TUTORIAIS.md`) e um diretório `./docs/tutoriais/` para os arquivos complementares.
 Essa regra se aplica para toda a documentação.
+
+---
+
+## Comportamento por fase do projeto
+
+Antes de qualquer implementação, leia `docs/GOAL.md` e siga as regras de conduta para a fase declarada
+conforme definido em `docs/ARCHITECTURE.md`.
+
+@../docs/ARCHITECTURE.md
 
 ---
 

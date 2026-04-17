@@ -28,13 +28,38 @@ global para toda solução de software construída.
 - Deve existir um arquivo `CONTRIBUTING.md` na raiz do projeto com as diretrizes de contribuição por perfil
 - O repositório local deve estar configurado explicitamente com nome e e-mail do desenvolvedor ao invés de usar as configurações global do Git. Isso evita erros quando se está utilizando várias contas Git, e fazer commits com usuários errados
 
+## Sobre a fase do projeto
+
+O arquivo `docs/GOAL.md` é obrigatório e deve sempre existir preenchido. Ele define a fase atual
+do projeto, a meta em curso e os critérios de aceite que determinam quando essa fase pode ser considerada
+concluída. O arquivo nunca deve estar no estado de template vazio.
+
+### Fases válidas
+
+| Fase | Descrição |
+|---|---|
+| `criacao` | Projeto sendo construído do zero; não há código legado nem funcionalidades existentes |
+| `desenvolvimento-ativo` | Software lançado em desenvolvimento ativo; novas funcionalidades têm prioridade |
+| `manutencao` | Software em manutenção; apenas correções críticas de bugs são permitidas |
+| `migracao` | Migração de projeto legado; código e documentação originais devem ser consultados |
+
+### Regras por fase
+
+- **`criacao`** e **`desenvolvimento-ativo`**: Implementação livre dentro das especificações documentadas.
+- **`manutencao`**: Novas funcionalidades não devem ser implementadas. Qualquer pedido de nova
+  funcionalidade deve ser recusado ou sinalizado como fora do escopo da fase atual. Apenas correções
+  de bugs críticos que afetam o funcionamento essencial do sistema são permitidas.
+- **`migracao`**: Os caminhos para código e documentação legados declarados em `docs/GOAL.md`
+  devem ser consultados antes de qualquer implementação. A migração deve preservar o comportamento
+  original salvo especificação explícita em contrário.
+
 ## Sobre a contribuição no projeto
 
 Cada perfil de colaborador tem responsabilidade sobre documentos específicos e ações bem definidas no ciclo de vida do projeto.
 
 | Perfil | Documentos sob sua responsabilidade |
 |---|---|
-| Arquiteto de soluções | `docs/ARCHITECTURE.md`, `docs/SOLUTION.md` |
+| Arquiteto de soluções | `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/GOAL.md` |
 | Analista de negócio | `docs/BUSINESS.md` |
 | Designer | `docs/GUIDELINE.md` |
 

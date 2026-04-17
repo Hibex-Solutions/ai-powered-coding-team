@@ -1,5 +1,11 @@
 ---
 
+# Objetivo do projeto
+
+@../docs/GOAL.md
+
+---
+
 # Especificação arquitetural
 
 @../docs/ARCHITECTURE.md

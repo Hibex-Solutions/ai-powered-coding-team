@@ -115,10 +115,11 @@ git commit -m "chore: inicializa projeto a partir do template"
 Antes de qualquer linha de código, o engenheiro documenta:
 
 ```
-docs/ARCHITECTURE.md  ← decisões arquiteturais e regras invioláveis
-docs/SOLUTION.md      ← componentes, tecnologias e desenho da solução
-docs/BUSINESS.md      ← regras de negócio e requisitos funcionais
-docs/GUIDELINE.md     ← padrões de marca, UI e UX
+docs/GOAL.md  ← fase atual, meta em curso e critérios de aceite
+docs/ARCHITECTURE.md    ← decisões arquiteturais e regras invioláveis
+docs/SOLUTION.md        ← componentes, tecnologias e desenho da solução
+docs/BUSINESS.md        ← regras de negócio e requisitos funcionais
+docs/GUIDELINE.md       ← padrões de marca, UI e UX
 ```
 
 ### 3. Delegue para a IA
@@ -153,6 +154,7 @@ O CLAUDE.md do projeto já instrui a IA com as regras arquiteturais, a especific
 │           └── aspnet-engineer/    # skill de stack
 │
 ├── docs/
+│   ├── GOAL.md
 │   ├── ARCHITECTURE.md
 │   ├── SOLUTION.md
 │   ├── BUSINESS.md
@@ -182,6 +184,7 @@ meu-projeto/                        # projeto inicializado com --stack aspnet
 │       └── aspnet-engineer/                  # skill da stack
 │
 ├── docs/
+│   ├── GOAL.md
 │   ├── ARCHITECTURE.md
 │   ├── SOLUTION.md             # base + conteúdo da stack mesclado
 │   ├── BUSINESS.md

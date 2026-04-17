@@ -18,6 +18,12 @@ agrupados por categoria.
 
 ## Checklist de validação
 
+### GOAL.md
+- O arquivo `docs/GOAL.md` existe? → exiba `✅` ou `❌`
+- O arquivo está preenchido (não é o template vazio — fase declarada, descrição e critérios de aceite presentes)? → exiba `✅` ou `❌`
+- A fase declarada é uma das válidas (`criacao`, `desenvolvimento-ativo`, `manutencao`, `migracao`)? → exiba `✅` ou `❌`
+- Se fase = `migracao`: os caminhos de código e documentação legados estão informados? → exiba `✅`, `❌` ou `⚠️` (não se aplica)
+
 ### Regras gerais de codificação
 - Existe `.gitignore` na raiz? → exiba `✅` ou `❌`
 - Existe `.editorconfig` na raiz? → exiba `✅` ou `❌`

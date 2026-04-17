@@ -186,14 +186,13 @@ try {
     }
 
     # ---------------------------------------------------------------------------
-    # Mescla docs/CLAUDE.md no .claude/CLAUDE.md instalado
+    # Mescla eng/templates/CLAUDE.fragment.md no .claude/CLAUDE.md instalado
     # ---------------------------------------------------------------------------
 
-    $DocsClaude = Join-Path $TargetDir "docs\CLAUDE.md"
-    if (Test-Path $DocsClaude) {
+    $ClaudeFragment = Join-Path $TargetDir "eng\templates\CLAUDE.fragment.md"
+    if (Test-Path $ClaudeFragment) {
         $ClaudeMdPath = Join-Path $TargetDir ".claude\CLAUDE.md"
-        Get-Content $DocsClaude | Add-Content $ClaudeMdPath
-        Remove-Item $DocsClaude
+        Get-Content $ClaudeFragment | Add-Content $ClaudeMdPath
     }
 
     # ---------------------------------------------------------------------------
