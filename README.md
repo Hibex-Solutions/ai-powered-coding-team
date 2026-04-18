@@ -4,14 +4,14 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/licença-MIT-4f6ef7?style=flat-square" alt="Licença MIT"/></a>
-  <a href="https://www.anthropic.com/claude-code"><img src="https://img.shields.io/badge/Claude_Code-compatible-a855f7?style=flat-square&logo=anthropic" alt="Claude Code"/></a>
+  <img src="https://img.shields.io/badge/AI-powered-a855f7?style=flat-square" alt="AI Powered"/>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contribuição-bem--vinda-10b981?style=flat-square" alt="Contribuições bem-vindas"/></a>
   <img src="https://img.shields.io/badge/Open_Source-♥-ff6b6b?style=flat-square" alt="Open Source"/>
 </p>
 
 <br/>
 
-> **O poder de uma equipe inteira de desenvolvimento, com ou sem uma.**
+> **O poder aprimorado por IA de uma equipe inteira de desenvolvimento, com ou sem uma equipe.**
 
 **AI Powered Coding Team** é um modelo de projeto que estrutura papéis, responsabilidades e fluxos de trabalho para desenvolvimento guiado por IA. Funciona em dois modos:
 
@@ -38,7 +38,7 @@ curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh |
 - `docs/BUSINESS.md` — regras de negócio e requisitos funcionais
 - `docs/GUIDELINE.md` — padrões de marca, UI e UX
 
-**3. Delegue para a IA** — com as especificações em mãos, inicie o Claude Code:
+**3. Delegue para a IA** — com as especificações em mãos, inicie seu assistente de IA (ex: `claude` para Claude Code):
 
 ```bash
 cd meu-projeto && claude

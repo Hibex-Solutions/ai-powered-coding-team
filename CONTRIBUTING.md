@@ -11,7 +11,7 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 **Ações esperadas:**
 
-- Validar a arquitetura com o Claude Code — revisar aderência às regras primárias invioláveis antes de qualquer mudança estrutural
+- Validar a arquitetura com a IA — revisar aderência às regras primárias invioláveis antes de qualquer mudança estrutural
 - Usar `/c4model-architectural-designer` para criar e manter os diagramas C4Model em `docs/solution/`, documentando contexto, containers e componentes da solução
 - Atualizar as definições do Twelve-Factor App em `docs/architecture/12factor/` sempre que houver mudança na stack ou no modelo de implantação
 - Manter `docs/SOLUTION.md` atualizado conforme a solução evolui, garantindo que componentes e tecnologias adotados estejam documentados
@@ -54,14 +54,14 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 **Ações esperadas:**
 
-- Iniciar o Claude Code (`claude`) somente após as especificações estarem documentadas
+- Iniciar o assistente de IA (ex: `claude` para Claude Code) somente após as especificações estarem documentadas
 - Delegar a implementação à IA, revisando e validando cada entrega antes de commitar
 - Garantir que toda implementação tenha cobertura de testes baseada nas regras de negócio
 - Nunca commitar código sem revisão — a IA propõe, o engenheiro decide
 
 ### Skills disponíveis
 
-Cada skill faz o Claude assumir um perfil especializado — não são comandos avulsos, mas contextos de atuação que a IA assume durante a sessão. Para ativar, use `/nome-da-skill` no Claude Code.
+Cada skill faz a IA assumir um perfil especializado — não são comandos avulsos, mas contextos de atuação que a IA assume durante a sessão. Para ativar, use `/nome-da-skill` no seu assistente de IA.
 
 > Skills marcadas como dependentes de stack são incluídas no projeto somente quando o script de inicialização é executado com a opção `--stack <nome>` correspondente.
 

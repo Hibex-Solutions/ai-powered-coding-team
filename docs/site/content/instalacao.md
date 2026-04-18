@@ -4,7 +4,7 @@ weight: 1
 ---
 
 {{% card title="Pré-requisitos" %}}
-- [Claude Code](https://www.anthropic.com/claude-code) instalado e configurado
+- Assistente de IA compatível instalado e configurado (ex: [Claude Code](https://www.anthropic.com/claude-code))
 - [Git](https://git-scm.com) instalado localmente
 - PowerShell 5.1 ou superior — nativo no Windows 10+; necessário apenas para usuários Windows
 - Conhecimento sólido de engenharia de software (o modelo foi projetado para profissionais sênior)
@@ -66,7 +66,7 @@ docs/GUIDELINE.md     ← padrões de marca, UI e UX
 {{% /step %}}
 
 {{% step num="4" title="Delegue para a IA" %}}
-Com as especificações em mãos, inicie o Claude Code:
+Com as especificações em mãos, inicie seu assistente de IA (ex: `claude` para Claude Code):
 
 ```bash
 claude

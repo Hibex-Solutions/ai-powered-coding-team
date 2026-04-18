@@ -3,7 +3,7 @@ languageCode = "pt-br"
 title = "AI Powered Coding Team"
 
 [params]
-  description = "Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento."
+  description = "O poder aprimorado por IA de uma equipe inteira de desenvolvimento, com ou sem uma equipe."
 
 [markup.goldmark.renderer]
   unsafe = true
