@@ -4,7 +4,6 @@ title = "AI Powered Coding Team"
 
 [params]
   description = "Um engenheiro sênior com o poder de uma equipe inteira de desenvolvimento."
-  repoURL = "https://github.com/hibex-solutions/ai-powered-coding-team"
 
 [markup.goldmark.renderer]
   unsafe = true
