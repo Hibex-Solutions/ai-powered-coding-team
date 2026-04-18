@@ -5,33 +5,33 @@
     <h2>O que é</h2>
     <p>
       <strong>AI Powered Coding Team</strong> é um modelo de projeto (<em>project template</em>) que estrutura
-      papéis, responsabilidades e fluxos de trabalho para desenvolvimento guiado por IA — inicialmente Claude Code.
-      Funciona em dois modos:
+      papéis e responsabilidades para desenvolvimento de software guiado por IA. A mecânica central é direta:
+      cada papel especifica o que precisa e delega à IA a produção do artefato correspondente — documentação ou código.
     </p>
+    <p>O humano orienta. A IA produz. O humano decide.</p>
+    <p>Funciona em dois modos:</p>
     <table>
       <thead>
         <tr>
           <th>Modo</th>
-          <th>Descrição</th>
+          <th>Quem ocupa os papéis</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Solo</strong></td>
-          <td>Um único engenheiro sênior assume todos os papéis (arquiteto, analista, designer, engenheiro) e delega a
-            execução para a IA sob sua supervisão.</td>
+          <td>Um único engenheiro sênior assume todos os papéis em sequência</td>
         </tr>
         <tr>
           <td><strong>Time</strong></td>
-          <td>Cada profissional atua com sua própria expertise, usando a IA para ampliar individualmente sua capacidade
-            de entrega, com a mesma base estrutural compartilhada entre todos.</td>
+          <td>Cada profissional ocupa o seu papel com a mesma estrutura compartilhada</td>
         </tr>
       </tbody>
     </table>
     <p style="margin-top:16px">
-      Em ambos os casos, o modelo garante que <strong>nenhum código seja escrito sem especificação</strong>,
-      que <strong>nenhuma decisão técnica seja tomada sem documentação</strong> e que
-      <strong>toda implementação seja validada contra regras de negócio e diretrizes de marca</strong>.
+      Em ambos os casos: <strong>nenhum código é escrito sem especificação</strong>,
+      <strong>nenhuma decisão técnica é tomada sem documentação</strong>, e
+      <strong>toda implementação é validada contra regras de negócio e diretrizes de marca</strong>.
     </p>
   </div>
 </section>
@@ -44,61 +44,92 @@
         <tr>
           <th>Papel</th>
           <th>Responsabilidade</th>
+          <th>Artefato delegado à IA</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td><strong>Engenheiro de Software</strong></td>
+          <td>Define o objetivo do projeto e entrega o software</td>
+          <td><code>docs/GOAL.md</code> · <code>SOFTWARE</code></td>
+        </tr>
+        <tr>
           <td><strong>Arquiteto de Soluções</strong></td>
           <td>Define arquitetura, tecnologias e governança técnica</td>
+          <td><code>docs/ARCHITECTURE.md</code> · <code>docs/SOLUTION.md</code></td>
         </tr>
         <tr>
           <td><strong>Analista de Negócio</strong></td>
           <td>Especifica regras de negócio e requisitos funcionais</td>
+          <td><code>docs/BUSINESS.md</code></td>
         </tr>
         <tr>
           <td><strong>Designer</strong></td>
           <td>Define diretrizes de marca, UI e UX</td>
-        </tr>
-        <tr>
-          <td><strong>Engenheiro de Software</strong></td>
-          <td>Implementa, testa e entrega o software</td>
+          <td><code>docs/GUIDELINE.md</code></td>
         </tr>
       </tbody>
     </table>
-    <p style="margin-top:16px">
-      No modo Solo, o engenheiro sênior assume todos os papéis. No modo Time, cada profissional ocupa o seu —
-      a IA amplifica a capacidade de entrega em ambos os casos.
-    </p>
   </div>
 </section>
 
 <section>
   <div class="card">
     <h2>Como funciona</h2>
-    <pre><code>── MODO SOLO ──────────────────────────────────────────────
-Engenheiro Sênior
-   │
-   ├── atua como ──► Arquiteto  ──► docs/ARCHITECTURE.md
-   │                                docs/SOLUTION.md
-   │
-   ├── atua como ──► Analista   ──► docs/BUSINESS.md
-   │
-   ├── atua como ──► Designer   ──► docs/GUIDELINE.md
-   │
-   └── delega para ─► IA (Claude Code)
+    <pre><code>── FLUXO ÁGIL E CONTÍNUO ──────────────────────────────────
 
-── MODO TIME ──────────────────────────────────────────────
-Arquiteto ──► docs/ARCHITECTURE.md, docs/SOLUTION.md
-Analista  ──► docs/BUSINESS.md
-Designer  ──► docs/GUIDELINE.md
+ ┌─ ciclo de objetivo ────────────────────────────────────┐
+ │                                                        │
+ │  define objetivo ──► docs/GOAL.md                      │
+ │          │                                             │
+ │          ▼                                             │
+ │  ┌─ ciclo de entrega ─────────────────────────────┐    │
+ │  │                                                │    │
+ │  │  especifica ──► docs/BUSINESS.md               │    │
+ │  │                                                │    │
+ │  │  projeta ─────► docs/ARCHITECTURE.md           │    │
+ │  │                 docs/SOLUTION.md               │    │
+ │  │                 docs/GUIDELINE.md              │    │
+ │  │                                                │    │
+ │  │  constrói ────► [SOFTWARE]                     │    │
+ │  │                                                │    │
+ │  └──────────────── itera até atingir o GOAL ──────┘    │
+ │                                                        │
+ └────────────────────────── novo objetivo ───────────────┘</code></pre>
+    <pre><code>── MODO SOLO ──────────────────────────────────────────────
+Engenheiro Sênior (assume todos os papéis)
    │
-   └── cada um delega para ─► IA (Claude Code)
-                                   │
-                                   ├── lê as especificações
-                                   ├── implementa o software
-                                   ├── escreve os testes
-                                   ├── revisa a arquitetura
-                                   └── valida regras de negócio</code></pre>
+   ▼
+[1] como Engenheiro ─► delega objetivo      ─► IA ──► docs/GOAL.md
+   │
+   ▼
+[2] como Analista   ─► delega especificação ─► IA ──► docs/BUSINESS.md
+   │
+   ▼
+[3] como Arquiteto  ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
+                                                       docs/SOLUTION.md
+   │
+   ▼
+[4] como Designer   ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
+   │
+   ▼
+[5] como Engenheiro ─► delega construção    ─► IA ──► [SOFTWARE]</code></pre>
+    <pre><code>── MODO TIME ──────────────────────────────────────────────
+
+[1] Engenheiro Sênior ─► delega objetivo      ─► IA ──► docs/GOAL.md
+   │
+   ▼
+[2] Analista          ─► delega especificação ─► IA ──► docs/BUSINESS.md
+   │
+   ▼
+[3] Arquiteto         ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
+                                                         docs/SOLUTION.md
+   │
+   ▼
+[4] Designer          ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
+   │
+   ▼
+[5] Engenheiro Sênior ─► delega construção    ─► IA ──► [SOFTWARE]</code></pre>
   </div>
 </section>
 
