@@ -27,5 +27,17 @@
 <div class="page-header">
   <a href="{{ .Site.Home.RelPermalink }}" class="site-name">← AI Powered Coding Team</a>
   <h1>{{ .Title }}</h1>
+  <div class="banner banner-compact">
+    <div class="banner-carousel" aria-label="Banner rotativo">
+      {{ range readDir "static/banners" }}
+        {{ if not .IsDir }}
+          <img class="banner-slide"
+               src="{{ (printf "banners/%s" .Name) | relURL }}"
+               alt="{{ $.Site.Title }}"
+               width="100%"/>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
 </div>
 {{ end }}

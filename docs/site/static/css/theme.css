@@ -123,7 +123,7 @@ h1 {
 /* Page header (compact, for content pages) */
 .page-header {
   text-align: center;
-  padding: 60px 0 32px;
+  padding: 48px 0 0;
 }
 .page-header .site-name {
   display: inline-block;
@@ -139,11 +139,7 @@ h1 {
   transition: color 0.2s, border-color 0.2s;
 }
 .page-header .site-name:hover { color: #7c9fff; border-color: rgba(79,110,247,0.6); }
-.page-header h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
-  margin-bottom: 0;
-}
+
 
 /* Site navigation */
 .site-nav {
@@ -465,10 +461,25 @@ footer a:hover { color: #c084fc; }
   pointer-events: auto;
 }
 
+/* Compact banner carousel (50% visible height, image vertically centered) */
+.banner-compact {
+  position: relative;
+}
+
+.banner-compact .banner-carousel {
+  aspect-ratio: 3392 / 624;
+}
+
+.banner-compact .banner-slide {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
 /* Responsive */
 @media (max-width: 600px) {
   .card { padding: 20px; }
   header { padding: 60px 0 36px; }
-  .page-header { padding: 50px 0 24px; }
+  .page-header { padding: 50px 0 0; }
   .doc-links { grid-template-columns: repeat(2, 1fr); }
 }
