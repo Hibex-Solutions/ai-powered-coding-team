@@ -84,60 +84,21 @@
 <section>
   <div class="card">
     <h2>Como funciona</h2>
-    <pre><code>── FLUXO ÁGIL E CONTÍNUO ──────────────────────────────────
-
- ┌─ ciclo de objetivo ────────────────────────────────────┐
- │                                                        │
- │  define objetivo ──► docs/GOAL.md                      │
- │          │                                             │
- │          ▼                                             │
- │  ┌─ ciclo de entrega ─────────────────────────────┐    │
- │  │                                                │    │
- │  │  especifica ──► docs/BUSINESS.md               │    │
- │  │                                                │    │
- │  │  projeta ─────► docs/ARCHITECTURE.md           │    │
- │  │                 docs/SOLUTION.md               │    │
- │  │                 docs/GUIDELINE.md              │    │
- │  │                                                │    │
- │  │  constrói ────► [SOFTWARE]                     │    │
- │  │                                                │    │
- │  └──────────────── itera até atingir o GOAL ──────┘    │
- │                                                        │
- └────────────────────────── novo objetivo ───────────────┘</code></pre>
-    <pre><code>── MODO SOLO ──────────────────────────────────────────────
-Engenheiro Sênior (assume todos os papéis)
-   │
-   ▼
-[1] como Engenheiro ─► delega objetivo      ─► IA ──► docs/GOAL.md
-   │
-   ▼
-[2] como Analista   ─► delega especificação ─► IA ──► docs/BUSINESS.md
-   │
-   ▼
-[3] como Arquiteto  ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
-                                                       docs/SOLUTION.md
-   │
-   ▼
-[4] como Designer   ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
-   │
-   ▼
-[5] como Engenheiro ─► delega construção    ─► IA ──► [SOFTWARE]</code></pre>
-    <pre><code>── MODO TIME ──────────────────────────────────────────────
-
-[1] Engenheiro Sênior ─► delega objetivo      ─► IA ──► docs/GOAL.md
-   │
-   ▼
-[2] Analista          ─► delega especificação ─► IA ──► docs/BUSINESS.md
-   │
-   ▼
-[3] Arquiteto         ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
-                                                         docs/SOLUTION.md
-   │
-   ▼
-[4] Designer          ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
-   │
-   ▼
-[5] Engenheiro Sênior ─► delega construção    ─► IA ──► [SOFTWARE]</code></pre>
+    <figure class="diagram">
+      <img src="{{ "diagrams/fluxo-agil.png" | relURL }}"
+           alt="Fluxo ágil e contínuo: ciclo de objetivo envolvendo ciclo de entrega, com iteração contínua"/>
+      <figcaption>Fluxo ágil e contínuo</figcaption>
+    </figure>
+    <figure class="diagram">
+      <img src="{{ "diagrams/modo-solo.png" | relURL }}"
+           alt="Modo Solo: um único engenheiro sênior assume os cinco papéis em sequência, delegando cada artefato à IA"/>
+      <figcaption>Modo Solo — um único engenheiro sênior assume todos os papéis</figcaption>
+    </figure>
+    <figure class="diagram">
+      <img src="{{ "diagrams/modo-time.png" | relURL }}"
+           alt="Modo Time: cinco profissionais distintos ocupam os papéis, colaborando com a IA em cada etapa"/>
+      <figcaption>Modo Time — cada profissional ocupa o seu papel</figcaption>
+    </figure>
   </div>
 </section>
 

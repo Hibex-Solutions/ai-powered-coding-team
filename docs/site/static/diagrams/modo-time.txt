@@ -1,0 +1,16 @@
+── MODO TIME ──────────────────────────────────────────────
+
+[1] Engenheiro Sênior ─► delega objetivo      ─► IA ──► docs/GOAL.md
+   │
+   ▼
+[2] Analista          ─► delega especificação ─► IA ──► docs/BUSINESS.md
+   │
+   ▼
+[3] Arquiteto         ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
+                                                         docs/SOLUTION.md
+   │
+   ▼
+[4] Designer          ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
+   │
+   ▼
+[5] Engenheiro Sênior ─► delega construção    ─► IA ──► [SOFTWARE]

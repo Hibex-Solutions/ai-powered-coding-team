@@ -1,0 +1,35 @@
+── FLUXO ÁGIL E CONTÍNUO ──────────────────────────────────
+
+     ● INÍCIO ◄──────────── novo objetivo ──────────┐
+         │                                          │
+         ▼                                          │
+ ┌─ ciclo de objetivo ──────────────────────────┐   │
+ │                                              │   │
+ │  define objetivo ──► docs/GOAL.md            │   │
+ │          │                                   │   │
+ │          ▼                                   │   │
+ │  ┌─ ciclo de entrega ─────────────────────┐  │   │
+ │  │                                        │  │   │
+ │  │  ┌─► especifica ──► docs/BUSINESS.md   │  │   │
+ │  │  │        │                            │  │   │
+ │  │  │        ▼                            │  │   │
+ │  │  │    projeta ──► docs/ARCHITECTURE.md │  │   │
+ │  │  │                docs/SOLUTION.md     │  │   │
+ │  │  │                docs/GUIDELINE.md    │  │   │
+ │  │  │        │                            │  │   │
+ │  │  │        ▼                            │  │   │
+ │  │  │    constrói ─► [SOFTWARE]           │  │   │
+ │  │  │        │                            │  │   │
+ │  │  │        ▼                            │  │   │
+ │  │  │   OBJETIVO atingido?                │  │   │
+ │  │  │    │         │                      │  │   │
+ │  │  └─ não        sim                     │  │   │
+ │  │   (itera)       │                      │  │   │
+ │  │                 ▼                      │  │   │
+ │  │         ■ FIM (OBJETIVO atingido)      │  │   │
+ │  │                 │                      │  │   │
+ │  └─────────────────┼──────────────────────┘  │   │
+ │                    │                         │   │
+ └────────────────────┼─────────────────────────┘   │
+                      │                             │
+                      └─────────────────────────────┘

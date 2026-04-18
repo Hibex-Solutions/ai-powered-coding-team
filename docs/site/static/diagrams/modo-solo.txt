@@ -1,0 +1,18 @@
+── MODO SOLO ──────────────────────────────────────────────
+Engenheiro Sênior (assume todos os papéis)
+   │
+   ▼
+[1] como Engenheiro ─► delega objetivo      ─► IA ──► docs/GOAL.md
+   │
+   ▼
+[2] como Analista   ─► delega especificação ─► IA ──► docs/BUSINESS.md
+   │
+   ▼
+[3] como Arquiteto  ─► delega projeção      ─► IA ──► docs/ARCHITECTURE.md
+                                                       docs/SOLUTION.md
+   │
+   ▼
+[4] como Designer   ─► delega projeção      ─► IA ──► docs/GUIDELINE.md
+   │
+   ▼
+[5] como Engenheiro ─► delega construção    ─► IA ──► [SOFTWARE]
