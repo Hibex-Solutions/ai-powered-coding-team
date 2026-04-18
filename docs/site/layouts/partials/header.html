@@ -1,10 +1,19 @@
 {{ if .IsHome }}
 <header>
   <div class="badge-ai">AI POWERED</div>
-  <h1>AI Powered<br>Coding Team</h1>
+  <h1>AI Powered Coding Team</h1>
 
   <div class="banner">
-    <img src="{{ "banner.png" | relURL }}" alt="AI Powered Coding Team" width="100%"/>
+    <div class="banner-carousel" aria-label="Banner rotativo">
+      {{ range readDir "static/banners" }}
+        {{ if not .IsDir }}
+          <img class="banner-slide"
+               src="{{ (printf "banners/%s" .Name) | relURL }}"
+               alt="AI Powered Coding Team"
+               width="100%"/>
+        {{ end }}
+      {{ end }}
+    </div>
   </div>
 
   <div class="shields">
@@ -16,7 +25,7 @@
 </header>
 {{ else }}
 <div class="page-header">
-  <a href="{{ "/" | relURL }}" class="site-name">← AI Powered Coding Team</a>
+  <a href="{{ .Site.Home.RelPermalink }}" class="site-name">← AI Powered Coding Team</a>
   <h1>{{ .Title }}</h1>
 </div>
 {{ end }}

@@ -85,7 +85,7 @@ header {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
   background: linear-gradient(90deg, #7c9fff, #ffffff, #c084fc);
   -webkit-background-clip: text;
@@ -470,6 +470,29 @@ footer {
 }
 footer a { color: #8899cc; text-decoration: none; }
 footer a:hover { color: #c084fc; }
+
+/* Banner carousel */
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3392 / 1248;
+  overflow: hidden;
+}
+
+.banner-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 5s ease-in-out;
+  pointer-events: none;
+}
+
+.banner-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* Responsive */
 @media (max-width: 600px) {

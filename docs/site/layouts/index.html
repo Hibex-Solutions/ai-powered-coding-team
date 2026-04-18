@@ -102,17 +102,4 @@ Designer  ──► docs/GUIDELINE.md
   </div>
 </section>
 
-<section>
-  <div class="card">
-    <h2>Documentação</h2>
-    <div class="doc-links">
-      {{ range .Site.Menus.main }}
-      <a href="{{ .URL | relURL }}" class="doc-link">
-        <span class="doc-link-title">{{ .Name }}</span>
-      </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
 {{ end }}
