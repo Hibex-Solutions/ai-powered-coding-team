@@ -5,8 +5,8 @@
 
 .DESCRIPTION
     Clona de forma esparsa o repositório oficial heroku/12factor e copia os
-    arquivos Markdown da tradução pt_br para src/docs/architecture/12factor/.
-    Registra metadados (commit SHA e data) em src/docs/architecture/12factor.txt.
+    arquivos Markdown da tradução pt_br para docs/architecture/12factor/.
+    Registra metadados (commit SHA e data) em docs/architecture/12factor.txt.
 
 .EXAMPLE
     .\eng\update-12factor.ps1
@@ -25,8 +25,8 @@ $RepoUrl     = "https://github.com/heroku/12factor.git"
 $ContentPath = "content/pt_br"
 $ScriptDir   = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $ProjectRoot = Split-Path -Parent $ScriptDir
-$TargetDir   = Join-Path $ProjectRoot "src\docs\architecture\12factor"
-$MetaFile    = Join-Path $ProjectRoot "src\docs\architecture\12factor.txt"
+$TargetDir   = Join-Path $ProjectRoot "docs\architecture\12factor"
+$MetaFile    = Join-Path $ProjectRoot "docs\architecture\12factor.txt"
 
 # ---------------------------------------------------------------------------
 # Validação de pré-requisitos

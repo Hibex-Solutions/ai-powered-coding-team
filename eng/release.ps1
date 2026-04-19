@@ -4,9 +4,8 @@
     Gera um pacote de liberação de versão do software.
 
 .DESCRIPTION
-    Determina a versão via GitVersion, copia os arquivos do projeto respeitando
-    as exclusões definidas em .releaseignore e empacota tudo em um arquivo ZIP
-    em dist/.
+    Determina a versão via GitVersion, copia os arquivos do diretório templates/
+    e empacota tudo em um arquivo ZIP em dist/.
 
 .EXAMPLE
     .\eng\release.ps1
@@ -27,7 +26,7 @@ $ScriptDir            = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $ProjectRoot          = Split-Path -Parent $ScriptDir
 $DistDir              = Join-Path $ProjectRoot "dist"
 $PackageDir           = Join-Path $DistDir "package"
-$ReleaseIgnoreFile    = Join-Path $ProjectRoot ".releaseignore"
+$SrcDir         = Join-Path $ProjectRoot "src"
 $GitVersionLocalDir   = Join-Path $ProjectRoot ".GitVersion.Tool"
 $GitVersionMinMajor   = 6
 $GitVersionMinMinor   = 7
@@ -173,77 +172,26 @@ if (Test-Path $PackageDir) {
 New-Item -ItemType Directory -Path $PackageDir | Out-Null
 
 # ---------------------------------------------------------------------------
-# Lê padrões do .releaseignore
+# Copia arquivos de templates/ para o diretório de pacote
 # ---------------------------------------------------------------------------
 
-$IgnorePatterns = @()
-
-if (Test-Path $ReleaseIgnoreFile) {
-    Get-Content $ReleaseIgnoreFile | ForEach-Object {
-        $line = $_.Trim()
-        if ($line -ne "" -and -not $line.StartsWith("#")) {
-            $IgnorePatterns += $line
-        }
-    }
+if (-not (Test-Path $SrcDir)) {
+    Write-Error "ERRO: diretório $SrcDir não encontrado."
+    exit 1
 }
-
-# Sempre exclui dist, cache local e artefatos de controle
-$HardcodedExcludes = @("dist/", ".GitVersion.Tool/", ".git/", ".gitignore", ".releaseignore")
-$AllPatterns = $IgnorePatterns + $HardcodedExcludes
-
-# ---------------------------------------------------------------------------
-# Função de teste de exclusão (compatível com padrões rsync)
-# ---------------------------------------------------------------------------
-
-function Test-Excluded {
-    param([string]$RelativePath, [string[]]$Patterns)
-
-    $relUnix = $RelativePath.Replace('\', '/')
-
-    foreach ($pattern in $Patterns) {
-        $p = $pattern.TrimStart('/')
-
-        if ($p.EndsWith('/')) {
-            # Exclusão de diretório
-            $dir = $p.TrimEnd('/')
-            if ($relUnix -eq $dir -or $relUnix.StartsWith("$dir/")) {
-                return $true
-            }
-        } elseif ($p.Contains('/')) {
-            # Caminho exato
-            if ($relUnix -eq $p) {
-                return $true
-            }
-        } else {
-            # Correspondência por nome de arquivo (qualquer profundidade)
-            $basename = [System.IO.Path]::GetFileName($relUnix)
-            if ($basename -eq $p) {
-                return $true
-            }
-        }
-    }
-
-    return $false
-}
-
-# ---------------------------------------------------------------------------
-# Copia arquivos para o diretório de pacote
-# ---------------------------------------------------------------------------
 
 Write-Host "==> Copiando arquivos para $PackageDir..."
 
-Get-ChildItem -Path $ProjectRoot -Recurse -File | ForEach-Object {
-    $fullPath    = $_.FullName
-    $relativePath = $fullPath.Substring($ProjectRoot.Length).TrimStart('\', '/')
+Get-ChildItem -Path $SrcDir -Recurse -File | ForEach-Object {
+    $fullPath     = $_.FullName
+    $relativePath = $fullPath.Substring($SrcDir.Length).TrimStart('\', '/')
 
-    if (-not (Test-Excluded -RelativePath $relativePath -Patterns $AllPatterns)) {
-        $destFile = Join-Path $PackageDir $relativePath
-        $destDir  = Split-Path $destFile -Parent
-        if (-not (Test-Path $destDir)) {
-            New-Item -ItemType Directory -Path $destDir | Out-Null
-        }
-        Copy-Item -Path $fullPath -Destination $destFile -Force
+    $destFile = Join-Path $PackageDir $relativePath
+    $destDir  = Split-Path $destFile -Parent
+    if (-not (Test-Path $destDir)) {
+        New-Item -ItemType Directory -Path $destDir | Out-Null
     }
+    Copy-Item -Path $fullPath -Destination $destFile -Force
 }
 
 # ---------------------------------------------------------------------------

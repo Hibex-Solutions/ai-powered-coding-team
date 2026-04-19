@@ -21,35 +21,34 @@ O framework (repositório do template):
 ```
 .
 ├── .claude/
-│   ├── CLAUDE.md
-│   └── skills/
-│       ├── c4model-architectural-designer/   # skill genérica
-│       ├── architect-reviewer/               # skill genérica
-│       ├── business-reviewer/                # skill genérica
-│       └── guideline-reviewer/               # skill genérica
-│
-├── stacks/
-│   └── aspnet/                     # stack ASP.NET (Web API, Blazor, Workers...)
-│       ├── docs/
-│       └── skills/
-│           └── aspnet-engineer/    # skill de stack
+│   └── CLAUDE.md                          # instruções para contribuir com o framework
 │
 ├── docs/
-│   ├── GOAL.md
-│   ├── ARCHITECTURE.md
-│   ├── SOLUTION.md
-│   ├── BUSINESS.md
-│   ├── GUIDELINE.md
-│   └── architecture/
-│       └── 12factor/
+│   ├── ARCHITECTURE.md                    # especificação do framework
+│   └── site/                              # site público (Hugo)
 │
-├── src/
-├── test/
 ├── eng/
-├── samples/
-├── CLAUDE.md
-├── CONTRIBUTING.md
-└── LICENSE
+│   ├── install.sh / install.ps1           # instalador do template no projeto consumidor
+│   ├── release.sh / release.ps1           # empacota src/ em dist/
+│   └── update-12factor.sh / .ps1
+│
+├── src/                                   # template distribuído em cada release
+│   ├── .claude/
+│   │   └── skills/
+│   │       ├── c4model-architectural-designer/
+│   │       ├── architect-reviewer/
+│   │       ├── business-reviewer/
+│   │       └── guideline-reviewer/
+│   ├── stacks/
+│   │   └── aspnet/
+│   │       ├── docs/
+│   │       └── skills/
+│   │           └── aspnet-engineer/
+│   ├── docs/
+│   ├── eng/
+│   └── CLAUDE.md, CONTRIBUTING.md, .gitignore
+│
+├── CLAUDE.md, CONTRIBUTING.md, LICENSE
 ```
 
 Após a inicialização com `--stack aspnet`:

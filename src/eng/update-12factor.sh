@@ -11,8 +11,8 @@ REPO_URL="https://github.com/heroku/12factor.git"
 CONTENT_PATH="content/pt_br"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-TARGET_DIR="${PROJECT_ROOT}/src/docs/architecture/12factor"
-METADATA_FILE="${PROJECT_ROOT}/src/docs/architecture/12factor.txt"
+TARGET_DIR="${PROJECT_ROOT}/docs/architecture/12factor"
+METADATA_FILE="${PROJECT_ROOT}/docs/architecture/12factor.txt"
 
 echo "==> Atualizando especificação 12factor (pt_br)..."
 

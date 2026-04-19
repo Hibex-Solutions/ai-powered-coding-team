@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 DIST_DIR="${PROJECT_ROOT}/dist"
 PACKAGE_DIR="${DIST_DIR}/package"
-RELEASEIGNORE="${PROJECT_ROOT}/.releaseignore"
+SRC_DIR="${PROJECT_ROOT}/src"
 GITVERSION_LOCAL_DIR="${PROJECT_ROOT}/.GitVersion.Tool"
 GITVERSION_MIN_MAJOR=6
 GITVERSION_MIN_MINOR=7
@@ -163,45 +163,17 @@ rm -rf "${PACKAGE_DIR}"
 mkdir -p "${PACKAGE_DIR}"
 
 # ---------------------------------------------------------------------------
-# Lê padrões do .releaseignore
+# Copia arquivos de templates/ para o diretório de pacote
 # ---------------------------------------------------------------------------
 
-IGNORE_PATTERNS=()
-
-if [[ -f "${RELEASEIGNORE}" ]]; then
-    while IFS= read -r line || [[ -n "${line}" ]]; do
-        # Ignora linhas vazias e comentários
-        [[ -z "${line}" || "${line}" =~ ^[[:space:]]*# ]] && continue
-        IGNORE_PATTERNS+=("${line}")
-    done < "${RELEASEIGNORE}"
+if [[ ! -d "${SRC_DIR}" ]]; then
+    echo "ERRO: diretório ${SRC_DIR} não encontrado." >&2
+    exit 1
 fi
-
-# ---------------------------------------------------------------------------
-# Monta argumentos de exclusão para rsync
-# ---------------------------------------------------------------------------
-
-RSYNC_EXCLUDES=()
-for pattern in "${IGNORE_PATTERNS[@]}"; do
-    RSYNC_EXCLUDES+=("--exclude=${pattern}")
-done
-
-# Sempre exclui o próprio diretório dist, cache local e artefatos de controle
-RSYNC_EXCLUDES+=(
-    "--exclude=dist/"
-    "--exclude=.GitVersion.Tool/"
-    "--exclude=.git/"
-    "--exclude=.gitignore"
-    "--exclude=.releaseignore"
-)
-
-# ---------------------------------------------------------------------------
-# Copia arquivos para o diretório de pacote
-# ---------------------------------------------------------------------------
 
 echo "==> Copiando arquivos para ${PACKAGE_DIR}..."
 rsync -a --no-links \
-    "${RSYNC_EXCLUDES[@]}" \
-    "${PROJECT_ROOT}/" \
+    "${SRC_DIR}/" \
     "${PACKAGE_DIR}/"
 
 # ---------------------------------------------------------------------------
