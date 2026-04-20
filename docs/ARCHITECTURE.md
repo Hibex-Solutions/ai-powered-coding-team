@@ -15,6 +15,13 @@ global para toda solução de software construída.
   - Toda interface construída deve obeceder as regras de Guideline
   - Nenhum comportamento do usuário pode violar as regras de Guideline
 
+O framework **se submete** às suas próprias regras primárias invioláveis — desenvolver
+o framework é, ele mesmo, um exercício de dogfooding: nenhuma skill, stack, script
+ou documento é adicionado ao framework sem estar especificado em `docs/SOLUTION.md`
+(raiz); nenhuma funcionalidade existe sem regra de negócio correspondente em
+`docs/BUSINESS.md` (raiz); nenhuma interface pública (site, mensagens de CLI, README)
+viola `docs/GUIDELINE.md` (raiz).
+
 ### Regras gerais de codificação
 
 - A raiz do projeto deve ser um repositório Git
@@ -25,6 +32,7 @@ global para toda solução de software construída.
 - O software construído deve estar de acordo com as definições de "The Twelve-Factor App" (veja documentos em `./architecture/12factor/`)
 - Deve existir um arquivo `CONTRIBUTING.md` na raiz do projeto com as diretrizes de contribuição por perfil
 - O repositório local deve estar configurado explicitamente com nome e e-mail do desenvolvedor ao invés de usar as configurações global do Git. Isso evita erros quando se está utilizando várias contas Git, e fazer commits com usuários errados
+- Scripts em `eng/` são escritos em Bash (POSIX com *bashisms* explícitos) para `.sh` e em PowerShell 7+ para `.ps1`. Nenhuma dependência de runtime adicional (Node.js, Python, Ruby, etc.) é aceita em `eng/` — o objetivo é que os scripts rodem em qualquer sistema com apenas `bash`/`pwsh`, `git`, `curl` e utilitários POSIX comuns.
 
 ### Sobre a fase do projeto
 
@@ -51,15 +59,31 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
   devem ser consultados antes de qualquer implementação. A migração deve preservar o comportamento
   original salvo especificação explícita em contrário.
 
+### Versionamento e compatibilidade
+
+- A versão do framework é determinada automaticamente por **GitVersion** (≥ 6.7) a partir do histórico de commits e da *tag* mais recente no formato `v*`. O binário é resolvido pelo `eng/release.sh`: utiliza o GitVersion do sistema se disponível, caso contrário baixa para `.GitVersion.Tool/`.
+- O conteúdo de `src/**` é a **API pública** do framework. É esse o conjunto de arquivos distribuído aos consumidores pelo fluxo `release.sh` → ZIP → `install.sh`. Qualquer alteração em `src/**` deve ser avaliada quanto ao impacto em consumidores existentes:
+  - **MAJOR** para remoções, renomeações ou mudanças comportamentais incompatíveis.
+  - **MINOR** para adições retrocompatíveis (nova skill, nova stack, novo arquivo).
+  - **PATCH** para correções sem efeito em API (typos, ajustes internos).
+- **Releases são imutáveis.** Uma vez empurrada uma *tag* `v*` e publicada a release correspondente, o artefato não é reescrito. Correções saem sempre como uma nova versão.
+- Projetos consumidores não são afetados por mudanças futuras em `src/**`: uma vez executado `install.sh` com uma versão específica, o projeto consumidor fica travado naquela versão até que o usuário decida reinstalar ou migrar.
+
+### Canal de distribuição
+
+- O framework é distribuído por um **único canal**: GitHub Releases (artefato ZIP) + GitHub Pages (site público e hospedagem de `install.sh` e `install.ps1`).
+- `install.sh` via `curl | bash` é o **contrato de instalação** — deve permanecer *self-contained*, sem dependências além de `git`, `curl` e `unzip` (equivalentes em PowerShell no `install.ps1`).
+- **Nenhum token ou segredo** é exigido para instalar o framework. Os assets são servidos pela API pública de Releases do GitHub e pelo endpoint público de Pages.
+- A automação do canal é feita por GitHub Actions: `.github/workflows/release.yml` (gatilho em *tag* `v*`) e `.github/workflows/pages.yml` (gatilho em *push* para `main`).
+
 ### Sobre a contribuição no projeto
 
-Cada perfil de colaborador tem responsabilidade sobre documentos específicos e ações bem definidas no ciclo de vida do projeto.
+Cada perfil de contribuidor tem responsabilidade sobre áreas específicas do repositório do framework.
 
-| Perfil | Documentos sob sua responsabilidade |
+| Perfil | Áreas sob sua responsabilidade |
 |---|---|
-| Arquiteto de soluções | `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/GOAL.md` |
-| Analista de negócio | `docs/BUSINESS.md` |
-| Designer | `docs/GUIDELINE.md` |
+| Mantenedor do framework | Governança, releases, documentação pública (`docs/site/**`), sincronização de referências externas (`eng/update-12factor.*`), coerência dos 5 documentos normativos da raiz |
+| Contribuidor de stack | Stacks em `src/stacks/<nome>/` (docs + skills específicas da stack) |
+| Contribuidor de skill | Skills em `.claude/skills/` (meta-uso interno), `src/.claude/skills/` (genéricas distribuídas) e `src/stacks/<nome>/skills/` (stack-específicas) |
 
-As ações esperadas de cada perfil, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto.
-
+As ações esperadas de cada perfil, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto. Para a contribuição **em um projeto consumidor** gerado a partir do framework, a referência é o `CONTRIBUTING.md` instalado pelo `eng/install.sh` (proveniente de `src/CONTRIBUTING.md`), que descreve os perfis Arquiteto, Analista de negócio, Designer e Engenheiro.

@@ -24,15 +24,15 @@ Ao ser invocado, siga este protocolo antes de produzir qualquer diagrama:
 
 3. **Nunca misturar níveis** — cada diagrama representa um único nível de abstração.
 
-4. **Salvar cada diagrama** em `docs/solution/{nivel}-{nome}.md` usando o padrão:
-   - `context-{sistema}.md` — Diagrama de Contexto
-   - `container-{sistema}.md` — Diagrama de Contêiner
-   - `component-{conteiner}.md` — Diagrama de Componente
-   - `landscape.md` — Diagrama de Paisagem
-   - `dynamic-{fluxo}.md` — Diagrama Dinâmico
-   - `deployment-{ambiente}.md` — Diagrama de Implantação
+4. **Incorporar cada diagrama inline em `docs/SOLUTION.md`**, na seção ou subseção em que o assunto ilustrado é tratado — o diagrama é parte da narrativa, não um anexo:
+   - Diagrama de **Contexto** → junto à visão geral do sistema.
+   - Diagrama de **Contêiner** → abrindo (ou dentro de) a seção que apresenta a decomposição estrutural do sistema.
+   - Diagrama de **Componente** → dentro da subseção do contêiner decomposto.
+   - Diagrama **Dinâmico** → junto à descrição do fluxo que ele ilustra.
+   - Diagramas suplementares (**Landscape**, **Deployment**, dinâmicos auxiliares) que não correspondem a um assunto dedicado em `docs/SOLUTION.md` são a **exceção**: salve em `docs/solution/{nivel}-{nome}.md` e referencie em uma seção curta "Diagramas complementares" ao final de `docs/SOLUTION.md`. Padrões de nome para o caso de exceção: `context-{sistema}.md`, `container-{sistema}.md`, `component-{conteiner}.md`, `landscape.md`, `dynamic-{fluxo}.md`, `deployment-{ambiente}.md`.
+   - Não crie uma seção dedicada "Diagramas" para abrigar os diagramas padrão — eles devem estar distribuídos contextualmente ao longo do documento.
 
-5. **Ao concluir**, atualize `docs/SOLUTION.md` com referências aos diagramas produzidos.
+5. **Ao concluir**, revise `docs/SOLUTION.md` para garantir que cada diagrama inline segue imediatamente a prosa do tema que ilustra, com notas complementares curtas (quando fizer sentido) em parágrafos regulares abaixo do bloco Mermaid.
 
 ---
 
@@ -368,7 +368,8 @@ Nível 1: Contexto ────────────────────�
     │       └─ Não → Documentar como sistema único no Contexto
     │
     ▼
-Atualizar docs/SOLUTION.md com referências aos diagramas gerados
+Incorporar cada diagrama em docs/SOLUTION.md na seção em que o assunto é tratado;
+salvar suplementares em docs/solution/ e referenciá-los em "Diagramas complementares"
 ```
 
 ---
