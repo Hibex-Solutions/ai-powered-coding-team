@@ -33,7 +33,7 @@ C4Context
     title Contexto — AI Powered Coding Team
 
     Person(consumidor, "Consumidor do framework", "Engenheiro solo ou time de engenharia que instala o template para estruturar um novo projeto")
-    Person(mantenedor, "Mantenedor ou contribuidor", "Equipe Hibex e colaboradores externos que evoluem o framework")
+    Person(mantenedor, "Equipe do framework", "Profissionais Hibex e colaboradores externos que atuam como arquiteto, analista de negócio, designer ou engenheiro para evoluir o framework (dogfooding)")
 
     System(framework, "AI Powered Coding Team", "Framework instalável que estrutura papéis, documentos normativos e delegação supervisionada a assistentes de IA")
 
@@ -69,7 +69,7 @@ C4Container
     title Contêiner — AI Powered Coding Team
 
     Person(consumidor, "Consumidor do framework", "Engenheiro solo ou time de engenharia")
-    Person(mantenedor, "Mantenedor ou contribuidor", "Equipe Hibex e colaboradores")
+    Person(mantenedor, "Equipe do framework", "Profissionais Hibex e colaboradores — atuam nos quatro papéis do framework")
 
     System_Boundary(framework, "AI Powered Coding Team") {
         Container(installer, "Instalador", "Bash 4+ / PowerShell 7+", "Baixa a release, extrai o ZIP, aplica stack opcional e inicializa repositório Git no destino")
@@ -113,7 +113,7 @@ C4Container
 - **`payload` (software distribuído em `src/`)** não é um processo em execução — é um conjunto versionado de arquivos. É representado como contêiner porque é a unidade principal que o framework entrega e que tem ciclo de vida independente (release a release).
 - Os scripts em `eng/` são representados como contêineres independentes (`installer`, `releaser`, `sync12f`) porque cada um tem responsabilidade isolada e é executado por atores distintos em contextos distintos.
 - `GitHub Actions`, `GitHub Pages` e `GitHub Releases` são mostrados separadamente para explicitar quais funções do GitHub o framework consome — apesar de serem o mesmo provedor.
-- Skills em `.claude/skills/` (raiz) não aparecem como contêiner: não são distribuídas e sua função é estritamente auxiliar ao mantenedor durante o desenvolvimento do framework.
+- Skills em `.claude/skills/` (raiz) não aparecem como contêiner: não são distribuídas e sua função é estritamente auxiliar à equipe que desenvolve o framework.
 
 #### Instalador
 
@@ -130,7 +130,7 @@ C4Container
 
 - Arquivos: `eng/update-12factor.sh`, `eng/update-12factor.ps1`, `src/eng/update-12factor.sh`, `src/eng/update-12factor.ps1`.
 - Responsabilidade: *sparse-checkout* do repositório `heroku/12factor` e extração da tradução `pt_br` para `src/docs/architecture/12factor/` (na raiz) e para `docs/architecture/12factor/` (no projeto consumidor).
-- Mantido em ambos os locais para permitir que tanto o mantenedor do framework quanto o consumidor atualizem a especificação referenciada.
+- Mantido em ambos os locais para permitir que tanto a equipe que desenvolve o framework quanto o consumidor atualizem a especificação referenciada.
 
 #### Site público
 
@@ -259,7 +259,7 @@ A semântica SemVer aplicada a `src/**` (a API pública do framework, conforme `
 
 ### Fluxo de release
 
-1. O mantenedor publica uma *tag* `v*` no repositório.
+1. Um *committer* (engenheiro com direito de merge) publica uma *tag* `v*` no repositório.
 2. `.github/workflows/release.yml` é disparado.
 3. Passos do workflow:
    - `actions/checkout@v4` com `fetch-depth: 0` (histórico completo, necessário para GitVersion).
@@ -278,7 +278,7 @@ O diagrama dinâmico abaixo materializa os passos acima — das regras de releas
 C4Dynamic
     title Dinâmico — Fluxo de release
 
-    Person(mantenedor, "Mantenedor", "Empurra tag v*")
+    Person(mantenedor, "Committer", "Engenheiro com direito de merge; publica tags v*")
     System_Ext(gh_actions, "GitHub Actions", "Executor de workflow")
     Container(workflow_rel, "Workflow release.yml", "GitHub Actions YAML", "Pipeline de release")
     Container(releaser, "eng/release.sh", "Bash 4+", "Empacotador")

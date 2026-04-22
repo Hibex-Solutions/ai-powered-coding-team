@@ -21,7 +21,7 @@ O problema que este framework se propõe a resolver é **estruturar o processo d
 
 - **Engenheiro solo** — profissional sênior que assume todos os papéis (arquiteto, analista de negócio, designer, engenheiro) e delega a execução a um assistente de IA sob sua supervisão.
 - **Time de engenharia** — múltiplos profissionais, cada um atuando em seu perfil específico, usando o assistente de IA para ampliar individualmente a capacidade de entrega, com base estrutural compartilhada entre todos.
-- **Mantenedor ou contribuidor do framework** — cliente secundário, que usa o próprio framework (especialmente as skills em `.claude/skills/` da raiz) para desenvolver o framework.
+- **Equipe que desenvolve o framework** — cliente secundário: os mesmos quatro papéis (arquiteto de soluções, analista de negócio, designer, engenheiro de software) aplicados ao próprio framework (*dogfooding*), apoiados pelas skills em `.claude/skills/` da raiz.
 
 ### Proposta de valor
 

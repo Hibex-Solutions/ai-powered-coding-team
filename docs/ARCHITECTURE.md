@@ -65,12 +65,18 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
 
 ### Sobre a contribuição no projeto
 
-Cada perfil de contribuidor tem responsabilidade sobre áreas específicas do repositório do framework.
+O desenvolvimento do framework segue os mesmos quatro papéis que o framework impõe aos projetos consumidores — **arquiteto de soluções, analista de negócio, designer e engenheiro de software** — aplicados ao próprio repositório (*dogfooding*). Nenhum papel adicional é introduzido pelo fato de o projeto ser o framework.
 
-| Perfil | Áreas sob sua responsabilidade |
+As **áreas de contribuição** são recortes transversais aos papéis, indicando *onde* a contribuição incide:
+
+| Área | Localização |
 |---|---|
-| Mantenedor do framework | Governança, releases, documentação pública (`docs/site/**`), sincronização de referências externas (`eng/update-12factor.*`), coerência dos 5 documentos normativos da raiz |
-| Contribuidor de stack | Stacks em `src/stacks/<nome>/` (docs + skills específicas da stack) |
-| Contribuidor de skill | Skills em `.claude/skills/` (meta-uso interno), `src/.claude/skills/` (genéricas distribuídas) e `src/stacks/<nome>/skills/` (stack-específicas) |
+| Core do framework | Documentos normativos da raiz (`docs/*.md`), scripts em `eng/`, site público em `docs/site/**`, workflows em `.github/workflows/` |
+| Stacks plugáveis | `src/stacks/<nome>/{docs,skills}/` |
+| Skills | `src/.claude/skills/` (genéricas distribuídas), `src/stacks/<nome>/skills/` (stack-específicas), `.claude/skills/` (meta-uso interno, não distribuído) |
 
-As ações esperadas de cada perfil, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto. Para a contribuição **em um projeto consumidor** gerado a partir do framework, a referência é o `CONTRIBUTING.md` instalado pelo `eng/install.sh` (proveniente de `src/CONTRIBUTING.md`), que descreve os perfis Arquiteto, Analista de negócio, Designer e Engenheiro.
+Os quatro papéis são assumidos conforme a área demanda — adicionar uma nova stack, por exemplo, envolve o arquiteto (especifica `docs/SOLUTION.md` da stack, obrigatório), o engenheiro (implementa a skill de engenheiro correspondente), e analista/designer quando a stack traz regras de negócio ou diretrizes próprias. Não há um "perfil de contribuidor de stack" separado — há um contribuidor que atua nos papéis necessários à contribuição em curso.
+
+Governança do repositório (direito de merge, publicação de *tags* de release, sincronização de referências externas) é atribuição dos *committers*, executada no papel de **engenheiro** quando a tarefa envolve script ou configuração, e no papel de **arquiteto** quando envolve decisão estrutural. Não constitui um papel de produção separado.
+
+As ações esperadas de cada papel em cada área, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto. Para a contribuição **em um projeto consumidor** gerado a partir do framework, a referência é o `CONTRIBUTING.md` instalado pelo `eng/install.sh` (proveniente de `src/CONTRIBUTING.md`), que descreve os mesmos quatro papéis aplicados ao software produzido pelo consumidor.

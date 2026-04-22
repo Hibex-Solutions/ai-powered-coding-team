@@ -11,13 +11,13 @@ Este é o repositório do framework **AI Powered Coding Team**. Você está trab
 
 ## Perfil do usuário
 
-O usuário é **mantenedor ou contribuidor do framework** — atua em um dos três perfis descritos em `CONTRIBUTING.md` na raiz: Mantenedor do framework, Contribuidor de stack ou Contribuidor de skill. Foco em decisões de design, qualidade estrutural, compatibilidade de API e escolhas técnicas fundamentadas. Respostas devem ser diretas, técnicas e sem floreios — assuma conhecimento sólido de engenharia de software.
+O usuário desenvolve o próprio framework, atuando em um ou mais dos quatro papéis que o framework define — **arquiteto de soluções, analista de negócio, designer, engenheiro de software** — aplicados ao repositório do framework (*dogfooding*). A contribuição pode incidir sobre o core do framework, stacks plugáveis ou skills, conforme detalhado em `CONTRIBUTING.md` na raiz. Foco em decisões de design, qualidade estrutural, compatibilidade de API e escolhas técnicas fundamentadas. Respostas devem ser diretas, técnicas e sem floreios — assuma conhecimento sólido de engenharia de software.
 
 ---
 
 ## Regras gerais
 
-- Commits são feitos pelo mantenedor, nunca pela IA
+- Commits são feitos pelo contribuidor humano, nunca pela IA
 - O diretório de trabalho deve ser sempre um repositório Git
 - Espera-se que as configurações locais do Git quanto a nome e e-mail estejam presentes sempre
 - **Agnosticismo à ferramenta de IA** é regra dura: nunca mencione uma ferramenta específica (Claude Code, Cursor, Copilot, etc.) como requisito em `README.md`, `docs/site/**` ou nos cinco documentos normativos (`docs/GOAL.md`, `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/BUSINESS.md`, `docs/GUIDELINE.md`). "Assistente de IA" como termo genérico. Ferramentas concretas só em exemplos rotulados `(ex.: ...)`, e ainda assim evite quando possível.

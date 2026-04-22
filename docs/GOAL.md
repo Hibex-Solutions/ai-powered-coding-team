@@ -28,4 +28,4 @@ O framework é construído sob as mesmas regras que impõe aos seus consumidores
 - [ ] Os cinco documentos normativos da raiz (`docs/GOAL.md`, `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/BUSINESS.md`, `docs/GUIDELINE.md`) estão preenchidos e respeitam a convenção de includes.
 - [ ] `.claude/CLAUDE.md` da raiz instrui o assistente de IA para o contexto de manutenção do framework (e não de um projeto consumidor).
 - [ ] Skills genéricas em `src/.claude/skills/` (`architect-reviewer`, `business-reviewer`, `guideline-reviewer`, `c4model-architectural-designer`) estão presentes, com `SKILL.md` válido, e listadas na tabela de `src/CONTRIBUTING.md`.
-- [ ] `CONTRIBUTING.md` da raiz cobre os três perfis de contribuidor do framework (mantenedor, contribuidor de stack, contribuidor de skill).
+- [ ] `CONTRIBUTING.md` da raiz descreve o desenvolvimento do framework sob os mesmos quatro papéis (arquiteto de soluções, analista de negócio, designer, engenheiro de software) aplicados às áreas de contribuição (core, stacks, skills), e cita separadamente as atribuições de governança dos *committers*.
