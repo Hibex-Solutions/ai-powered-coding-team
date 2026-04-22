@@ -36,7 +36,7 @@ viola `docs/GUIDELINE.md` (raiz).
 - O software construído deve estar de acordo com as definições de "The Twelve-Factor App" (veja documentos em `./architecture/12factor/`)
 - Deve existir um arquivo `CONTRIBUTING.md` na raiz do projeto com as diretrizes de contribuição por perfil
 - O repositório local deve estar configurado explicitamente com nome e e-mail do desenvolvedor ao invés de usar as configurações global do Git. Isso evita erros quando se está utilizando várias contas Git, e fazer commits com usuários errados
-- Scripts em `eng/` são escritos em Bash (POSIX com *bashisms* explícitos) para `.sh` e em PowerShell 7+ para `.ps1`. Nenhuma dependência de runtime adicional (Node.js, Python, Ruby, etc.) é aceita em `eng/` — o objetivo é que os scripts rodem em qualquer sistema com apenas `bash`/`pwsh`, `git`, `curl` e utilitários POSIX comuns.
+- Scripts em `eng/` não podem introduzir dependência de runtime adicional (Node.js, Python, Ruby, etc.) além de `bash`/`pwsh`, `git`, `curl` e utilitários POSIX comuns. Essa restrição garante que o framework rode em qualquer sistema sem instalações prévias específicas. As linguagens concretas adotadas para `.sh` e `.ps1` estão definidas em `SOLUTION.md` ("Tecnologias adotadas").
 
 ### Sobre a fase do projeto
 
@@ -62,23 +62,6 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
 - **`migracao`**: Os caminhos para código e documentação legados declarados em `docs/GOAL.md`
   devem ser consultados antes de qualquer implementação. A migração deve preservar o comportamento
   original salvo especificação explícita em contrário.
-
-### Versionamento e compatibilidade
-
-- A versão do framework é determinada automaticamente por **GitVersion** (≥ 6.7) a partir do histórico de commits e da *tag* mais recente no formato `v*`. O binário é resolvido pelo `eng/release.sh`: utiliza o GitVersion do sistema se disponível, caso contrário baixa para `.GitVersion.Tool/`.
-- O conteúdo de `src/**` é a **API pública** do framework. É esse o conjunto de arquivos distribuído aos consumidores pelo fluxo `release.sh` → ZIP → `install.sh`. Qualquer alteração em `src/**` deve ser avaliada quanto ao impacto em consumidores existentes:
-  - **MAJOR** para remoções, renomeações ou mudanças comportamentais incompatíveis.
-  - **MINOR** para adições retrocompatíveis (nova skill, nova stack, novo arquivo).
-  - **PATCH** para correções sem efeito em API (typos, ajustes internos).
-- **Releases são imutáveis.** Uma vez empurrada uma *tag* `v*` e publicada a release correspondente, o artefato não é reescrito. Correções saem sempre como uma nova versão.
-- Projetos consumidores não são afetados por mudanças futuras em `src/**`: uma vez executado `install.sh` com uma versão específica, o projeto consumidor fica travado naquela versão até que o usuário decida reinstalar ou migrar.
-
-### Canal de distribuição
-
-- O framework é distribuído por um **único canal**: GitHub Releases (artefato ZIP) + GitHub Pages (site público e hospedagem de `install.sh` e `install.ps1`).
-- `install.sh` via `curl | bash` é o **contrato de instalação** — deve permanecer *self-contained*, sem dependências além de `git`, `curl` e `unzip` (equivalentes em PowerShell no `install.ps1`).
-- **Nenhum token ou segredo** é exigido para instalar o framework. Os assets são servidos pela API pública de Releases do GitHub e pelo endpoint público de Pages.
-- A automação do canal é feita por GitHub Actions: `.github/workflows/release.yml` (gatilho em *tag* `v*`) e `.github/workflows/pages.yml` (gatilho em *push* para `main`).
 
 ### Sobre a contribuição no projeto
 

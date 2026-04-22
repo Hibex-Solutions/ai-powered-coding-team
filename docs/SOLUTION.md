@@ -224,6 +224,31 @@ Residem em `.claude/skills/` (raiz) e são utilizadas apenas no desenvolvimento 
 
 ---
 
+### Canal de distribuição
+
+O framework adota um **único canal de distribuição**: **GitHub Releases** para os artefatos ZIP versionados e **GitHub Pages** para o site público e a hospedagem dos assets `install.sh` e `install.ps1`. Essa decisão atende `RN-REL-06` (canal único) e `RN-INST-02` (sem token/segredo no consumidor) — os assets são servidos pela API pública de Releases e pelo endpoint público de Pages.
+
+- **Contrato de instalação**: `install.sh` via `curl | bash` (e `install.ps1` via PowerShell) deve permanecer *self-contained*, dependendo apenas de `git`, `curl` e `unzip` no host do consumidor (`RN-INST-07`, `RN-NF-03`).
+- **Automação do canal**: dois workflows do GitHub Actions cobrem a publicação:
+  - `.github/workflows/release.yml` — gatilho em *tag* `v*`; invoca `eng/release.sh` e anexa o ZIP à GitHub Release.
+  - `.github/workflows/pages.yml` — gatilho em *push* para `main`; faz o *build* do site Hugo e copia `eng/install.sh`/`install.ps1` para `docs/site/static/` antes de publicar em GitHub Pages.
+
+---
+
+### Versionamento
+
+A versão do framework é resolvida automaticamente por **GitVersion** (v6.7+) a partir do histórico de commits e da *tag* mais recente no formato `v*`. O binário é localizado pelo `eng/release.sh`: utiliza o GitVersion do sistema se disponível; caso contrário baixa para `.GitVersion.Tool/` (fallback silencioso). Em ambiente CI, o binário é tipicamente baixado a cada execução.
+
+A semântica SemVer aplicada a `src/**` (a API pública do framework, conforme `RN-REL-03`) é:
+
+- **MAJOR** — remoções, renomeações ou mudanças comportamentais incompatíveis em `src/**`.
+- **MINOR** — adições retrocompatíveis (nova skill genérica, nova stack, novo arquivo distribuído).
+- **PATCH** — correções sem efeito em API (typos, ajustes internos).
+
+**Implicação para o consumidor:** uma vez executado `install.sh` com uma versão específica, o projeto consumidor fica travado naquela versão até que o usuário decida reinstalar ou migrar. Mudanças futuras em `src/**` não afetam projetos já instalados — consequência direta da imutabilidade de releases (`RN-REL-01`) combinada à ausência de mecanismo de auto-atualização no canal.
+
+---
+
 ### Fluxo de release
 
 1. O mantenedor publica uma *tag* `v*` no repositório.
