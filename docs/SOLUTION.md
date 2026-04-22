@@ -9,6 +9,14 @@ A solução é projetada pelo **arquiteto** (em conjunto com o **designer** para
 
 ---
 
+O **AI Powered Coding Team** é um framework instalável, puramente estrutural, que organiza o desenvolvimento de software em torno de papéis humanos explícitos e delegação supervisionada a assistentes de IA. Não inclui biblioteca, *runtime* nem serviço em execução — o consumidor extrai o conteúdo no próprio repositório com um único comando (`curl | bash`) e passa a trabalhar imediatamente, sem dependências além de `git`, `curl` e `unzip` no host.
+
+A produção guiada pelo framework segue um fluxo inviolável em quatro etapas: o engenheiro define o objetivo (`GOAL.md`), o analista de negócio especifica o problema (`BUSINESS.md`), designer e arquiteto projetam em paralelo (`GUIDELINE.md`, `ARCHITECTURE.md`, `SOLUTION.md`) e o engenheiro implementa em `src/` e `test/`. Cada papel humano abre sua própria sessão de assistente de IA e supervisiona a produção dos artefatos sob sua responsabilidade. O framework fornece *skills* especializadas (`architect-reviewer`, `business-reviewer`, `guideline-reviewer`, `c4model-architectural-designer`) que condicionam o assistente a assumir perfis de revisão, reforçando a rastreabilidade entre problema e solução.
+
+A solução é agnóstica à ferramenta de IA utilizada — define processo e estrutura, não tecnologia — e extensível por *stacks* opcionais (hoje, `aspnet`), que injetam skills e documentos específicos de uma pilha tecnológica no momento da instalação. O canal de distribuição é único: GitHub Releases hospeda os ZIPs versionados por GitVersion; GitHub Pages hospeda o site público (Hugo Extended) e os próprios instaladores. O desenvolvimento do framework segue suas próprias regras (*dogfooding*): os cinco documentos normativos da raiz são preenchidos, revisados e versionados sob os mesmos critérios que o framework impõe aos projetos consumidores.
+
+---
+
 ### Visão geral
 
 O **AI Powered Coding Team** é um framework composto pelos seguintes componentes principais:
