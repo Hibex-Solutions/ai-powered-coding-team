@@ -17,7 +17,7 @@ Para contribuir com um projeto que **usa** o framework, consulte o `CONTRIBUTING
 
 **Responsabilidades:** governança do projeto, documentação pública, processo de release e sincronização das referências externas.
 
-> **Dogfooding:** a evolução do framework segue o mesmo fluxo que ele impõe aos consumidores — **engenheiro (GOAL, etapa 1) → analista (BUSINESS, etapa 2) → projeção paralela por designer e arquiteto (GUIDELINE + ARCHITECTURE + SOLUTION, etapa 3) → engenheiro (implementação, etapa 4)**. Mudar o que o framework resolve começa por editar `docs/BUSINESS.md` (raiz); mudar como ele resolve começa por editar `docs/SOLUTION.md` (raiz), em coordenação com `docs/ARCHITECTURE.md` e `docs/GUIDELINE.md` quando a mudança afeta regras ou marca/UX. Nenhuma alteração em `src/**`, `eng/`, workflows ou site precede uma atualização coerente dessas especificações.
+> **Dogfooding:** a evolução do framework segue o mesmo fluxo que ele impõe aos consumidores — **engenheiro (GOAL, etapa 1) → analista (BUSINESS, etapa 2) → projeção paralela por designer e arquiteto (GUIDELINE + ARCHITECTURE + SOLUTION, etapa 3) → engenheiro (implementação, etapa 4)**. Mudar o que o framework resolve começa por uma sessão supervisionada de IA produzindo a edição em `docs/BUSINESS.md` (raiz); mudar como ele resolve começa por uma sessão supervisionada produzindo a edição em `docs/SOLUTION.md` (raiz), em coordenação com `docs/ARCHITECTURE.md` e `docs/GUIDELINE.md` quando a mudança afeta regras ou marca/UX. O mantenedor supervisiona; a IA propõe; o mantenedor revisa e commita. Nenhuma alteração em `src/**`, `eng/`, workflows ou site precede uma atualização coerente dessas especificações.
 
 **Ações esperadas:**
 
@@ -68,7 +68,7 @@ Para contribuir com um projeto que **usa** o framework, consulte o `CONTRIBUTING
 
 ## Regras gerais de contribuição
 
-- Commits são feitos por humanos, nunca pela IA. A IA propõe, o mantenedor decide.
+- Commits são feitos por humanos, nunca pela IA. A IA propõe — em **todos** os artefatos: cinco documentos normativos da raiz, scripts em `eng/`, conteúdo em `src/**`, site público e workflows — e o mantenedor decide.
 - O repositório local deve estar configurado explicitamente com nome e e-mail do contribuidor (não usar configuração global do Git).
 - Mudanças em `src/**` exigem execução do fluxo `release → install` antes do merge, com teste em projeto temporário.
 - Alterações em `.claude/skills/` da raiz não afetam consumidores, mas sua documentação interna (`SKILL.md`) deve permanecer autoexplicativa.

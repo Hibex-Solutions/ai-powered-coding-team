@@ -13,7 +13,9 @@ Veja [CONTRIBUTING.md](https://github.com/hibex-solutions/ai-powered-coding-team
 
 O projeto é desenvolvido em quatro etapas. As duas primeiras são sequenciais — objetivo e problema. A terceira é uma **etapa de projeção paralela** em que designer e arquiteto produzem três artefatos coordenados. A quarta é a implementação. `BUSINESS.md` descreve o problema; `SOLUTION.md` descreve a solução para esse problema.
 
-| Etapa | Perfil | Documento / entrega |
+Em **todas as etapas**, a IA produz o artefato (documento ou código) e o papel humano correspondente supervisiona, revisa e commita.
+
+| Etapa | Perfil que supervisiona | Documento / entrega produzido pela IA |
 |---|---|---|
 | 1 | Engenheiro de Software | `docs/GOAL.md` — objetivo do projeto, fase atual e critérios de aceite |
 | 2 | Analista de negócio | `docs/BUSINESS.md` — problema e regras de negócio |

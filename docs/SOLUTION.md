@@ -140,7 +140,7 @@ C4Container
 Estrutura entregue a cada projeto consumidor:
 
 - `src/.claude/` — `CLAUDE.md`, `settings.json` e `skills/` (skills genéricas).
-- `src/docs/` — cinco documentos normativos como *templates* (preenchidos pelo consumidor) e subdiretórios (`architecture/`, `solution/`, `business/`, `guideline/`).
+- `src/docs/` — cinco documentos normativos como *templates* (produzidos pela IA sob supervisão do consumidor) e subdiretórios (`architecture/`, `solution/`, `business/`, `guideline/`).
 - `src/docs/architecture/12factor/` — tradução `pt_br` de *The Twelve-Factor App*.
 - `src/eng/` — `update-12factor.{sh,ps1}` e `templates/CLAUDE.fragment.md`.
 - `src/stacks/<nome>/` — stacks plugáveis (*opt-in* via `--stack`).
@@ -159,7 +159,7 @@ C4Component
     Container_Boundary(payload, "Software distribuído (src/)") {
         Component(claude_cfg, "Configuração do assistente", "src/.claude/CLAUDE.md + settings.json", "Instruções e permissões padrão para sessões de IA")
         Component(skills_gen, "Skills genéricas", "src/.claude/skills/*", "architect-reviewer, business-reviewer, guideline-reviewer, c4model-architectural-designer")
-        Component(docs_tpl, "Templates de documentos normativos", "src/docs/*.md", "GOAL, ARCHITECTURE, SOLUTION, BUSINESS e GUIDELINE — preenchidos pelo consumidor")
+        Component(docs_tpl, "Templates de documentos normativos", "src/docs/*.md", "GOAL, ARCHITECTURE, SOLUTION, BUSINESS e GUIDELINE — produzidos pela IA sob supervisão do consumidor")
         Component(docs_12f, "Referência The Twelve-Factor App", "src/docs/architecture/12factor/*.md", "Tradução pt-BR sincronizada do upstream")
         Component(eng_sync, "Utilitário 12factor", "src/eng/update-12factor.{sh,ps1}", "Permite ao consumidor sincronizar a referência dentro do próprio projeto")
         Component(claude_frag, "Fragmento CLAUDE", "src/eng/templates/CLAUDE.fragment.md", "Concatenado ao .claude/CLAUDE.md do destino pelo instalador")
@@ -170,13 +170,13 @@ C4Component
     Rel(installer, stacks, "Copia skills e substitui docs quando --stack", "cp")
     Rel(installer, claude_frag, "Concatena ao CLAUDE.md do destino", "cat >>")
 
-    Rel(consumidor, docs_tpl, "Preenche antes de qualquer implementação", "edição manual")
+    Rel(consumidor, docs_tpl, "Supervisiona produção pela IA antes de qualquer implementação", "sessão supervisionada de IA")
     Rel(consumidor, skills_gen, "Invoca durante a sessão do assistente de IA", "/nome-da-skill")
     Rel(consumidor, eng_sync, "Executa para atualizar referência", "bash / pwsh")
     Rel(consumidor, contrib, "Consulta perfis e responsabilidades", "leitura")
 
     Rel(claude_cfg, ia, "Instrui perfil e regras", "@-include")
-    Rel(docs_tpl, ia, "Preenchido, entra no contexto", "@-include")
+    Rel(docs_tpl, ia, "Produzido em sessão supervisionada, entra no contexto", "@-include")
     Rel(skills_gen, ia, "Ativa perfil especializado", "/skill-name")
 
     UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")
@@ -287,7 +287,7 @@ C4Dynamic
 7. Remove o diretório `stacks/` do destino (é metadado de distribuição, não pertence ao projeto consumidor).
 8. Concatena `eng/templates/CLAUDE.fragment.md` ao final de `.claude/CLAUDE.md` do projeto instalado.
 9. Executa `git init --initial-branch=main` no destino.
-10. Emite instruções finais ao usuário (configuração de `user.name`/`user.email` locais, primeiro commit, ordem de preenchimento dos documentos).
+10. Emite instruções finais ao usuário (configuração de `user.name`/`user.email` locais, primeiro commit, comando para iniciar a sessão do assistente de IA e ordem recomendada de produção supervisionada dos documentos).
 
 O diagrama dinâmico abaixo materializa o fluxo acima — regras `RN-INST-01` a `RN-INST-07` de `docs/BUSINESS.md` — do `curl | bash` até o `git init` no destino, passando pela aplicação opcional de stack.
 

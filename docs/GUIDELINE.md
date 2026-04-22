@@ -52,10 +52,9 @@ Ordem canônica das seções:
 2. Badges.
 3. *Tagline* em citação (`>`).
 4. Descrição curta do framework (parágrafo).
-5. Seção **Início rápido** com três passos numerados:
+5. Seção **Início rápido** com dois passos numerados:
    1. Instalar via `curl | bash`.
-   2. Preencher os documentos normativos antes de qualquer linha de código.
-   3. Iniciar o assistente de IA.
+   2. Produzir os artefatos com a IA, sob supervisão do papel correspondente, na ordem inviolável das quatro etapas — cada papel abre sua própria sessão de assistente de IA (na máquina, no momento e com a ferramenta que preferir).
 6. Seção **Documentação completa** com link para o site público.
 7. Seção **Contribuindo** com link para `CONTRIBUTING.md`.
 8. Seção **Licença**.
@@ -102,8 +101,7 @@ Blocos de comando sempre em `bash` *fenced*, com comentários em pt-BR quando ne
 - Ao final da instalação bem-sucedida, o instalador exibe um bloco de próximos passos numerados, incluindo:
   1. Configuração local de `user.name`/`user.email`.
   2. Comando para o primeiro commit.
-  3. Ordem recomendada de preenchimento dos documentos normativos.
-  4. Passo para iniciar o assistente de IA no projeto (genérico; ferramentas específicas apenas como exemplo).
+  3. Orientação de que cada papel humano abre sua própria sessão de assistente de IA (genérico; ferramentas específicas apenas como exemplo rotulado) e supervisiona a produção do(s) artefato(s) sob sua responsabilidade, na ordem inviolável das quatro etapas.
 
 ---
 

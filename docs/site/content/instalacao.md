@@ -53,27 +53,23 @@ git commit -m "chore: inicializa projeto a partir do template"
 ```
 {{% /step %}}
 
-{{% step num="3" title="Especifique antes de implementar" %}}
-Antes de qualquer linha de código, documente os cinco artefatos seguindo o fluxo de quatro etapas: **engenheiro (objetivo) → analista (problema) → projeção paralela por designer e arquiteto (marca + arquitetura + solução) → engenheiro (implementação)**. `BUSINESS.md` descreve o **problema**; `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` são elaborados em conjunto na etapa de projeção, coordenando marca/UX, regras arquiteturais e solução técnica.
+{{% step num="3" title="Produza os artefatos com a IA, sob supervisão" %}}
+Cada papel humano (engenheiro, analista, designer, arquiteto) abre uma sessão de assistente de IA (ex.: `claude` para Claude Code) para supervisionar a produção do(s) artefato(s) sob sua responsabilidade. Solo ou em time, na mesma máquina ou em máquinas distintas, com a mesma ferramenta ou ferramentas diferentes — o framework não impõe nenhuma dessas escolhas. A IA propõe; cada papel revisa, ajusta e commita.
+
+A ordem das etapas é inviolável. Antes de qualquer linha de código, produza:
 
 ```
-docs/GOAL.md          ← etapa 1 — objetivo, fase e critérios de aceite (engenheiro)
-docs/BUSINESS.md      ← etapa 2 — problema e regras de negócio (analista)
+docs/GOAL.md          ← etapa 1 — objetivo, fase e critérios de aceite (engenheiro supervisiona)
+docs/BUSINESS.md      ← etapa 2 — problema e regras de negócio (analista supervisiona)
 docs/GUIDELINE.md     ↰
-docs/ARCHITECTURE.md  ├─ etapa 3 (projeção, paralela) — marca/UX, regras arquiteturais e solução (designer + arquiteto)
+docs/ARCHITECTURE.md  ├─ etapa 3 (projeção, paralela) — marca/UX, regras arquiteturais e solução (designer + arquiteto supervisionam)
 docs/SOLUTION.md      ↲
-                      → etapa 4 — implementação em src/ e test/ (engenheiro)
-```
-{{% /step %}}
-
-{{% step num="4" title="Delegue para a IA" %}}
-Com as especificações em mãos, inicie seu assistente de IA (ex: `claude` para Claude Code):
-
-```bash
-claude
+                      → etapa 4 — implementação em src/ e test/ (engenheiro supervisiona)
 ```
 
-O `CLAUDE.md` do projeto já instrui a IA com as regras arquiteturais, a especificação negocial e as diretrizes de marca — sem necessidade de repetir contexto a cada sessão.
+`BUSINESS.md` descreve o **problema**; `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` são elaborados em conjunto na etapa de projeção, coordenando marca/UX, regras arquiteturais e solução técnica. O `CLAUDE.md` do projeto carrega as regras do framework em qualquer sessão, sem necessidade de repetir contexto.
+
+> A produção do **texto** dos cinco documentos é feita pela IA na sessão padrão, sem skill especializada. Skills `*-reviewer` entram **depois** como passo de validação independente; `c4model-architectural-designer` entra na etapa 3 para os diagramas inline em `SOLUTION.md`.
 {{% /step %}}
 
 {{% /card %}}
