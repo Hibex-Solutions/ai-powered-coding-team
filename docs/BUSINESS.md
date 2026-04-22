@@ -9,6 +9,14 @@ A especificação do problema é responsabilidade do **analista de negócio** e 
 
 ---
 
+O desenvolvimento de software com assistentes de IA deixou de ser experimental e passou a compor o dia a dia de engenheiros experientes e de times inteiros. A velocidade de produção aumentou — e, com ela, vieram os riscos: código gerado sem especificação prévia, decisões técnicas tomadas sem trilha documental, funcionalidades sem correspondência com um problema de negócio real e implementações que não podem ser validadas contra regras de negócio ou diretrizes de marca. O resultado típico é um software que evolui rápido no começo e perde sustentabilidade à medida que a base cresce.
+
+Profissionais e equipes experientes reconhecem o ganho de produtividade oferecido pelos assistentes de IA, mas não abrem mão do rigor que sustenta software de qualidade: especificação antes de código, documentação antes de decisão, teste contra regra de negócio, interface fiel à identidade visual. Sem um fluxo de trabalho explícito, o assistente de IA tende a saltar etapas e produzir artefatos desconexos — e cada ferramenta impõe seu próprio modelo mental, prendendo o processo à tecnologia escolhida e dificultando a substituição ou a convivência de múltiplas ferramentas em um mesmo time.
+
+O problema que este framework se propõe a resolver é **estruturar o processo de desenvolvimento com IA** de modo que times e profissionais experientes possam **ampliar sua capacidade de entrega sem abrir mão da governança**. Trata-se de disciplinar *como* o software é produzido quando parte relevante do trabalho é delegada a assistentes de IA: quem decide o quê, em que ordem, com quais critérios de aceite, e com qual rastreabilidade entre intenção, especificação, implementação e teste — independentemente da ferramenta escolhida.
+
+---
+
 ### Clientes do framework
 
 - **Engenheiro solo** — profissional sênior que assume todos os papéis (arquiteto, analista de negócio, designer, engenheiro) e delega a execução a um assistente de IA sob sua supervisão.
