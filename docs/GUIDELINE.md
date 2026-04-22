@@ -6,7 +6,7 @@
 ### Identidade da marca
 
 - **Mantenedora:** Hibex Solutions (`github.com/hibex-solutions`).
-- **Banner oficial:** `.github/assets/banner.png`. Utilizado no topo do `README.md`.
+- **Banner oficial:** `docs/site/static/banners/banner_ciborgue.png` (variante Ciborgue do carrossel do site). Utilizado no topo do `README.md`.
 - **Paleta dos badges** (shields.io, estilo `flat-square`):
   - Licença MIT: `#4f6ef7`.
   - AI powered: `#a855f7`.

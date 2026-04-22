@@ -1,6 +1,6 @@
 # Diagrama "Modo Solo" — Prompt de geração
 
-A imagem `modo-solo.png` é gerada com **Google Gemini**, mesmo estilo visual da opção **"Ciborgue"** usada no banner do site (ver `.github/assets/banner.png.prompt.md`).
+A imagem `modo-solo.png` é gerada com **Google Gemini**, mesmo estilo visual da opção **"Ciborgue"** usada no banner do site (ver `../banners/banner_ciborgue.png.prompt.md`).
 
 ## Prompt utilizado
 

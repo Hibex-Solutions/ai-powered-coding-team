@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.png" alt="AI Powered Coding Team" width="100%"/>
+  <img src="docs/site/static/banners/banner_ciborgue.png" alt="AI Powered Coding Team" width="100%"/>
 </p>
 
 <p align="center">

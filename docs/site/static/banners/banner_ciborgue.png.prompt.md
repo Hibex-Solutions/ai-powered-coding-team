@@ -1,6 +1,6 @@
 # Banner — Prompt de geração
 
-A imagem `banner.png` foi gerada com **Google Gemini**, usando a opção de estilo **"Ciborgue"**.
+A imagem `banner_ciborgue.png` foi gerada com **Google Gemini**, usando a opção de estilo **"Ciborgue"**.
 
 ## Prompt utilizado
 
