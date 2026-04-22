@@ -3,6 +3,12 @@
   Não use cabeçalhos H1 (#) nem H2 (##) — as seções devem iniciar em H3 (###).
 -->
 
+Este documento descreve a **solução técnica** para o problema e as regras de negócio especificadas em `BUSINESS.md`. Cada componente, tecnologia e fluxo aqui registrado responde a uma regra de `BUSINESS.md` (funcional ou não-funcional) ou a uma restrição de `ARCHITECTURE.md`.
+
+A solução é projetada pelo **arquiteto** (em conjunto com o **designer** para os aspectos de marca e UX em `GUIDELINE.md`), tem `BUSINESS.md` como pré-requisito consolidado e serve de base para a implementação pelo **engenheiro**.
+
+---
+
 ### Visão geral
 
 O **AI Powered Coding Team** é um framework composto pelos seguintes componentes principais:

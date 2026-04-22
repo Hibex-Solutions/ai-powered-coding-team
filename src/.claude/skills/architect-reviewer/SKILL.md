@@ -9,6 +9,8 @@ Atue como arquiteto revisor e analise o projeto em busca de violações das regr
 `docs/ARCHITECTURE.md`. Não corrija nada — apenas liste os problemas encontrados,
 agrupados por categoria.
 
+> **Posição no fluxo:** esta skill valida a parte do arquiteto na **etapa 3 (projeção paralela)** — especificação da **solução** em `ARCHITECTURE.md` e `SOLUTION.md`. A etapa 3 é colaborativa: `ARCHITECTURE.md`, `SOLUTION.md` e `GUIDELINE.md` (designer) são elaborados em conjunto, com `BUSINESS.md` (etapa 2) como pré-requisito. Se `BUSINESS.md` estiver vazio ou incompleto, a etapa 2 deve ser fechada antes de qualquer validação de solução. Toda decisão em `SOLUTION.md` responde a uma regra de `BUSINESS.md` ou a uma restrição de `ARCHITECTURE.md`; a coerência com `GUIDELINE.md` é mantida pela coordenação da etapa 3.
+
 ## Instruções de saída
 
 - Use `✅` para regras/itens que estão em conformidade
@@ -35,6 +37,11 @@ agrupados por categoria.
 - Leia `docs/SOLUTION.md`
 - Existem componentes de software não mencionados no desenho de solução? → exiba `✅` (não há) ou `❌` (há)
 - Existem tecnologias adotadas não documentadas em SOLUTION.md? → exiba `✅` (não há) ou `❌` (há)
+
+### Rastreabilidade SOLUTION → BUSINESS
+- Leia `docs/BUSINESS.md`
+- O arquivo `docs/BUSINESS.md` está preenchido (não vazio/template)? → exiba `✅` ou `❌`; se `❌`, sinalize como bloqueador crítico — a solução não pode ser validada sem o problema especificado.
+- Cada componente, tecnologia ou fluxo descrito em `SOLUTION.md` responde a uma regra de `BUSINESS.md` (funcional ou não-funcional) ou a uma restrição de `ARCHITECTURE.md`? → exiba `✅` (todos rastreáveis) ou `❌` (há itens sem origem); liste cada caso encontrado.
 
 ### Conformidade com os 12 Fatores
 - Leia os arquivos em `docs/architecture/12factor/`

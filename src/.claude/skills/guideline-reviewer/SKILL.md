@@ -8,6 +8,8 @@ allowed-tools: Read, Glob, Grep
 Atue como revisor de guideline e UX e analise o projeto em busca de violações das diretrizes de marca e experiência do usuário
 definidas em `docs/GUIDELINE.md`. Não corrija nada — apenas liste os problemas encontrados.
 
+> **Posição no fluxo:** esta skill valida a parte do designer na **etapa 3 (projeção paralela)** — especificação das diretrizes de marca, UI e UX em `GUIDELINE.md`. A etapa 3 é colaborativa: `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` são elaborados em conjunto por designer e arquiteto, com `BUSINESS.md` (etapa 2) como pré-requisito. Os três artefatos são pré-requisito consolidado para a **etapa 4** (implementação em `src/` e `test/`).
+
 ## Instruções de saída
 
 - Use `✅` para regras/itens que estão em conformidade

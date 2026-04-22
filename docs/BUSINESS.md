@@ -3,6 +3,12 @@
   Não use cabeçalhos H1 (#) nem H2 (##) — as seções devem iniciar em H3 (###).
 -->
 
+Este documento descreve o **problema** que o framework se propõe a resolver e as **regras de negócio** que regem sua operação (instalação, release, distribuição, agnosticismo à ferramenta de IA, runtime do consumidor, requisitos não-funcionais). Não descreve como o framework resolve esse problema — essa é a responsabilidade de `SOLUTION.md`.
+
+A especificação do problema é responsabilidade do **analista de negócio** e é pré-requisito para a especificação da solução em `SOLUTION.md`.
+
+---
+
 ### Clientes do framework
 
 - **Engenheiro solo** — profissional sênior que assume todos os papéis (arquiteto, analista de negócio, designer, engenheiro) e delega a execução a um assistente de IA sob sua supervisão.

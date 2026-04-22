@@ -4,6 +4,10 @@ global para toda solução de software construída.
 
 ### Regras primárias invioláveis
 
+- `BUSINESS.md` é a especificação do **problema** a ser resolvido e das regras de negócio que regem sua operação. `SOLUTION.md` é a especificação da **solução** que resolve esse problema.
+  - Toda decisão em `SOLUTION.md` (componente, tecnologia, fluxo) deve ter origem rastreável em uma regra de `BUSINESS.md` (funcional ou não-funcional) ou em uma restrição de `ARCHITECTURE.md`.
+  - Nenhuma regra de negócio presente em `BUSINESS.md` pode ficar sem tratamento na solução.
+- O fluxo de especificação tem quatro etapas: **etapa 1** — engenheiro produz `GOAL.md` (objetivo do projeto); **etapa 2** — analista de negócio produz `BUSINESS.md` (problema); **etapa 3 (projeção)** — designer e arquiteto produzem `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` em colaboração, podendo trabalhar em paralelo (os três artefatos se coordenam entre si e com `BUSINESS.md`); **etapa 4** — engenheiro implementa em `src/` e `test/`. Os papéis da etapa 3 podem ser distribuídos entre profissionais distintos ou acumulados em um único profissional que assume múltiplos papéis. Nenhuma etapa posterior começa enquanto a anterior não está documentada para o escopo em questão.
 - Todo código de software construído deve obedecer ao desenho de solução especificado
   - Nenhum componente de software pode ser adicionado se não estiver mencionado no desenho de solução
   - Nenhuma tecnologia pode ser adotada sem estar mencionada no desenho de solução
@@ -53,13 +57,16 @@ concluída. O arquivo nunca deve estar no estado de template vazio.
 
 ### Sobre a contribuição no projeto
 
-Cada perfil de colaborador tem responsabilidade sobre documentos específicos e ações bem definidas no ciclo de vida do projeto.
+O projeto é desenvolvido sob um fluxo de quatro etapas. As três primeiras são especificações; a quarta é a implementação. A etapa 3 é uma etapa de **projeção** — designer e arquiteto atuam em paralelo e em coordenação, produzindo três artefatos interdependentes.
 
-| Perfil | Documentos sob sua responsabilidade |
-|---|---|
-| Arquiteto de soluções | `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/GOAL.md` |
-| Analista de negócio | `docs/BUSINESS.md` |
-| Designer | `docs/GUIDELINE.md` |
+| Etapa | Perfil | Entrega | Pré-requisito |
+|---|---|---|---|
+| 1 | Engenheiro de Software | `docs/GOAL.md` — objetivo do projeto, fase atual e critérios de aceite | — |
+| 2 | Analista de negócio | `docs/BUSINESS.md` — **problema** e regras de negócio | Etapa 1 |
+| 3 (projeção, paralela) | Designer + Arquiteto de soluções | `docs/GUIDELINE.md` (designer), `docs/ARCHITECTURE.md` e `docs/SOLUTION.md` (arquiteto) — diretrizes de marca/UX, regras arquiteturais invioláveis e **solução** técnica para o problema | Etapa 2 |
+| 4 | Engenheiro de Software | código em `src/` e testes em `test/` | Etapa 3 |
+
+Os papéis da etapa 3 podem ser distribuídos entre profissionais distintos (designer e arquiteto separados) ou acumulados em um único profissional que assume os dois papéis — em qualquer caso, os três artefatos são elaborados em conjunto para garantir coerência entre marca/UX, regras arquiteturais e solução técnica.
 
 As ações esperadas de cada perfil, bem como as regras de colaboração, estão detalhadas em `CONTRIBUTING.md` na raiz do projeto.
 

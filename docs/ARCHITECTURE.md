@@ -4,6 +4,10 @@ global para toda solução de software construída.
 
 ### Regras primárias invioláveis
 
+- `BUSINESS.md` é a especificação do **problema** a ser resolvido e das regras de negócio que regem sua operação. `SOLUTION.md` é a especificação da **solução** que resolve esse problema.
+  - Toda decisão em `SOLUTION.md` (componente, tecnologia, fluxo) deve ter origem rastreável em uma regra de `BUSINESS.md` (funcional ou não-funcional) ou em uma restrição de `ARCHITECTURE.md`.
+  - Nenhuma regra de negócio presente em `BUSINESS.md` pode ficar sem tratamento na solução.
+- O fluxo de especificação tem quatro etapas: **etapa 1** — engenheiro produz `GOAL.md` (objetivo do projeto); **etapa 2** — analista de negócio produz `BUSINESS.md` (problema); **etapa 3 (projeção)** — designer e arquiteto produzem `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` em colaboração, podendo trabalhar em paralelo (os três artefatos se coordenam entre si e com `BUSINESS.md`); **etapa 4** — engenheiro implementa em `src/` e `test/`. Os papéis da etapa 3 podem ser distribuídos entre profissionais distintos ou acumulados em um único profissional que assume múltiplos papéis. Nenhuma etapa posterior começa enquanto a anterior não está documentada para o escopo em questão.
 - Todo código de software construído deve obedecer ao desenho de solução especificado
   - Nenhum componente de software pode ser adicionado se não estiver mencionado no desenho de solução
   - Nenhuma tecnologia pode ser adotada sem estar mencionada no desenho de solução

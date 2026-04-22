@@ -30,13 +30,15 @@ Em ambos os casos, o modelo garante que **nenhum código seja escrito sem especi
 curl -fsSL https://hibex-solutions.github.io/ai-powered-coding-team/install.sh | bash -s -- meu-projeto
 ```
 
-**2. Especifique antes de implementar** — preencha os documentos do projeto antes de qualquer linha de código:
+**2. Especifique antes de implementar** — preencha os documentos do projeto seguindo o fluxo de quatro etapas: **engenheiro (objetivo) → analista (problema) → projeção paralela por designer e arquiteto (marca + arquitetura + solução) → engenheiro (implementação)**. Antes de qualquer linha de código:
 
-- `docs/GOAL.md` — fase atual, meta em curso e critérios de aceite
-- `docs/ARCHITECTURE.md` — decisões arquiteturais e regras invioláveis
-- `docs/SOLUTION.md` — componentes, tecnologias e desenho da solução
-- `docs/BUSINESS.md` — regras de negócio e requisitos funcionais
-- `docs/GUIDELINE.md` — padrões de marca, UI e UX
+- `docs/GOAL.md` — objetivo do projeto, fase atual e critérios de aceite *(engenheiro, etapa 1)*
+- `docs/BUSINESS.md` — **problema** e regras de negócio *(analista, etapa 2)*
+- `docs/GUIDELINE.md` — padrões de marca, UI e UX *(designer, etapa 3 — em paralelo com arquitetura e solução)*
+- `docs/ARCHITECTURE.md` — decisões arquiteturais e regras invioláveis *(arquiteto, etapa 3)*
+- `docs/SOLUTION.md` — **solução** para o problema: componentes, tecnologias e desenho *(arquiteto, etapa 3)*
+
+Os três artefatos da etapa 3 são projetados em conjunto — por profissionais distintos ou por um único profissional acumulando os papéis.
 
 **3. Delegue para a IA** — com as especificações em mãos, inicie seu assistente de IA (ex: `claude` para Claude Code):
 

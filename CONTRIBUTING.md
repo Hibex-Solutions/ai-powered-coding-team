@@ -17,6 +17,8 @@ Para contribuir com um projeto que **usa** o framework, consulte o `CONTRIBUTING
 
 **Responsabilidades:** governança do projeto, documentação pública, processo de release e sincronização das referências externas.
 
+> **Dogfooding:** a evolução do framework segue o mesmo fluxo que ele impõe aos consumidores — **engenheiro (GOAL, etapa 1) → analista (BUSINESS, etapa 2) → projeção paralela por designer e arquiteto (GUIDELINE + ARCHITECTURE + SOLUTION, etapa 3) → engenheiro (implementação, etapa 4)**. Mudar o que o framework resolve começa por editar `docs/BUSINESS.md` (raiz); mudar como ele resolve começa por editar `docs/SOLUTION.md` (raiz), em coordenação com `docs/ARCHITECTURE.md` e `docs/GUIDELINE.md` quando a mudança afeta regras ou marca/UX. Nenhuma alteração em `src/**`, `eng/`, workflows ou site precede uma atualização coerente dessas especificações.
+
 **Ações esperadas:**
 
 - Gerar novas releases com `eng/release.sh` / `eng/release.ps1`. O script usa GitVersion para determinar a versão semântica e empacota o conteúdo de `src/` em `dist/package/*.zip`.

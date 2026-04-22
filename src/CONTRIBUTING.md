@@ -6,18 +6,20 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 ---
 
-## Arquiteto de soluções
+## Fluxo de trabalho
 
-**Documentos sob sua responsabilidade:** `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/GOAL.md`
+O projeto é desenvolvido em quatro etapas. As duas primeiras são sequenciais — objetivo e problema. A terceira é uma **etapa de projeção paralela** em que designer e arquiteto produzem três artefatos coordenados. A quarta é a implementação. Cada etapa é pré-requisito da seguinte para o escopo em questão — pular etapas viola as regras primárias invioláveis.
 
-**Ações esperadas:**
+| Etapa | Perfil | Documento entregue | O que é especificado |
+|---|---|---|---|
+| 1 | Engenheiro de Software | `docs/GOAL.md` | Objetivo do projeto, fase atual e critérios de aceite |
+| 2 | Analista de negócio | `docs/BUSINESS.md` | **Problema** a ser resolvido e regras de negócio |
+| 3 (projeção, paralela) | Designer + Arquiteto de soluções | `docs/GUIDELINE.md` (designer) + `docs/ARCHITECTURE.md` e `docs/SOLUTION.md` (arquiteto) | Diretrizes de marca/UX, regras arquiteturais invioláveis e **solução** técnica para o problema — os três artefatos são elaborados em conjunto |
+| 4 | Engenheiro de Software | `src/`, `test/` | Implementação aderente à solução, com cobertura das regras de negócio |
 
-- Manter `docs/GOAL.md` sempre preenchido com a fase atual, a meta em curso e os critérios de aceite (nunca no estado de template vazio).
-- Validar a arquitetura com a IA — revisar aderência às regras primárias invioláveis antes de qualquer mudança estrutural.
-- Usar `/c4model-architectural-designer` para criar e manter os diagramas C4Model em `docs/solution/`, documentando contexto, containers e componentes da solução.
-- Manter `docs/SOLUTION.md` atualizado conforme a solução evolui, garantindo que componentes e tecnologias adotados estejam documentados.
-- Garantir que nenhuma tecnologia ou componente seja adotado sem estar registrado no desenho de solução.
-- Usar `/architect-reviewer` para validar conformidade com `docs/ARCHITECTURE.md` e os doze fatores antes de mudanças estruturais ou de release.
+> `BUSINESS.md` descreve o **problema**; `SOLUTION.md` descreve a **solução** para esse problema. Toda decisão em `SOLUTION.md` deve ter origem rastreável em `BUSINESS.md` ou em `ARCHITECTURE.md`.
+
+> Os papéis da etapa 3 podem ser distribuídos entre profissionais distintos (designer e arquiteto separados) ou acumulados em um único profissional que assume os dois papéis. Em ambos os casos, os três artefatos se coordenam entre si.
 
 ---
 
@@ -25,9 +27,12 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 **Documentos sob sua responsabilidade:** `docs/BUSINESS.md`
 
+**Etapa no fluxo:** 2 — especificação do **problema**.
+
 **Ações esperadas:**
 
-- Documentar regras de negócio em `docs/BUSINESS.md` antes de qualquer implementação de funcionalidade.
+- Documentar o problema a ser resolvido e as regras de negócio em `docs/BUSINESS.md` antes de qualquer projeto de solução ou implementação.
+- Atribuir identificador estável e testável a cada regra, para que `business-reviewer` possa rastreá-la na implementação e nos testes.
 - Garantir que toda funcionalidade proposta tenha correspondência negocial documentada.
 - Usar `/business-reviewer` para validar cobertura de todas as regras em `docs/BUSINESS.md` pela implementação e pelos testes.
 
@@ -36,6 +41,8 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 ## Designer
 
 **Documentos sob sua responsabilidade:** `docs/GUIDELINE.md`
+
+**Etapa no fluxo:** 3 — parte da etapa de projeção paralela, em coordenação com o arquiteto (que produz `ARCHITECTURE.md` e `SOLUTION.md`). Entra após `BUSINESS.md` estar consolidado para o escopo.
 
 **Ações esperadas:**
 
@@ -46,13 +53,32 @@ Toda contribuição deve respeitar as regras definidas em `docs/ARCHITECTURE.md`
 
 ---
 
-## Engenheiro de Software
+## Arquiteto de soluções
 
-**Responsabilidade:** código em `src/` e `test/`.
+**Documentos sob sua responsabilidade:** `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`
+
+**Etapa no fluxo:** 3 — parte da etapa de projeção paralela, em coordenação com o designer (que produz `GUIDELINE.md`). Entra após `BUSINESS.md` estar consolidado para o escopo.
 
 **Ações esperadas:**
 
-- Iniciar o assistente de IA (ex.: `claude` para Claude Code) somente após as especificações estarem documentadas (`ARCHITECTURE.md`, `SOLUTION.md`, `BUSINESS.md` e `GUIDELINE.md` preenchidos para o escopo em questão).
+- Manter `docs/ARCHITECTURE.md` atualizado com as regras arquiteturais invioláveis que atuam sobre toda a solução.
+- Projetar a solução em `docs/SOLUTION.md` somente após `BUSINESS.md` estar consolidado para o escopo; cada componente e tecnologia ali deve responder a uma regra de `BUSINESS.md` ou a uma restrição de `ARCHITECTURE.md`.
+- Usar `/c4model-architectural-designer` para criar e manter os diagramas C4Model inline em `docs/SOLUTION.md` (ou em `docs/solution/` quando forem diagramas complementares), documentando contexto, containers e componentes da solução.
+- Garantir que nenhuma tecnologia ou componente seja adotado sem estar registrado no desenho de solução.
+- Usar `/architect-reviewer` para validar conformidade com `docs/ARCHITECTURE.md`, os doze fatores e a rastreabilidade SOLUTION → BUSINESS antes de mudanças estruturais ou de release.
+
+---
+
+## Engenheiro de Software
+
+**Documentos sob sua responsabilidade:** `docs/GOAL.md` e código em `src/` e `test/`.
+
+**Etapa no fluxo:** 1 (GOAL, antes de tudo) e 4 (implementação, após a etapa 3 de projeção estar consolidada).
+
+**Ações esperadas:**
+
+- Manter `docs/GOAL.md` sempre preenchido com o objetivo do projeto, a fase atual e os critérios de aceite (nunca no estado de template vazio). Essa é a primeira etapa do fluxo — antes do analista começar a especificar o problema, o engenheiro precisa ter deixado claro qual objetivo está em curso.
+- Iniciar o assistente de IA somente após as especificações estarem documentadas (`BUSINESS.md`, `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` preenchidos para o escopo em questão).
 - Delegar a implementação à IA, revisando e validando cada entrega antes de commitar.
 - Garantir que toda implementação tenha cobertura de testes baseada nas regras de negócio documentadas.
 - Nunca commitar código sem revisão — a IA propõe, o engenheiro decide.

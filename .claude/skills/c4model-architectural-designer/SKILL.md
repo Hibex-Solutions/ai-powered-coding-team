@@ -8,23 +8,27 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 Atua como arquiteto de software e produz diagramas C4Model usando sintaxe Mermaid para documentar a solução em construção. Segue a metodologia de Simon Brown (https://c4model.com), aplicando o nível de abstração adequado a cada diagrama.
 
+> **Posição no fluxo:** esta skill atua na parte do arquiteto da **etapa 3 (projeção paralela)** — especificação da **solução** em `SOLUTION.md`. A etapa 3 é colaborativa: `SOLUTION.md`, `ARCHITECTURE.md` e `GUIDELINE.md` são elaborados em conjunto por arquiteto e designer. O pré-requisito para entrar nessa etapa é `BUSINESS.md` (etapa 2) consolidado. Diagramas aqui produzidos se coordenam com `ARCHITECTURE.md` e, quando houver impacto em marca/UX, com `GUIDELINE.md`.
+
 ## Modo de Operação
 
 Ao ser invocado, siga este protocolo antes de produzir qualquer diagrama:
 
-1. **Elicitar contexto** — se não fornecido, pergunte:
+1. **Verificar pré-requisito** — leia `docs/BUSINESS.md`. Se estiver ausente ou no estado de template vazio, **interrompa** e oriente o usuário a consolidar a etapa 2 antes de qualquer diagrama de solução. `GUIDELINE.md` é produzido em paralelo na mesma etapa 3, então leia-o se já existir para coordenar decisões, mas sua ausência não bloqueia o início da projeção da solução.
+
+2. **Elicitar contexto** — se não fornecido, pergunte:
    - Nome e propósito do sistema em construção
    - Quem são os usuários (perfis e papéis)
    - Quais sistemas externos o sistema interage
    - Existe documentação prévia? (leia `docs/SOLUTION.md` se existir)
 
-2. **Seguir a hierarquia** — sempre comece pelo nível mais alto e aprofunde conforme solicitado:
+3. **Seguir a hierarquia** — sempre comece pelo nível mais alto e aprofunde conforme solicitado:
    - Contexto → Contêiner → Componente → Código (núcleo)
    - Landscape, Dynamic, Deployment (suplementares, conforme necessidade)
 
-3. **Nunca misturar níveis** — cada diagrama representa um único nível de abstração.
+4. **Nunca misturar níveis** — cada diagrama representa um único nível de abstração.
 
-4. **Incorporar cada diagrama inline em `docs/SOLUTION.md`**, na seção ou subseção em que o assunto ilustrado é tratado — o diagrama é parte da narrativa, não um anexo:
+5. **Incorporar cada diagrama inline em `docs/SOLUTION.md`**, na seção ou subseção em que o assunto ilustrado é tratado — o diagrama é parte da narrativa, não um anexo:
    - Diagrama de **Contexto** → junto à visão geral do sistema.
    - Diagrama de **Contêiner** → abrindo (ou dentro de) a seção que apresenta a decomposição estrutural do sistema.
    - Diagrama de **Componente** → dentro da subseção do contêiner decomposto.
@@ -32,7 +36,7 @@ Ao ser invocado, siga este protocolo antes de produzir qualquer diagrama:
    - Diagramas suplementares (**Landscape**, **Deployment**, dinâmicos auxiliares) que não correspondem a um assunto dedicado em `docs/SOLUTION.md` são a **exceção**: salve em `docs/solution/{nivel}-{nome}.md` e referencie em uma seção curta "Diagramas complementares" ao final de `docs/SOLUTION.md`. Padrões de nome para o caso de exceção: `context-{sistema}.md`, `container-{sistema}.md`, `component-{conteiner}.md`, `landscape.md`, `dynamic-{fluxo}.md`, `deployment-{ambiente}.md`.
    - Não crie uma seção dedicada "Diagramas" para abrigar os diagramas padrão — eles devem estar distribuídos contextualmente ao longo do documento.
 
-5. **Ao concluir**, revise `docs/SOLUTION.md` para garantir que cada diagrama inline segue imediatamente a prosa do tema que ilustra, com notas complementares curtas (quando fizer sentido) em parágrafos regulares abaixo do bloco Mermaid.
+6. **Ao concluir**, revise `docs/SOLUTION.md` para garantir que cada diagrama inline segue imediatamente a prosa do tema que ilustra, com notas complementares curtas (quando fizer sentido) em parágrafos regulares abaixo do bloco Mermaid.
 
 ---
 

@@ -54,14 +54,15 @@ git commit -m "chore: inicializa projeto a partir do template"
 {{% /step %}}
 
 {{% step num="3" title="Especifique antes de implementar" %}}
-Antes de qualquer linha de código, documente:
+Antes de qualquer linha de código, documente os cinco artefatos seguindo o fluxo de quatro etapas: **engenheiro (objetivo) → analista (problema) → projeção paralela por designer e arquiteto (marca + arquitetura + solução) → engenheiro (implementação)**. `BUSINESS.md` descreve o **problema**; `GUIDELINE.md`, `ARCHITECTURE.md` e `SOLUTION.md` são elaborados em conjunto na etapa de projeção, coordenando marca/UX, regras arquiteturais e solução técnica.
 
 ```
-docs/GOAL.md          ← fase atual, meta em curso e critérios de aceite
-docs/ARCHITECTURE.md  ← decisões arquiteturais e regras invioláveis
-docs/SOLUTION.md      ← componentes, tecnologias e desenho da solução
-docs/BUSINESS.md      ← regras de negócio e requisitos funcionais
-docs/GUIDELINE.md     ← padrões de marca, UI e UX
+docs/GOAL.md          ← etapa 1 — objetivo, fase e critérios de aceite (engenheiro)
+docs/BUSINESS.md      ← etapa 2 — problema e regras de negócio (analista)
+docs/GUIDELINE.md     ↰
+docs/ARCHITECTURE.md  ├─ etapa 3 (projeção, paralela) — marca/UX, regras arquiteturais e solução (designer + arquiteto)
+docs/SOLUTION.md      ↲
+                      → etapa 4 — implementação em src/ e test/ (engenheiro)
 ```
 {{% /step %}}
 

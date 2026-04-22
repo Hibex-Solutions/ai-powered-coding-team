@@ -9,13 +9,18 @@ Contribuições são bem-vindas — especialmente melhorias nas instruções da 
 
 Veja [CONTRIBUTING.md](https://github.com/hibex-solutions/ai-powered-coding-team/blob/main/CONTRIBUTING.md) para entender as responsabilidades de cada perfil e as regras de colaboração.
 
-### Perfis e responsabilidades
+### Perfis e fluxo
 
-| Perfil | Documentos sob sua responsabilidade |
-|---|---|
-| Arquiteto de soluções | `docs/ARCHITECTURE.md`, `docs/SOLUTION.md`, `docs/GOAL.md` |
-| Analista de negócio | `docs/BUSINESS.md` |
-| Designer | `docs/GUIDELINE.md` |
+O projeto é desenvolvido em quatro etapas. As duas primeiras são sequenciais — objetivo e problema. A terceira é uma **etapa de projeção paralela** em que designer e arquiteto produzem três artefatos coordenados. A quarta é a implementação. `BUSINESS.md` descreve o problema; `SOLUTION.md` descreve a solução para esse problema.
+
+| Etapa | Perfil | Documento / entrega |
+|---|---|---|
+| 1 | Engenheiro de Software | `docs/GOAL.md` — objetivo do projeto, fase atual e critérios de aceite |
+| 2 | Analista de negócio | `docs/BUSINESS.md` — problema e regras de negócio |
+| 3 (projeção, paralela) | Designer + Arquiteto de soluções | `docs/GUIDELINE.md` (designer) + `docs/ARCHITECTURE.md` e `docs/SOLUTION.md` (arquiteto) — marca/UX, regras arquiteturais e solução técnica |
+| 4 | Engenheiro de Software | código em `src/` e testes em `test/` |
+
+Os três artefatos da etapa 3 são elaborados em conjunto. Os papéis podem ser distribuídos entre profissionais distintos ou acumulados em um único profissional.
 
 ### Como contribuir
 
@@ -34,7 +39,7 @@ Para visualizar este site localmente durante o desenvolvimento, é necessário t
 hugo server --source docs/site
 ```
 
-Acesse em `http://localhost:1313`. O servidor recarrega automaticamente ao salvar arquivos.
+Acesse em `http://localhost:1313/ai-powered-coding-team/`. O servidor recarrega automaticamente ao salvar arquivos.
 
 {{% /card %}}
 

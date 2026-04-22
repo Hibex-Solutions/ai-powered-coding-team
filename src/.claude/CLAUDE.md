@@ -34,15 +34,17 @@ O usuário é **arquiteto de soluções de software**. Foco em decisões de desi
 
 ### Sobre documentação
 
-A documentação reside no diretório `./docs`, porém ainda assim estão divididos em:
+A documentação reside no diretório `./docs`, dividida segundo o fluxo de quatro etapas: **engenheiro (GOAL, etapa 1) → analista (BUSINESS, etapa 2) → projeção paralela por designer e arquiteto (GUIDELINE + ARCHITECTURE + SOLUTION, etapa 3) → engenheiro (implementação, etapa 4)**:
 
-- `./docs/GOAL.md` define a meta atual do projeto, a fase em que se encontra e os critérios de aceite
-- `./docs/ARCHITECTURE.md` tem a especificação da arquitetura do software e suas regras
-- `./docs/SOLUTION.md` tem a descrição da solução, que por sua vez deve obedecer todas as regras arquiteturais
-- `./docs/BUSINESS.md` tem a especificação negocial para o software em questão
-- `./docs/GUIDELINE.md` são as diretrizes, as regras de aplicação quanto a marca, UI/UX
+- `./docs/GOAL.md` — objetivo do projeto, fase atual e critérios de aceite (responsável: engenheiro; **etapa 1**, antes de tudo).
+- `./docs/BUSINESS.md` — **problema** que o software resolve e regras de negócio que regem sua operação (responsável: analista de negócio; **etapa 2**; pré-requisito para a etapa de projeção).
+- `./docs/GUIDELINE.md` — diretrizes de marca, UI e UX (responsável: designer; **etapa 3**, em paralelo com `ARCHITECTURE.md` e `SOLUTION.md`).
+- `./docs/ARCHITECTURE.md` — regras arquiteturais invioláveis que atuam sobre toda a solução (responsável: arquiteto; **etapa 3**, em paralelo com `GUIDELINE.md` e `SOLUTION.md`).
+- `./docs/SOLUTION.md` — **solução** técnica para o problema descrito em `BUSINESS.md` (responsável: arquiteto em conjunto com designer; **etapa 3**, em paralelo com `GUIDELINE.md` e `ARCHITECTURE.md`; pré-requisito para a implementação em `src/` e `test/`).
 
-Quando há necessidade de mais informações sobre esses 4 tipos de documentação, essas são incluídas
+A **etapa 3** é uma etapa de projeção colaborativa: os três artefatos são elaborados em conjunto, por profissionais distintos ou por um único profissional que acumula os papéis. `BUSINESS.md` trata do problema; `SOLUTION.md` trata da solução para esse problema. Toda decisão em `SOLUTION.md` deve ter origem rastreável em uma regra de `BUSINESS.md` (funcional ou não-funcional) ou em uma restrição de `ARCHITECTURE.md`.
+
+Quando há necessidade de mais informações sobre esses cinco tipos de documentação, essas são incluídas
 em documentos adicionais, que residem em diretórios correspondentes a seus nomes, a saber: `./docs/architecture/`,
 `./docs/solution/`, `./docs/business/`, e `./docs/guideline/` respectivamente.
 

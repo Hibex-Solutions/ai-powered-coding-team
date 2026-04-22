@@ -8,7 +8,7 @@ weight: 3
 <div class="rules-list">
 
 {{% rule icon="📋" title="Especificação antes de implementação" %}}
-<span>Nenhuma funcionalidade sem regra de negócio documentada — o código nasce da especificação, nunca o contrário.</span>
+<span>O objetivo nasce em <code>GOAL.md</code> (engenheiro). O problema nasce em <code>BUSINESS.md</code> (analista). A projeção da solução — <code>GUIDELINE.md</code>, <code>ARCHITECTURE.md</code> e <code>SOLUTION.md</code> — é produzida em paralelo por designer e arquiteto, em coordenação, a partir do problema já consolidado. O código nasce dessa projeção (engenheiro). Nunca antes — pular etapas viola as regras primárias invioláveis.</span>
 {{% /rule %}}
 
 {{% rule icon="📂" title="Nenhuma tecnologia sem registro" %}}
