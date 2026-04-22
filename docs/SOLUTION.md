@@ -185,7 +185,7 @@ C4Component
 - **`stacks`** é um componente *transitório* do payload: existe dentro do ZIP, mas o instalador o **remove do destino** após copiar o que interessa (skills e docs específicos). O diretório `stacks/` nunca aparece no projeto consumidor final.
 - **`claude_frag`** é o único componente que não vai para o destino como arquivo próprio — seu conteúdo é concatenado ao final de `.claude/CLAUDE.md` do destino e o arquivo fonte permanece em `eng/templates/`.
 - **`docs_12f`** reflete uma dependência versionada: a tradução pt-BR é sincronizada via `eng/update-12factor.*` (ver diagrama de contêiner). A versão embutida no ZIP é a que estava no repositório no momento do `release.sh`.
-- A regra `RN-REL-03` (`src/**` é API pública) implica que qualquer renomeação ou remoção destes componentes exige incremento MAJOR de versão.
+- A regra `RN-RELEASE-API-PUBLICA` (`src/**` é API pública) implica que qualquer renomeação ou remoção destes componentes exige incremento MAJOR de versão.
 
 #### Skills genéricas (distribuídas)
 
@@ -226,9 +226,9 @@ Residem em `.claude/skills/` (raiz) e são utilizadas apenas no desenvolvimento 
 
 ### Canal de distribuição
 
-O framework adota um **único canal de distribuição**: **GitHub Releases** para os artefatos ZIP versionados e **GitHub Pages** para o site público e a hospedagem dos assets `install.sh` e `install.ps1`. Essa decisão atende `RN-REL-06` (canal único) e `RN-INST-02` (sem token/segredo no consumidor) — os assets são servidos pela API pública de Releases e pelo endpoint público de Pages.
+O framework adota um **único canal de distribuição**: **GitHub Releases** para os artefatos ZIP versionados e **GitHub Pages** para o site público e a hospedagem dos assets `install.sh` e `install.ps1`. Essa decisão atende `RN-RELEASE-CANAL-UNICO` (canal único) e `RN-INSTALADOR-SEM-SEGREDO` (sem token/segredo no consumidor) — os assets são servidos pela API pública de Releases e pelo endpoint público de Pages.
 
-- **Contrato de instalação**: `install.sh` via `curl | bash` (e `install.ps1` via PowerShell) deve permanecer *self-contained*, dependendo apenas de `git`, `curl` e `unzip` no host do consumidor (`RN-INST-07`, `RN-NF-03`).
+- **Contrato de instalação**: `install.sh` via `curl | bash` (e `install.ps1` via PowerShell) deve permanecer *self-contained*, dependendo apenas de `git`, `curl` e `unzip` no host do consumidor (`RN-INSTALADOR-PREREQUISITOS`, `RN-SEM-RUNTIME-ADICIONAL`).
 - **Automação do canal**: dois workflows do GitHub Actions cobrem a publicação:
   - `.github/workflows/release.yml` — gatilho em *tag* `v*`; invoca `eng/release.sh` e anexa o ZIP à GitHub Release.
   - `.github/workflows/pages.yml` — gatilho em *push* para `main`; faz o *build* do site Hugo e copia `eng/install.sh`/`install.ps1` para `docs/site/static/` antes de publicar em GitHub Pages.
@@ -239,13 +239,13 @@ O framework adota um **único canal de distribuição**: **GitHub Releases** par
 
 A versão do framework é resolvida automaticamente por **GitVersion** (v6.7+) a partir do histórico de commits e da *tag* mais recente no formato `v*`. O binário é localizado pelo `eng/release.sh`: utiliza o GitVersion do sistema se disponível; caso contrário baixa para `.GitVersion.Tool/` (fallback silencioso). Em ambiente CI, o binário é tipicamente baixado a cada execução.
 
-A semântica SemVer aplicada a `src/**` (a API pública do framework, conforme `RN-REL-03`) é:
+A semântica SemVer aplicada a `src/**` (a API pública do framework, conforme `RN-RELEASE-API-PUBLICA`) é:
 
 - **MAJOR** — remoções, renomeações ou mudanças comportamentais incompatíveis em `src/**`.
 - **MINOR** — adições retrocompatíveis (nova skill genérica, nova stack, novo arquivo distribuído).
 - **PATCH** — correções sem efeito em API (typos, ajustes internos).
 
-**Implicação para o consumidor:** uma vez executado `install.sh` com uma versão específica, o projeto consumidor fica travado naquela versão até que o usuário decida reinstalar ou migrar. Mudanças futuras em `src/**` não afetam projetos já instalados — consequência direta da imutabilidade de releases (`RN-REL-01`) combinada à ausência de mecanismo de auto-atualização no canal.
+**Implicação para o consumidor:** uma vez executado `install.sh` com uma versão específica, o projeto consumidor fica travado naquela versão até que o usuário decida reinstalar ou migrar. Mudanças futuras em `src/**` não afetam projetos já instalados — consequência direta da imutabilidade de releases (`RN-RELEASE-IMUTAVEL`) combinada à ausência de mecanismo de auto-atualização no canal.
 
 ---
 
@@ -264,7 +264,7 @@ A semântica SemVer aplicada a `src/**` (a API pública do framework, conforme `
    - Localiza o ZIP em `dist/v*.zip`.
    - `softprops/action-gh-release@v2` cria a GitHub Release e anexa o ZIP como asset.
 
-O diagrama dinâmico abaixo materializa os passos acima — das regras `RN-REL-01` a `RN-REL-06` de `docs/BUSINESS.md` — do `git push` da *tag* `v*` até o asset ZIP anexado à GitHub Release.
+O diagrama dinâmico abaixo materializa os passos acima — das regras de release em `docs/BUSINESS.md` — do `git push` da *tag* `v*` até o asset ZIP anexado à GitHub Release.
 
 ```mermaid
 C4Dynamic
@@ -288,9 +288,9 @@ C4Dynamic
     RelIndex(7, workflow_rel, gh_releases, "softprops/action-gh-release@v2 anexa ZIP")
 ```
 
-- **Imutabilidade (`RN-REL-01`)**: uma vez concluído o passo 7, o asset é final. Correções exigem nova *tag*.
-- **Versionamento (`RN-REL-02`)**: o passo 4 é a fonte única de verdade sobre a versão. A *tag* apenas sinaliza o momento da release; a versão é determinada por GitVersion a partir do histórico.
-- **Conteúdo do ZIP (`RN-REL-05`)**: o passo 5 copia exclusivamente `src/` — nenhum artefato da raiz entra no pacote.
+- **Imutabilidade (`RN-RELEASE-IMUTAVEL`)**: uma vez concluído o passo 7, o asset é final. Correções exigem nova *tag*.
+- **Versionamento (`RN-RELEASE-VERSIONAMENTO-SEMVER`)**: o passo 4 é a fonte única de verdade sobre a versão. A *tag* apenas sinaliza o momento da release; a versão é determinada por GitVersion a partir do histórico.
+- **Conteúdo do ZIP (`RN-RELEASE-ZIP-CONTEUDO`)**: o passo 5 copia exclusivamente `src/` — nenhum artefato da raiz entra no pacote.
 - **GitVersion ausente**: o `release.sh` baixa o binário para `.GitVersion.Tool/` quando não encontra no `PATH` do sistema (fallback silencioso); em ambiente CI, geralmente o binário é baixado a cada execução.
 
 ### Fluxo de instalação
@@ -314,7 +314,7 @@ C4Dynamic
 9. Executa `git init --initial-branch=main` no destino.
 10. Emite instruções finais ao usuário (configuração de `user.name`/`user.email` locais, primeiro commit, comando para iniciar a sessão do assistente de IA e ordem recomendada de produção supervisionada dos documentos).
 
-O diagrama dinâmico abaixo materializa o fluxo acima — regras `RN-INST-01` a `RN-INST-07` de `docs/BUSINESS.md` — do `curl | bash` até o `git init` no destino, passando pela aplicação opcional de stack.
+O diagrama dinâmico abaixo materializa o fluxo acima — regras de instalação em `docs/BUSINESS.md` — do `curl | bash` até o `git init` no destino, passando pela aplicação opcional de stack.
 
 ```mermaid
 C4Dynamic
@@ -338,9 +338,9 @@ C4Dynamic
     RelIndex(9, installer, projeto, "git init --initial-branch=main")
 ```
 
-- **Pré-requisitos (`RN-INST-07`)**: antes do passo 3 o `install.sh` verifica presença de `git`, `curl` e `unzip` e falha com mensagem específica quando algum está ausente.
-- **Stack inválida (`RN-INST-05`)**: entre os passos 7 e 8, se `--stack <nome>` foi informado e a stack não existe no pacote, o script remove o destino (`rm -r <dir>`) e sai com código não-zero listando as stacks disponíveis.
-- **Agnosticismo da instalação (`RN-INST-04`)**: sem `--stack`, o passo 7 apenas remove o diretório `stacks/` do destino; nenhum arquivo stack-específico é copiado.
+- **Pré-requisitos (`RN-INSTALADOR-PREREQUISITOS`)**: antes do passo 3 o `install.sh` verifica presença de `git`, `curl` e `unzip` e falha com mensagem específica quando algum está ausente.
+- **Stack inválida (`RN-INSTALADOR-STACK-INVALIDA`)**: entre os passos 7 e 8, se `--stack <nome>` foi informado e a stack não existe no pacote, o script remove o destino (`rm -r <dir>`) e sai com código não-zero listando as stacks disponíveis.
+- **Agnosticismo da instalação (`RN-INSTALADOR-STACK-OPCIONAL`)**: sem `--stack`, o passo 7 apenas remove o diretório `stacks/` do destino; nenhum arquivo stack-específico é copiado.
 - **Imutabilidade do destino**: o passo 9 deixa o diretório como repositório Git inicializado, sem commits — o consumidor é responsável pelo commit inicial e pela configuração local de `user.name`/`user.email`.
 
 ---
